@@ -1,0 +1,110 @@
+.sign-page  {
+    width: 100vw;
+    /* height: 100vb; */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.sign-head {
+    color: whitesmoke;
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+.sign-form {
+    flex:0.40;
+}
+@media only screen and (max-width: 600px) {
+    .sign-form {
+      flex: 0.8;
+      margin-top: 2px;
+    }
+  }
+.sign-form form div label,input {
+    background: #180e4b;
+}
+.sign-form form {
+    display: flex;
+    background: #180e4b;
+    border: 1px solid transparent;
+    padding: 25px;
+    flex-direction: column;
+    gap: 15px;
+}
+form:hover {
+    box-shadow: 2px 3px 8px rgb(33, 65, 104);
+    transition: all 0.4s ease;
+}
+.sign-form form div {
+    display: flex;
+    flex-direction: column;
+    background: #180e4b;
+    gap: 15px;
+}
+.sign-form form div label{
+    color: rgb(185,28,28);
+}
+.sign-form form div input {
+    color: whitesmoke;
+    padding: 4px;
+    border-bottom: 1px solid whitesmoke;
+    border-radius: 4px;
+}
+.sign-form form div input:focus {
+    outline:  none;
+}
+.sign-form form div li {
+    background:#180e4b;
+    font-size: 0.7rem;
+    color: whitesmoke;
+    opacity: 0.8;
+}
+.gender-spn {
+    background: #180e4b;
+    color: rgb(185,28,28);
+    opacity: 0.9;
+    font-weight: 700;
+    font-size: 1rem;
+    padding-left: 2px;
+}
+.sign-gender {
+    display: flex;
+    padding: 2px;
+    gap :30px;
+    background: #180e4b;
+}
+.sign-gender label {
+    background: #180e4b;
+    color: rgb(185,28,28);
+    padding-right: 3px;
+}
+#sign-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    background:#180e4b;
+    gap: 30px;
+}
+#sign-buttons button {
+    border: 1px solid transparent;
+    flex:1;
+    color: whitesmoke;
+    padding: 4px 25px;
+    border-radius: 3px;
+    background: rgb(30, 66, 110);
+    flex-basis: 150px;
+}
+#sign-buttons button:hover {
+    background: rgb(50, 97, 155);
+    transition: all 0.3s ease;
+}
+.sign-head .arrow {
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding-right: 20px;
+    color: darkred;
+}

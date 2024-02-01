@@ -1,0 +1,148 @@
+@font-face {
+    font-family: danss ;
+    src: url('../utility/fonts/DancingScript-Bold.ttf');
+}
+.home-header{
+    padding-top: 10px;
+    margin-bottom: 30px ;
+}
+.home-header nav{
+    width: 95vw;
+    margin: 10px auto 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+}
+.home-nav{
+    color: whitesmoke;
+    text-align: center;
+    border-radius: 4px;
+    padding: 3px 15px;
+    background: rgb(26, 26, 77) ;
+}
+.first-head{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+.sec-head{
+    display: flex;
+    flex: 0.25;
+}
+.nav-head h2{
+    color: whitesmoke;
+    font-family: danss;
+    font-size: 3rem;
+}
+.nav-head h2 span{
+    padding-left: 10px;
+    font-family: danss;
+    color: darkred;
+    font-size: 3rem;
+}
+@media only screen and (max-width: 600px){
+    .home-nav{
+        flex: 0.8;
+        flex-basis: 300px;
+    }
+}
+.home-nav:hover {
+    box-shadow: 3px 4px 10px red;
+    transition: all 0.4s ease;
+}
+.info-group-user{
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+}
+.location-form{
+   width: 95vw;
+   margin: 2px auto;
+}
+.location-form h3{
+    color: whitesmoke;
+    font-family: danss;
+    font-size: 2.2rem;
+    text-align: center;
+}
+.location-form h3 span{
+    font-size: 1.8rem;
+    color:darkred;
+    padding-left: 15px;
+}
+.location-form .hrr{
+    width: 250px;
+    margin-top: 5px;
+    margin: 0 auto;
+    opacity: 0.4;
+}
+.info-group-user{
+    margin-right: 50px;
+    border-left: 1px solid darkred;
+    border-bottom: 1px solid whitesmoke;
+    padding: 5px ;
+    border-radius: 3px;
+}
+
+.home-header nav .username-info {
+    color: whitesmoke;
+    padding-left: 5px;
+    
+}
+.location-form form {
+    margin-top: 30px;
+    margin-right: 25px;
+    margin: 10px auto;
+    width: 260px;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 25px;
+}
+.location-form form div{
+  display: flex;
+  flex:1;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.city-select,.town-select {
+    border: 1px solid darkred;
+    color: whitesmoke;
+    flex: 1;
+    border-radius: 2px;
+    padding: 5px 30px;
+}
+
+.location-form div input{
+    color: whitesmoke;
+    flex: 1;
+    border-bottom: 1px solid darkred;
+    padding: 3px 15px;
+}
+.location-form div input:focus{
+    outline: none;
+}
+.location-form form button {
+    color: whitesmoke;
+    font-family: danss;
+    margin-top: 10px;
+    background: rgb(26, 26, 77);
+    font-size: 1.4rem;
+    padding: 3px 30px;
+    opacity: 0.8;
+    border:1px solid transparent;
+    border-radius: 4px;
+}
+.location-form form:hover{
+    box-shadow: none;
+}
+.location-form form button:hover{
+    opacity: 1;
+}
+.location-form form div select {
+    color: whitesmoke;
+    opacity: 0.8;
+}
