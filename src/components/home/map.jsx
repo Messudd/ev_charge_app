@@ -14,7 +14,9 @@ import {
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
+
 const Map = () => {
+  const {formLocationData ,mapStyle} = useContext(globalContext);
   const [center, setCenter] = useState({
     lat: 39.925533,
     lng: 32.866287,
@@ -25,8 +27,6 @@ const Map = () => {
     lng: "",
     loading: false,
   });
-
-  const { formLocationData } = useContext(globalContext);
 
   const markerIcon = new L.Icon({
     iconUrl: markerUserIcon,
@@ -73,7 +73,7 @@ const Map = () => {
       >
         <MapContainer center={center} zoom={ZOOM_LEVEL} scrollWheelZoom={true}>
           <TileLayer
-            url="https://api.maptiler.com/maps/openstreetmap/256/{z}/{x}/{y}.jpg?key=kHLg8AiFGgnch1FMqKRv"
+            url= {mapStyle}
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
           {pos.loading && (

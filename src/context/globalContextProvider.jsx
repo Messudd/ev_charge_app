@@ -19,6 +19,9 @@ const GlobalContextProvider = ({ children }) => {
     gender: "MALE",
   });
   const [userFavorites ,setUserFavorites] = useState([]);
+  const [mapStyle ,setMapStyle] = useState(
+    'https://api.maptiler.com/maps/openstreetmap/256/{z}/{x}/{y}.jpg?key=kHLg8AiFGgnch1FMqKRv'
+  )
 
   return (
     <globalContext.Provider
@@ -30,7 +33,9 @@ const GlobalContextProvider = ({ children }) => {
         userFavorites,
         setUserFavorites,
         userChoise,
-        setUserChoise
+        setUserChoise,
+        mapStyle,
+        setMapStyle
       }}
     >
       {children}

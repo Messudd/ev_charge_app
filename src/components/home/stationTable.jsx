@@ -3,21 +3,36 @@ import { globalContext } from "../../context/globalContextProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "../../css/station_table.css";
 
 const StationTable = () => {
   const { formLocationData, userFavorites, setUserFavorites } = useContext(globalContext);
-  
-  const addFavoriteList = (param) => {
-    if(userFavorites.length > 0){
-      if(userFavorites.filter((item) => item.id === param.id).length > 0){
-        //toastify bu id zaten favorilerde ..
-        alert('zaten favorilerde mevcut !');
-      }
-      else setUserFavorites([...userFavorites,param]);
-    }
-    else setUserFavorites([...userFavorites,param]);
+
+  const toastData = {
+    position: "bottom-right",
+    autoClose: 1000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
   }
+
+  const addFavoriteList = (param) => {
+    if (userFavorites.length > 0) {
+      if (userFavorites.filter((item) => item.id === param.id).length > 0) {
+        toast.warn("The station is already in favorites !", {...toastData});
+      } else {
+        setUserFavorites([...userFavorites, param]);
+        toast.success("Station added to favorites.", {...toastData});}
+    } else {
+      setUserFavorites([...userFavorites, param]);
+      toast.success("Station added to favorites.", {...toastData});
+    }
+  };
 
   return (
     <div className="station-table">
@@ -54,9 +69,11 @@ const StationTable = () => {
                     </Link>
                   </td>
                   <td>
-                    <FontAwesomeIcon 
+                    <FontAwesomeIcon
+                      cursor="pointer"
                       onClick={() => addFavoriteList(loc)}
-                     icon={faStar}/>
+                      icon={faStar}
+                    />
                   </td>
                 </tr>
               );

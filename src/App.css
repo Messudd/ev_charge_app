@@ -111,3 +111,6 @@ body {
 .leaflet-marker-pane img{
   background: none;
 }
+select:focus{
+  outline: none;
+}
