@@ -56,7 +56,7 @@ body {
 }
 .leaflet-container {
   width: 100%;
-  height: 450px;
+  height: 480px;
   border-radius: 15px;
 }
 @media only screen and (max-width: 600px){
@@ -71,16 +71,15 @@ body {
 .leaflet-control-container .leaflet-top,.leaflet-left {
   background : #e9e8e8;
 }
-.home-try {
+.home-main{
   width: 100vw;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
   align-items: center;
-  gap: 20px;
+  gap:20px;
 }
 .class-map {
-  flex: 1.5;
+  flex: 3.5;
   display: flex;
   padding: 25px 0px 25px 40px;
   border-radius: 3px;
@@ -88,7 +87,7 @@ body {
 }
 .map-container {
   flex: 1;
-  border:3px solid rgb(50, 97, 155);;
+  border:3px solid rgb(50, 97, 155);
   border-radius: 16px;
 }
 .location-form {

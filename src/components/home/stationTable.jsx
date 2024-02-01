@@ -1,10 +1,23 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { globalContext } from "../../context/globalContextProvider";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import "../../css/station_table.css";
 
 const StationTable = () => {
-  const { formLocationData } = useContext(globalContext);
+  const { formLocationData, userFavorites, setUserFavorites } = useContext(globalContext);
+  
+  const addFavoriteList = (param) => {
+    if(userFavorites.length > 0){
+      if(userFavorites.filter((item) => item.id === param.id).length > 0){
+        //toastify bu id zaten favorilerde ..
+        alert('zaten favorilerde mevcut !');
+      }
+      else setUserFavorites([...userFavorites,param]);
+    }
+    else setUserFavorites([...userFavorites,param]);
+  }
 
   return (
     <div className="station-table">
@@ -40,7 +53,11 @@ const StationTable = () => {
                       Go
                     </Link>
                   </td>
-                  <td></td>
+                  <td>
+                    <FontAwesomeIcon 
+                      onClick={() => addFavoriteList(loc)}
+                     icon={faStar}/>
+                  </td>
                 </tr>
               );
             })}

@@ -18,6 +18,7 @@ const GlobalContextProvider = ({ children }) => {
     userName: "Mesud",
     gender: "MALE",
   });
+  const [userFavorites ,setUserFavorites] = useState([]);
 
   return (
     <globalContext.Provider
@@ -26,6 +27,8 @@ const GlobalContextProvider = ({ children }) => {
         setFormLocationData,
         userNavInfo,
         setUserNavInfo,
+        userFavorites,
+        setUserFavorites,
         userChoise,
         setUserChoise
       }}
