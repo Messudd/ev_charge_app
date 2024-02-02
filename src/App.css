@@ -4,11 +4,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #130a3e;
 }
 body {
   overflow-x: hidden;
   scroll-behavior: smooth;
+  background-color: #130a3e;
 }
 ::-webkit-scrollbar {
   width: 8px;
@@ -128,6 +128,7 @@ select:focus{
   font-size: 1.5rem;
 }
 .map-style select{
+  background: #130a3e;
   color: whitesmoke;
   border-bottom: 1px solid darkred;
   padding: 4px;

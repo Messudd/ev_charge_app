@@ -11,14 +11,20 @@ import UserNavComp from "./usernav-comp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer } from "react-toastify";
+import PreviewPopup from "./previewPopup";
 import "../../css/home.css";
 
 const Home = () => {
-  const { userNavInfo, formLocationData } = useContext(globalContext);
+  const { userNavInfo, formLocationData, prewPopup, setPrewPopup } =
+    useContext(globalContext);
   const [userHover, setUserHover] = useState(false);
 
   const handleToggleUser = () => {
     setUserHover(!userHover);
+  };
+
+  const onOpenContactPopup = () => {
+    setPrewPopup(!prewPopup);
   };
 
   useEffect(() => {
@@ -29,7 +35,7 @@ const Home = () => {
     <>
       <header className="home-header">
         <nav>
-          <div className="first-head">
+          <div className="zero-head">
             <div className="head-link">
               <div className="nav-btn">
                 <FontAwesomeIcon
@@ -49,6 +55,8 @@ const Home = () => {
                 <span className="username-info">{userNavInfo.userName}</span>
               </div>
             </div>
+          </div>
+          <div className="first-head">
             <div className="nav-head">
               <h2>
                 Ev | Station<span>Dashboard</span>
@@ -56,9 +64,13 @@ const Home = () => {
             </div>
           </div>
           <div className="sec-head">
-            <Link to="#contact" className="home-nav">
+            <a
+              onClick={onOpenContactPopup}
+              className="home-nav"
+              style={{ cursor: "pointer" }}
+            >
               Contact
-            </Link>
+            </a>
             <Link className="home-nav" to="/">
               <FontAwesomeIcon icon={faSignOutAlt} />
               <span style={{ background: "none", paddingLeft: "10px" }}>
@@ -78,7 +90,7 @@ const Home = () => {
         theme="dark"
       />
       <div className="home-main">
-        {userHover && <UserNavComp toggleSideNav = {handleToggleUser} />}
+        {userHover && <UserNavComp toggleSideNav={handleToggleUser} />}
         <div className="class-map">
           <Map></Map>
         </div>
@@ -87,6 +99,7 @@ const Home = () => {
       {formLocationData.locDatas.length > 0 && !formLocationData.loading && (
         <StationTable />
       )}
+      {prewPopup && <PreviewPopup />}
       <div className="footer"></div>
     </>
   );

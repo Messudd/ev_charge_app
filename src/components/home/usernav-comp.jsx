@@ -5,7 +5,7 @@ import userBoxData from "../../data/userboxData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const UserNavComp = ({toggleSideNav}) => {
+const UserNavComp = ({ toggleSideNav }) => {
   return (
     <motion.div
       className="user-box"
@@ -16,16 +16,19 @@ const UserNavComp = ({toggleSideNav}) => {
       transition={{ duration: 0.5 }}
     >
       <li
-        onClick={toggleSideNav}
         style={{
           display: "flex",
-          cursor: 'pointer',
+          cursor: "pointer",
           justifyContent: "flex-end",
           padding: "20px",
           marginBottom: "30px",
         }}
       >
-        <FontAwesomeIcon icon={faXmark} color="whitesmoke" />
+        <FontAwesomeIcon
+          onClick={toggleSideNav}
+          icon={faXmark}
+          color="whitesmoke"
+        />
       </li>
       <ul>
         {userBoxData.map((item, idx) => {

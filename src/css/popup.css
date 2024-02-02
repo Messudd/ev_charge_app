@@ -1,0 +1,27 @@
+.popup-container{
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    filter: blur(0.5);
+}
+.popup-preview{
+    position: fixed;
+    top:40%;
+    left: 50%;
+    width: 500px;
+    height: 300px;
+    background: #130a3e;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transform: translate(-50%,-50%);
+}
+.popup-preview h1{
+    color: whitesmoke;
+    font-family: danss;
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: bold;
+}

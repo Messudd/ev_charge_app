@@ -66,7 +66,10 @@ const Map = () => {
       alert("Geolocation is not support ! ", error);
     };
 
-    navigator.geolocation.getCurrentPosition(onSucces, onError);
+    navigator.geolocation.getCurrentPosition(onSucces, onError, {
+      enableHighAccuracy: true,
+      timeout: 5000,
+    });
   };
 
   useEffect(() => {

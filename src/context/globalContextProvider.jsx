@@ -14,6 +14,7 @@ const GlobalContextProvider = ({ children }) => {
     loading : false,
   })
   const [mode, setMode] = useState('light');
+  const [prewPopup, setPrewPopup] = useState(false);
   const [userNavInfo, setUserNavInfo] = useState({
     userName: "Mesud",
     gender: "MALE",
@@ -35,7 +36,9 @@ const GlobalContextProvider = ({ children }) => {
         userChoise,
         setUserChoise,
         mapStyle,
-        setMapStyle
+        setMapStyle,
+        prewPopup,
+        setPrewPopup
       }}
     >
       {children}

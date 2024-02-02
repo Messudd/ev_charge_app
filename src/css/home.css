@@ -10,6 +10,7 @@
     position: fixed;
     display: flex;
     flex-direction: column;
+    background: #130a3e;
     z-index: 5;
     top:0;
     left: 0;
@@ -39,24 +40,23 @@
 }
 .user-box ul li a:hover{
     background: #22136d;
-    cursor: pointer;
 }
 .user-box ul li span{
     background: transparent;
 }
-
 .home-header nav{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
-    gap: 60px;
+}
+.zero-head{
+    flex: 1;
 }
 .first-head{
-    display: flex;
-    flex-wrap: wrap;
-    flex: 4;
-    justify-content: space-evenly;
-    align-items: center;
+    text-align: center;
+    padding-bottom: 3px;
+    flex: 3;
 }
 .sec-head{
     display: flex;
@@ -152,6 +152,7 @@
 }
 
 .city-select,.town-select {
+    background: #130a3e;
     border: 1px solid darkred;
     color: whitesmoke;
     flex: 1;

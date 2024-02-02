@@ -54,8 +54,8 @@ const StationTable = () => {
                   <td>{loc.type}</td>
                   <td id="td-btn">
                     <Link
+                      to = {`/user/detail/${loc.id}`}
                       style={{ background: "none", width: "100%" }}
-                      to={`/user/detail/${loc.id}`}
                     >
                       Preview
                     </Link>
