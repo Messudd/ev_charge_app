@@ -10,33 +10,15 @@ import StationTable from "./stationTable";
 import UserNavComp from "./usernav-comp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 import "../../css/home.css";
 
 const Home = () => {
-  const { userNavInfo, formLocationData, setMapStyle } =
-    useContext(globalContext);
+  const { userNavInfo, formLocationData } = useContext(globalContext);
   const [userHover, setUserHover] = useState(false);
-
-  const satellite =
-    "https://api.maptiler.com/maps/satellite/256/{z}/{x}/{y}.jpg?key=kHLg8AiFGgnch1FMqKRv";
-  const topo =
-    "https://api.maptiler.com/maps/topo-v2/256/{z}/{x}/{y}.png?key=kHLg8AiFGgnch1FMqKRv";
-  const street =
-    "https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=kHLg8AiFGgnch1FMqKRv";
-
-  const mapOptions = [
-    { value: satellite, label: "Satellite" },
-    { value: topo, label: "Topo" },
-    { value: street, label: "Street" },
-  ];
 
   const handleToggleUser = () => {
     setUserHover(!userHover);
-  };
-
-  const changeMapStyle = (e) => {
-    setMapStyle(e.target.value);
   };
 
   useEffect(() => {
@@ -48,39 +30,28 @@ const Home = () => {
       <header className="home-header">
         <nav>
           <div className="first-head">
-            <div className="nav-btn">
-              <FontAwesomeIcon
-                icon={faBars}
-                width={20}
-                color="whitesmoke"
-                onClick={handleToggleUser}
-                cursor="pointer"
-              />
-            </div>
-            <div className="info-group-user">
-              <img
-                src={userNavInfo.gender === "MALE" ? maleIcon : femaleIcon}
-                alt="user-icon"
-                width={26}
-              />
-              <span className="username-info">{userNavInfo.userName}</span>
-            </div>
-            <div className="map-style">
-              <h3>Map : </h3>
-              <select defaultValue="" onChange={changeMapStyle}>
-                <option disabled value="">
-                  Select Type
-                </option>
-                {mapOptions.map((item, idx) => (
-                  <option key={idx} value={item.value}>
-                    {item.label}
-                  </option>
-                ))}
-              </select>
+            <div className="head-link">
+              <div className="nav-btn">
+                <FontAwesomeIcon
+                  icon={faBars}
+                  width={20}
+                  color="whitesmoke"
+                  onClick={handleToggleUser}
+                  cursor="pointer"
+                />
+              </div>
+              <div className="info-group-user">
+                <img
+                  src={userNavInfo.gender === "MALE" ? maleIcon : femaleIcon}
+                  alt="user-icon"
+                  width={26}
+                />
+                <span className="username-info">{userNavInfo.userName}</span>
+              </div>
             </div>
             <div className="nav-head">
               <h2>
-                Ev | Charge <span>Dashboard</span>
+                Ev | Station<span>Dashboard</span>
               </h2>
             </div>
           </div>
@@ -107,7 +78,7 @@ const Home = () => {
         theme="dark"
       />
       <div className="home-main">
-        {userHover && <UserNavComp />}
+        {userHover && <UserNavComp toggleSideNav = {handleToggleUser} />}
         <div className="class-map">
           <Map></Map>
         </div>
@@ -116,6 +87,7 @@ const Home = () => {
       {formLocationData.locDatas.length > 0 && !formLocationData.loading && (
         <StationTable />
       )}
+      <div className="footer"></div>
     </>
   );
 };

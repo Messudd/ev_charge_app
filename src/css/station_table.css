@@ -2,23 +2,77 @@
   width: 100vw;
   padding-top: 5rem;
   padding-bottom: 5rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   background: rgb(26, 26, 77);
 }
+@media only screen and (max-width: 600px){
+  .station-table table,
+  th,
+  tr,
+  td {
+    border: 1px solid #3b3072;
+    border-collapse: collapse;
+    padding: 3px 10px;
+    color: whitesmoke;  
+    }
+  
+  .station-table table td {
+    text-align: center;
+  }
+  .station-table table tbody,
+  tr,
+  td {
+    background: rgb(26, 26, 77);
+  }
+  .station-table table th,
+  td {
+    opacity: 0.7;
+    cursor: default;
+  }
+  .station-table table th:hover,
+  td:hover {
+    opacity: 0.9;
+  }
+  .station-table th {
+    color: red;
+    cursor: default;
+  }
+  .station-table div {
+    max-height: 500px;
+    overflow: auto;
+  }
+  #td-btn {
+    background: #201558;
+    cursor: pointer;
+  }
+  #td-btn:hover {
+    background: #281d5f;
+    transition: all 0.4s ease;
+  }
+  #td-btn a {
+    padding: 3px 15px;
+  }
+  .station-table table .fav:hover{
+    transform: scale(1.1);
+  }
+}
 .station-table table {
   box-shadow: 1px 2px 3px rgb(26, 26, 77);
 }
-.station-table table,
+@media only screen and (min-width: 600px){
+  .station-table table,
 th,
 tr,
 td {
   border: 1px solid #3b3072;
   border-collapse: collapse;
   padding: 10px 30px;
-  color: whitesmoke;
-}
+  color: whitesmoke;  
+  }
+
 .station-table table td {
   text-align: center;
 }
@@ -54,4 +108,8 @@ td:hover {
 }
 #td-btn a {
   padding: 8px 20px;
+}
+.station-table table .fav:hover{
+  transform: scale(1.1);
+}
 }

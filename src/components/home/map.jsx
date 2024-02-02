@@ -2,21 +2,28 @@ import React, { useEffect, useState, useContext } from "react";
 import { globalContext } from "../../context/globalContextProvider";
 import { motion } from "framer-motion";
 import { variants } from "../../data/animationData";
-import loc from '../../utility/images/loc.png';
+import loc from "../../utility/images/loc.png";
 import markerUserIcon from "../../utility/images/icons8-marker-40.png";
 import markerClickIcon from "../../utility/images/icons8-marker-48.png";
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-} from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-
 const Map = () => {
-  const {formLocationData ,mapStyle} = useContext(globalContext);
+  const satellite =
+    "https://api.maptiler.com/maps/satellite/256/{z}/{x}/{y}.jpg?key=kHLg8AiFGgnch1FMqKRv";
+  const topo =
+    "https://api.maptiler.com/maps/topo-v2/256/{z}/{x}/{y}.png?key=kHLg8AiFGgnch1FMqKRv";
+  const street =
+    "https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=kHLg8AiFGgnch1FMqKRv";
+
+  const mapOptions = [
+    { value: satellite, label: "Satellite" },
+    { value: topo, label: "Topo" },
+    { value: street, label: "Street" },
+  ];
+
+  const { formLocationData, mapStyle, setMapStyle } = useContext(globalContext);
   const [center, setCenter] = useState({
     lat: 39.925533,
     lng: 32.866287,
@@ -42,6 +49,10 @@ const Map = () => {
     popupAnchor: [0, -40],
   });
 
+  const changeMapStyle = (e) => {
+    setMapStyle(e.target.value);
+  };
+
   const getUserLocation = () => {
     const onSucces = (position) => {
       setPos({
@@ -65,15 +76,39 @@ const Map = () => {
 
   return (
     <>
+      <div className="map-style">
+        <div className="button-location">
+          <img
+            className="get-location"
+            style={{ filter: pos.loading && "brightness(140%)" }}
+            onClick={getUserLocation}
+            src={loc}
+            alt=""
+            width={35}
+          />
+        </div>
+        <h3>Map : </h3>
+        <select defaultValue="" onChange={changeMapStyle}>
+          <option disabled value="">
+            Select Type
+          </option>
+          {mapOptions.map((item, idx) => (
+            <option key={idx} value={item.value}>
+              {item.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <motion.div
         initial="hidden"
         animate="visible"
         variants={variants}
         className="map-container"
       >
-        <MapContainer center={center} zoom={ZOOM_LEVEL} scrollWheelZoom={true}>
+        <MapContainer center={center} zoom={ZOOM_LEVEL} scrollWheelZoom={false}>
           <TileLayer
-            url= {mapStyle}
+            url={mapStyle}
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
           {pos.loading && (
@@ -83,7 +118,8 @@ const Map = () => {
               </Popup>
             </Marker>
           )}
-          {(formLocationData.locDatas.length > 0 && !formLocationData.loading) && 
+          {formLocationData.locDatas.length > 0 &&
+            !formLocationData.loading &&
             formLocationData.locDatas.map((item, idx) => (
               <Marker
                 key={idx}
@@ -91,12 +127,18 @@ const Map = () => {
                 icon={markerClick}
               >
                 <Popup>
-                  <div
-                    className="pops"
-                    style={{ width: "100px" }}
-                  >
-                    <div style={{ color: "#fff" ,opacity: '0.8' , display: 'flex', padding: '2px auto' }}>{item.description}</div>
-                    <img src= {item.image} width={60} alt="ev_charge_foto" />
+                  <div className="pops" style={{ width: "100px" }}>
+                    <div
+                      style={{
+                        color: "#fff",
+                        opacity: "0.8",
+                        display: "flex",
+                        padding: "2px auto",
+                      }}
+                    >
+                      {item.description}
+                    </div>
+                    <img src={item.image} width={60} alt="ev_charge_foto" />
                     <div style={{ color: "red" }}>{item.type}</div>
                   </div>
                 </Popup>
@@ -104,11 +146,6 @@ const Map = () => {
             ))}
         </MapContainer>
       </motion.div>
-      <div className="button-location">
-          <img className="get-location" 
-           style={{filter : pos.loading &&  'brightness(140%)'}}
-           onClick={getUserLocation} src= {loc} alt="" width={35}/>
-      </div>
     </>
   );
 };

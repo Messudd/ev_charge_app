@@ -9,7 +9,7 @@ import "../../css/station_table.css";
 
 const StationTable = () => {
   const { formLocationData, userFavorites, setUserFavorites } = useContext(globalContext);
-
+ 
   const toastData = {
     position: "bottom-right",
     autoClose: 1000,
@@ -24,7 +24,7 @@ const StationTable = () => {
   const addFavoriteList = (param) => {
     if (userFavorites.length > 0) {
       if (userFavorites.filter((item) => item.id === param.id).length > 0) {
-        toast.warn("The station is already in favorites !", {...toastData});
+        toast.warn("Station is already in favorites !", {...toastData});
       } else {
         setUserFavorites([...userFavorites, param]);
         toast.success("Station added to favorites.", {...toastData});}
@@ -40,11 +40,7 @@ const StationTable = () => {
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>City</th>
-              <th>Town</th>
-              <th>Neighbourhood</th>
-              <th>Street</th>
+              <th>Station Name</th>
               <th>Type</th>
               <th>Detail</th>
               <th>Favorite</th>
@@ -55,21 +51,18 @@ const StationTable = () => {
               return (
                 <tr key={index}>
                   <td>{loc.name}</td>
-                  <td>{loc.city}</td>
-                  <td>{loc.town}</td>
-                  <td>{loc.neighbourhood}</td>
-                  <td>{loc.street}</td>
                   <td>{loc.type}</td>
                   <td id="td-btn">
                     <Link
                       style={{ background: "none", width: "100%" }}
                       to={`/user/detail/${loc.id}`}
                     >
-                      Go
+                      Preview
                     </Link>
                   </td>
                   <td>
                     <FontAwesomeIcon
+                      className="fav"
                       cursor="pointer"
                       onClick={() => addFavoriteList(loc)}
                       icon={faStar}
