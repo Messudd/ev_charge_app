@@ -80,15 +80,7 @@ const Home = () => {
           </div>
         </nav>
       </header>
-      <ToastContainer
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+      <ToastContainer/>
       <div className="home-main">
         {userHover && <UserNavComp toggleSideNav={handleToggleUser} />}
         <div className="class-map">

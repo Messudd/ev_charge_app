@@ -6,7 +6,7 @@ const  PreviewPopup = () => {
   return (
     <div className="popup-container">
         <div className='popup-preview'>
-            <h1>Please give feedback</h1>
+            <h1>Contact Us</h1>
         </div>
     </div>
   )

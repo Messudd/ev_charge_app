@@ -3,11 +3,64 @@ import { globalContext } from "../../context/globalContextProvider";
 import { motion } from "framer-motion";
 import { variants } from "../../data/animationData";
 import loc from "../../utility/images/loc.png";
-import markerUserIcon from "../../utility/images/icons8-marker-40.png";
+import markerUserIcon from "../../utility/images/placeholder.png";
 import markerClickIcon from "../../utility/images/icons8-marker-48.png";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import L from "leaflet";
+// import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
+
+const UserMarker = ({ pos, markerIcon }) => {
+  const map = useMap();
+  return (
+    <>
+      <Marker
+        position={[pos.lat, pos.lng]}
+        icon={markerIcon}
+        eventHandlers={{
+          click: () => {
+            map.setView([pos.lat,pos.lng], 15);
+          },
+        }}
+      >
+        <Popup>
+          <span style={{ color: "#fff" }}>you are here</span>
+        </Popup>
+      </Marker>
+    </>
+  );
+};
+
+const CreateMarkers = ({ formLocationData, markerClick }) => {
+  const map = useMap();
+  return (
+    <>
+      {!formLocationData.loading &&
+        formLocationData.locDatas?.map((item, idx) => (
+          <Marker
+            key={idx}
+            position={[item.latitude, item.longitude]}
+            icon={markerClick}
+            eventHandlers={{
+              click: () => {
+                map.setView([item.latitude, item.longitude], 12);
+              },
+            }}
+          >
+            <Popup>
+              <div className="pops">
+                <h3>{item.name}</h3>
+                <div className="pop-img">
+                  <img src={item.image} alt="ev_charge_foto" />
+                </div>
+                <span>{item.type}</span>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+    </>
+  );
+};
 
 const Map = () => {
   const satellite =
@@ -37,14 +90,14 @@ const Map = () => {
 
   const markerIcon = new L.Icon({
     iconUrl: markerUserIcon,
-    iconSize: [22, 27],
+    iconSize: [25, 27],
     iconAnchor: [11, 28],
     popupAnchor: [0, -40],
   });
 
   const markerClick = new L.Icon({
     iconUrl: markerClickIcon,
-    iconSize: [22, 27],
+    iconSize: [25, 27],
     iconAnchor: [11, 28],
     popupAnchor: [0, -40],
   });
@@ -109,44 +162,16 @@ const Map = () => {
         variants={variants}
         className="map-container"
       >
-        <MapContainer center={center} zoom={ZOOM_LEVEL} scrollWheelZoom={false}>
+        <MapContainer center={center} zoom={ZOOM_LEVEL}>
           <TileLayer
             url={mapStyle}
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          {pos.loading && (
-            <Marker position={[pos.lat, pos.lng]} icon={markerIcon}>
-              <Popup>
-                <span style={{ color: "#fff" }}>you are here</span>
-              </Popup>
-            </Marker>
-          )}
-          {formLocationData.locDatas.length > 0 &&
-            !formLocationData.loading &&
-            formLocationData.locDatas.map((item, idx) => (
-              <Marker
-                key={idx}
-                position={[item.latitude, item.longitude]}
-                icon={markerClick}
-              >
-                <Popup>
-                  <div className="pops" style={{ width: "100px" }}>
-                    <div
-                      style={{
-                        color: "#fff",
-                        opacity: "0.8",
-                        display: "flex",
-                        padding: "2px auto",
-                      }}
-                    >
-                      {item.description}
-                    </div>
-                    <img src={item.image} width={60} alt="ev_charge_foto" />
-                    <div style={{ color: "red" }}>{item.type}</div>
-                  </div>
-                </Popup>
-              </Marker>
-            ))}
+          {pos.loading && <UserMarker pos={pos} markerIcon={markerIcon} />}
+          <CreateMarkers
+            formLocationData={formLocationData}
+            markerClick={markerClick}
+          />
         </MapContainer>
       </motion.div>
     </>

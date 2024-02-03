@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { toast } from 'react-toastify';
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import 'react-toastify/dist/ReactToastify.css';
 import "../../css/station_table.css";
 
@@ -57,7 +58,7 @@ const StationTable = () => {
                       to = {`/user/detail/${loc.id}`}
                       style={{ background: "none", width: "100%" }}
                     >
-                      Preview
+                    <FontAwesomeIcon icon={faMagnifyingGlass}/>
                     </Link>
                   </td>
                   <td>
