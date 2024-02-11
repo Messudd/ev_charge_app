@@ -163,6 +163,7 @@
 .location-form div input{
     color: whitesmoke;
     flex: 1;
+    border-radius: 2px;
     border-bottom: 1px solid darkred;
     padding: 3px 15px;
 }
@@ -192,8 +193,4 @@
 }
 .toast-cont {
     color: darkred;
-}
-.footer{
-    width: 100vw;
-    height: 400px;
 }

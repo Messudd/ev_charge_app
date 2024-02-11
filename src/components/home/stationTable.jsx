@@ -1,46 +1,85 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { globalContext } from "../../context/globalContextProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { toast } from 'react-toastify';
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { toastData } from "../../data/animationData";
+import "react-toastify/dist/ReactToastify.css";
 import "../../css/station_table.css";
 
+
 const StationTable = () => {
-  const { formLocationData, userFavorites, setUserFavorites } = useContext(globalContext);
- 
-  const toastData = {
-    position: "bottom-right",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "dark",
-  }
+  const { formLocationData, userFavorites, setUserFavorites } =
+    useContext(globalContext);
+  const [filterTableData, setFilterTableData] = useState([]);
+
 
   const addFavoriteList = (param) => {
     if (userFavorites.length > 0) {
       if (userFavorites.filter((item) => item.id === param.id).length > 0) {
-        toast.warn("Station is already in favorites !", {...toastData});
+        toast.warn("Station is already in favorites !", { ...toastData });
       } else {
         setUserFavorites([...userFavorites, param]);
-        toast.success("Station added to favorites.", {...toastData});}
+        toast.success("Station added to favorites.", { ...toastData });
+      }
     } else {
       setUserFavorites([...userFavorites, param]);
-      toast.success("Station added to favorites.", {...toastData});
+      toast.success("Station added to favorites.", { ...toastData });
     }
   };
 
+  const filterTable = (e) => {
+    const { value } = e.target;
+    setFilterTableData(
+      formLocationData.locDatas.filter((item) =>
+        item.name.toLowerCase().includes(value.toLowerCase().trim())
+      )
+    );
+  };
+
+  const filterType = (e) => {
+    const { value } = e.target;
+    setFilterTableData(
+      formLocationData.locDatas.filter(
+        (item) => item.type.toLowerCase() === value.toLowerCase()
+      )
+    );
+  };
+
+  useEffect(() => {
+    setFilterTableData([...formLocationData.locDatas]);
+  },[])
+
   return (
     <div className="station-table">
-      <div>
+      <div className="filter-table">
+        <h2>Filter</h2>
+        <div className="in">
+          <input
+            type="text"
+            placeholder="search name ..."
+            name="name"
+            onChange={filterTable}
+          />
+          <select defaultValue="" onChange={filterType}>
+            <option value="" disabled>
+              Type
+            </option>
+            <option name="type" value="DC">
+              DC
+            </option>
+            <option name="type" value="AC">
+              AC
+            </option>
+          </select>
+        </div>
+      </div>
+      <div className="table-divv">
         <table>
           <thead>
             <tr>
+              <th>No</th>
               <th>Station Name</th>
               <th>Type</th>
               <th>Detail</th>
@@ -48,26 +87,34 @@ const StationTable = () => {
             </tr>
           </thead>
           <tbody>
-            {[...formLocationData.locDatas].map((loc, index) => {
+            {filterTableData.map((loc, index) => {
               return (
                 <tr key={index}>
+                  <td>{index + 1}</td>
                   <td>{loc.name}</td>
                   <td>{loc.type}</td>
-                  <td id="td-btn">
+                  <td className="td-btn">
                     <Link
-                      to = {`/user/detail/${loc.id}`}
+                      to={`/user/detail/${loc.id}`}
                       style={{ background: "none", width: "100%" }}
                     >
-                    <FontAwesomeIcon icon={faMagnifyingGlass}/>
+                      <FontAwesomeIcon icon={faCircleInfo}/>
                     </Link>
                   </td>
-                  <td>
-                    <FontAwesomeIcon
-                      className="fav"
-                      cursor="pointer"
-                      onClick={() => addFavoriteList(loc)}
-                      icon={faStar}
-                    />
+                  <td
+                    className="td-btn"
+                    onClick={() => addFavoriteList(loc)}
+                  >
+                    <span
+                      style={{
+                        fontSize: "1.3rem",
+                        fontWeight: "900",
+                        padding: "4px",
+                      }}
+                    >
+                      +
+                    </span>
+                    <span>add</span>
                   </td>
                 </tr>
               );

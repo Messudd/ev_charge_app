@@ -92,7 +92,6 @@ const Home = () => {
         <StationTable />
       )}
       {prewPopup && <PreviewPopup />}
-      <div className="footer"></div>
     </>
   );
 };

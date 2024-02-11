@@ -6,6 +6,7 @@ import { variants } from "./data/animationData";
 import SignUp from "./components/signUp";
 import Login from "./components/login";
 import Home from "./components/home/home";
+import Detail from "./components/detail";
 import "./App.css";
 
 function App() {
@@ -94,6 +95,9 @@ function App() {
         </Route>
         <Route path="/user/home" exact>
           <Home />
+        </Route>
+        <Route path="/user/detail/:id" exact>
+          <Detail/>
         </Route>
         <Route path="/sign_up" exact>
           <SignUp />

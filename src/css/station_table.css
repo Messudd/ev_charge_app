@@ -1,12 +1,48 @@
 .station-table {
-  width: 100vw;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding:4rem 0;
   margin-top: 2rem;
   display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  gap: 20px;
   justify-content: center;
   align-items: center;
   background: rgb(26, 26, 77);
+}
+.filter-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: .8rem;
+}
+.filter-table .in{
+  display: flex;
+  align-items: center;
+  gap:20px;
+}
+.filter-table h2{
+  color: red;
+  font-family: danss;
+  letter-spacing: 0.3rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.filter-table .in input{
+  padding: 5px 6px;
+  border-radius: 3px;
+  border-bottom: 1px solid darkred;
+  color: whitesmoke;
+}
+.filter-table .in input:focus{
+  outline: none;
+}
+.filter-table .in select{
+  background: #130a3e;
+  border-radius: 3px;
+  color: whitesmoke;
+  opacity: 0.7;
+  padding: 5px 6px;
 }
 @media only screen and (max-width: 600px){
   .station-table table,
@@ -44,19 +80,16 @@
     max-height: 500px;
     overflow: auto;
   }
-  #td-btn {
+  .td-btn {
     background: #201558;
     cursor: pointer;
   }
-  #td-btn:hover {
+  .td-btn:hover {
     background: #281d5f;
     transition: all 0.4s ease;
   }
-  #td-btn a {
+  .td-btn a {
     padding: 3px 10px;
-  }
-  .station-table table .fav:hover{
-    transform: scale(1.1);
   }
 }
 .station-table table {
@@ -94,22 +127,19 @@ td:hover {
   color: red;
   cursor: default;
 }
-.station-table div {
-  max-height: 500px;
+.station-table .table-divv {
+  padding: 2px 10px;
   overflow: auto;
 }
-#td-btn {
+.td-btn {
   background: #201558;
   cursor: pointer;
 }
-#td-btn:hover {
+.td-btn:hover {
   background: #281d5f;
   transition: all 0.4s ease;
 }
-#td-btn a {
+.td-btn a {
   padding: 5px 15px;
-}
-.station-table table .fav:hover{
-  transform: scale(1.1);
 }
 }

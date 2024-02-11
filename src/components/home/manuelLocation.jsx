@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { globalContext } from "../../context/globalContextProvider";
 import { citys_data } from "../../data/localData";
 import BeatLoader from "react-spinners/BeatLoader";
+import { toast } from "react-toastify";
+import { toastData } from "../../data/animationData";
 import axios from "axios";
 
 const BASE_API_URL = "http://192.168.1.13:8070/geolocation/ev";
@@ -29,7 +31,7 @@ const ManuelLocation = () => {
         }, 500);
       })
       .catch((err) => {
-        alert("error : ", err.message);
+        toast.error(err.response.data.message, { ...toastData });
         setFormLocationData({ ...formLocationData, loading: false });
       });
   };

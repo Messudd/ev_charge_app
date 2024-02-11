@@ -11,8 +11,8 @@
     position: fixed;
     top:40%;
     left: 50%;
-    width: 500px;
-    height: 300px;
+    padding: 35px 0;
+    width: 450px;
     background: #130a3e;
     border: 1px solid transparent;
     border-radius: 8px;
@@ -23,5 +23,47 @@
     font-family: danss;
     text-align: center;
     font-size: 2.4rem;
+    padding-bottom: 15px;
     font-weight: bold;
+}
+.feedback-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.feedback-form form{
+    flex: 0.8;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+.feedback-form form:hover{
+    box-shadow: none;
+}
+.feedback-form form textarea:focus{
+    outline: none;
+}
+.feedback-form form input:focus{
+    outline: none;
+}
+.feedback-form form input{
+    padding: 5px;
+    color: whitesmoke;
+    border-bottom: 1px solid darkred;
+}
+.feedback-form form textarea{
+    background: none;
+    color: whitesmoke;
+    border-bottom: 1px solid darkred;
+}
+.feedback-form form button{
+    color: whitesmoke;
+    padding: 4px;
+    border-radius: 4px;
+    background: #22136d;
+}
+.feedback-form form button:hover{
+    background: #301c97;
+    transition: all 0.4s ease;
 }

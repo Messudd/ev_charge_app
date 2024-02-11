@@ -7,7 +7,7 @@ import markerUserIcon from "../../utility/images/placeholder.png";
 import markerClickIcon from "../../utility/images/icons8-marker-48.png";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import L from "leaflet";
-// import MarkerClusterGroup from "react-leaflet-cluster";
+// import MarkerClusterGroup from "react-leaflet-cluster"; // use cluster --  Don't forget !!
 import "leaflet/dist/leaflet.css";
 
 const UserMarker = ({ pos, markerIcon }) => {
@@ -43,7 +43,7 @@ const CreateMarkers = ({ formLocationData, markerClick }) => {
             icon={markerClick}
             eventHandlers={{
               click: () => {
-                map.setView([item.latitude, item.longitude], 12);
+                map.setView([item.latitude, item.longitude], 13);
               },
             }}
           >
