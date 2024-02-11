@@ -2,6 +2,7 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+    overflow-x: hidden;
     justify-content: center;
     align-items: center;
 }
@@ -11,18 +12,41 @@
 }
 .detail-image {
     width: 400px;
-    flex: 1;
-    min-height: 300px;
+    height: auto;
     border-radius: 4px;
     overflow: hidden;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
+@media only screen and (max-width: 900px){
+    #detail-root {
+       margin: 10px 0;
+    }
+    .detail-container{
+        padding: 3px;
+    }
+    .detail-image{
+        width: 100%;
+        height: 320px;
+    }
+  }
+@media only screen and (max-width: 600px){
+    #detail-root {
+        margin: 10px 0;
+     }
+    .detail-container{
+        padding: 3px;
+    }
+    .detail-image{
+        width: 100%;
+        height: 230px;
+    }
+  }
 .detail-content {
     display: flex;
     flex: 1;
-    padding: 30px 40px;
+    padding: 30px 45px;
     background: rgb(26, 26, 77);
     flex-direction: column;
     align-items: center;
