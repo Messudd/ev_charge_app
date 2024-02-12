@@ -162,7 +162,7 @@ const Map = () => {
         variants={variants}
         className="map-container"
       >
-        <MapContainer center={center} zoom={ZOOM_LEVEL}>
+        <MapContainer center={center} zoom={ZOOM_LEVEL} scrollWheelZoom = {false} >
           <TileLayer
             url={mapStyle}
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

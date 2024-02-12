@@ -56,12 +56,13 @@ body {
 }
 .leaflet-container {
   width: 100%;
-  height: 500px;
-  border-radius: 15px;
+  height: 600px;
+  border-radius: 4px;
 }
 @media only screen and (max-width: 600px){
   .leaflet-container{
-    height: 300px;
+    width: 100%;
+    height: 500px;
   }
 }
 .leaflet-control-zoom .leaflet-control-zoom-in span,
@@ -73,26 +74,23 @@ body {
 }
 .home-main{
   width: 100vw;
-  padding: 0 10px;
+  overflow-x: hidden;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
   gap:20px;
 }
 .class-map {
   z-index: 0;
-  flex: 2;
-  padding: 20px;
+  flex: 1;
   border-radius: 3px;
-  flex-basis: 300px;
 }
 .map-container {
+  margin-right: 10px;
   border:3px solid rgb(50, 97, 155);
-  border-radius: 16px;
+  border-radius: 4px;
 }
 .location-form {
   flex: 1;
-  flex-basis: 200px;
 }
 .button-location{
   padding: 0;
@@ -118,7 +116,7 @@ select:focus{
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 10px ;
+  padding: 10px 30px ;
   justify-content: flex-end;
   gap: 15px;
 }
