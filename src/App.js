@@ -7,6 +7,7 @@ import SignUp from "./components/signUp";
 import Login from "./components/login";
 import Home from "./components/home/home";
 import Detail from "./components/detail";
+import Favorites from "./components/favorites";
 import "./App.css";
 
 function App() {
@@ -95,6 +96,9 @@ function App() {
         </Route>
         <Route path="/user/home" exact>
           <Home />
+        </Route>
+        <Route path = "/user/favorites" exact>
+          <Favorites/>
         </Route>
         <Route path="/user/detail/:id" exact>
           <Detail/>

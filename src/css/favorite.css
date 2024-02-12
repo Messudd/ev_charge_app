@@ -1,0 +1,45 @@
+.fav-header h2 {
+    text-align: center;
+    font-family: danss;
+    color: red;
+    font-size: 3.5rem;
+}
+.fav-main {
+    margin: 2.5rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+.links-fav{
+    display: flex;
+    padding: 3px 5px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+}
+.grb-btn {
+    display: flex;
+    gap : 25px;
+}
+.links-fav button {
+    border-bottom: 1px solid #ccc;
+    background: rgb(33, 65, 104);
+    border-radius: 3px;
+    color: whitesmoke;
+    padding: 5px 18px;
+}
+.container-fav {
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    height: 500px;
+}
+@media only screen and (max-width: 600px){
+    .container-fav{
+      width: 100%;
+      height: auto;
+      overflow-x: auto;
+    }
+  }
+

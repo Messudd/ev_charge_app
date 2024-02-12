@@ -24,7 +24,7 @@ const Home = () => {
   };
 
   const onOpenContactPopup = () => {
-    setPrewPopup(!prewPopup);
+    setPrewPopup(true);
   };
 
   useEffect(() => {
