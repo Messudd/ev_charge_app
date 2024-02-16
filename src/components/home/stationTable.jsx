@@ -3,9 +3,9 @@ import { globalContext } from "../../context/globalContextProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from "react-toastify";
-import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { faCircleInfo, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { toastData } from "../../data/animationData";
-import  vehicle  from '../../utility/images/vehicle.gif';
+import vehicle from "../../utility/images/vehicle.gif";
 import "react-toastify/dist/ReactToastify.css";
 import "../../css/station_table.css";
 
@@ -18,7 +18,7 @@ const StationTable = () => {
     userFavorites,
     setUserFavorites,
   } = useContext(globalContext);
-  
+
   const [filterTableData, setFilterTableData] = useState([]);
 
   const addFavoriteList = (param) => {
@@ -36,38 +36,42 @@ const StationTable = () => {
   };
 
   const filterTable = (e) => {
-    const { value , type } = e.target;
-    console.log('e_type : ',type);
+    const { value, type } = e.target;
+    console.log("e_type : ", type);
     setFormLocationData({
       ...formLocationData,
-      locDatas: type === 'text'  ? formLocationData.locDatas.filter((item) =>
-        item.name.toLowerCase().includes(value.toLowerCase().trim())) : formLocationData.locDatas.filter((item) =>
-        item.type === value
-      )}
-      )
-  }
+      locDatas:
+        type === "text"
+          ? formLocationData.locDatas.filter((item) =>
+              item.name.toLowerCase().includes(value.toLowerCase().trim())
+            )
+          : formLocationData.locDatas.filter((item) => item.type === value),
+    });
+  };
 
-  const calculateDistance = (pos,loc) => {
-    if(!(map === null)){
-      let distance = map.distance([pos.lat , pos.lng] , [loc.latitude , loc.longitude]);
-      if(distance > 1000){
-        return `${(distance/1000).toFixed(3)} Km`;
-      } 
-     return `${distance.toFixed(3)} Meter`;
-    
+  const calculateDistance = (pos, loc) => {
+    if (!(map === null)) {
+      let distance = map.distance(
+        [pos.lat, pos.lng],
+        [loc.latitude, loc.longitude]
+      );
+      if (distance > 1000) {
+        return `${(distance / 1000).toFixed(3)} Km`;
+      }
+      return `${distance.toFixed(3)} Meter`;
     }
-  }
+  };
 
   const loadAllData = () => {
-    setFormLocationData({...formLocationData , locDatas : filterTableData});
-  }
+    setFormLocationData({ ...formLocationData, locDatas: filterTableData });
+  };
 
   useEffect(() => {
     setFilterTableData([...formLocationData.locDatas]);
   }, []);
 
   useEffect(() => {
-    console.log(('map : ',map));
+    console.log(("map : ", map));
   }, [pos]);
 
   return (
@@ -77,13 +81,17 @@ const StationTable = () => {
           <div className="filter-table">
             <h2>Filter</h2>
             <div className="in">
+              <label htmlFor="search-input">
+                <FontAwesomeIcon icon={faSearch} color="#fff" opacity={0.8} />
+              </label>
               <input
                 type="text"
+                id="search-input"
                 placeholder="search name ..."
                 name="name"
                 onChange={filterTable}
               />
-              <select defaultValue="" type = 'select' onChange={filterTable}>
+              <select defaultValue="" type="select" onChange={filterTable}>
                 <option value="" disabled>
                   Type
                 </option>
@@ -103,7 +111,18 @@ const StationTable = () => {
                   <th>No</th>
                   <th>Station Name</th>
                   <th>Type</th>
-                  {(pos.lat && pos.lng) && <th style={{display: 'flex' , alignItems: 'center' , gap: '15px'}}><img src= {vehicle} alt="vehicle" width={40} />Distance</th> }
+                  {pos.lat && pos.lng && (
+                    <th
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "15px",
+                      }}
+                    >
+                      <img src={vehicle} alt="vehicle" width={40} />
+                      Distance
+                    </th>
+                  )}
                   <th>Detail</th>
                   <th>Favorite</th>
                 </tr>
@@ -115,8 +134,9 @@ const StationTable = () => {
                       <td>{index + 1}</td>
                       <td>{loc.name}</td>
                       <td>{loc.type}</td>
-                      {(pos.lat && pos.lng) && <td>
-                        {calculateDistance(pos,loc)}</td>}
+                      {pos.lat && pos.lng && (
+                        <td>{calculateDistance(pos, loc)}</td>
+                      )}
                       <td className="td-btn">
                         <Link
                           to={`/user/detail/${loc.id}`}
@@ -149,8 +169,9 @@ const StationTable = () => {
         </div>
       ) : (
         <div className="info-catch">
-          <button className="table-info-btn"
-          onClick={loadAllData}>All</button>
+          <button className="table-info-btn" onClick={loadAllData}>
+            All
+          </button>
           <p
             style={{
               color: "red",
@@ -159,7 +180,7 @@ const StationTable = () => {
               fontSize: "1.5rem",
             }}
           >
-            Station not found !
+            No Station !
           </p>
         </div>
       )}

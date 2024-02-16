@@ -72,7 +72,7 @@ const ManuelLocation = () => {
             className="city-select"
             name="user_city"
             id="user_city"
-            defaultValue=""
+            defaultValue= {userChoise.user_city}
             onChange={locFormOnHandleInputChange}
           >
             <option value="" disabled>
@@ -90,7 +90,7 @@ const ManuelLocation = () => {
             className="town-select"
             name="user_town"
             id="user_town"
-            defaultValue=""
+            defaultValue= {userChoise.user_town}
             disabled={userChoise.user_city ? false : true}
             onChange={locFormOnHandleInputChange}
           >
