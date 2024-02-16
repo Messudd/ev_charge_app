@@ -143,3 +143,24 @@ td:hover {
   padding: 5px 15px;
 }
 }
+.info-catch {
+  margin: 25px 0; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+}
+.table-info-btn {
+  padding: 2px 25px;
+  font-family: danss;
+  font-size: 1.1rem;
+  opacity: 0.7;
+  border:1px solid transparent;
+  background:#281d5f;
+  border-radius: 4px;
+  color: whitesmoke;
+}
+.table-info-btn:hover {
+  opacity: 1;
+  transition: all 0.5s ease;
+}

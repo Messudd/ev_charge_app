@@ -80,7 +80,7 @@ const Home = () => {
           </div>
         </nav>
       </header>
-      <ToastContainer/>
+      <ToastContainer />
       <div className="home-main">
         {userHover && <UserNavComp toggleSideNav={handleToggleUser} />}
         <div className="class-map">
@@ -88,7 +88,7 @@ const Home = () => {
         </div>
         <ManuelLocation />
       </div>
-      {formLocationData.locDatas.length > 0 && !formLocationData.loading && (
+      {(formLocationData.locDatas) && (
         <StationTable />
       )}
       {prewPopup && <PreviewPopup />}

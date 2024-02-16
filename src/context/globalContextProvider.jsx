@@ -8,9 +8,16 @@ const GlobalContextProvider = ({ children }) => {
     user_town: '',
     user_street : '',
     user_neigh: '',
-  }) 
+  })
+  const [map , setMap] = useState(null);
+  const [pos, setPos] = useState({
+    lat: "",
+    lng: "",
+    loading: false,
+  });
+
   const [formLocationData ,setFormLocationData] = useState({
-    locDatas : [],
+    locDatas : null,
     loading : false,
   })
   const [mode, setMode] = useState('light');
@@ -27,6 +34,10 @@ const GlobalContextProvider = ({ children }) => {
   return (
     <globalContext.Provider
       value={{
+        pos,
+        setPos,
+        map,
+        setMap,
         formLocationData,
         setFormLocationData,
         userNavInfo,

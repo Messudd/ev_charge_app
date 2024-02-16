@@ -92,14 +92,18 @@ body {
 .location-form {
   flex: 1;
 }
+.loc-parag {
+  font-family: danss;
+  font-size: 1.4rem;
+  color: whitesmoke;
+}
 .button-location{
   padding: 0;
 }
 .get-location{
   background: none;
   padding: 3px;
-  border-radius: 4px;
-  filter: brightness(75%);
+  filter: brightness(90%);
   cursor:pointer;
 }
 .leaflet-popup-content-wrapper{
@@ -140,7 +144,7 @@ select:focus{
   padding: 2px 5px;
 }
 .pops h3{
-  color: whitesmoke;
+  color: red;
   font-size: 1rem;
   font-weight: 700;
 }

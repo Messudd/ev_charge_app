@@ -18,7 +18,7 @@ const ManuelLocation = () => {
     setUserChoise({ ...userChoise, [name]: value });
   };
 
-  const getWithAxios = async (url) => {
+  const fetchLocation = async (url) => {
     return await axios
       .get(url)
       .then((res) => {
@@ -40,24 +40,30 @@ const ManuelLocation = () => {
     e.preventDefault();
     setFormLocationData({ ...formLocationData, loading: true });
     if (userChoise.user_street === "" && userChoise.user_neigh === "") {
-      getWithAxios(
+      fetchLocation(
         `${BASE_API_URL}/town/${userChoise.user_city}/${userChoise.user_town}`
       );
     } else if (userChoise.user_street === "" && userChoise.user_neigh !== "") {
-      getWithAxios(
+      fetchLocation(
         `${BASE_API_URL}/neigh/${userChoise.user_city}/${userChoise.user_town}/${userChoise.user_neigh}`
       );
     } else {
-      getWithAxios(
+      fetchLocation(
         `${BASE_API_URL}/street/${userChoise.user_city}/${userChoise.user_town}/${userChoise.user_neigh}/${userChoise.user_street}`
       );
     }
+    setUserChoise({
+      user_city: "",
+      user_town: "",
+      user_street: "",
+      user_neigh: "",
+    });
   };
 
   return (
     <div className="location-form">
       <h3>
-        Manuel<span>Location</span>
+        Find<span>Charge Station</span>
       </h3>
       <hr className="hrr" />
       <form onSubmit={findChargeStation}>
@@ -106,6 +112,7 @@ const ManuelLocation = () => {
             type="text"
             id="user_neigh"
             name="user_neigh"
+            value={userChoise.user_neigh}
             placeholder="Neighbourhood  [Optional]"
             onChange={locFormOnHandleInputChange}
           />
@@ -116,6 +123,7 @@ const ManuelLocation = () => {
             disabled={userChoise.user_neigh === ""}
             id="user_street"
             name="user_street"
+            value={userChoise.user_street}
             placeholder="Street  [Optional]"
             onChange={locFormOnHandleInputChange}
           />
