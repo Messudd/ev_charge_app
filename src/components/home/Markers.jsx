@@ -3,6 +3,7 @@ import { Marker, Popup, useMap } from "react-leaflet";
 import { globalContext } from "../../context/globalContextProvider";
 import markerUserIcon from "../../utility/images/live.gif";
 import markerClickIcon from "../../utility/images/charging.png";
+import markerOther from "../../utility/images/other.png";
 import L from "leaflet";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -13,9 +14,15 @@ const markerIcon = new L.Icon({
   popupAnchor: [0, -40],
 });
 
-const markerClick = new L.Icon({
+const markerEcharge = new L.Icon({
   iconUrl: markerClickIcon,
   iconSize: [34, 38],
+  iconAnchor: [11, 28],
+  popupAnchor: [0, -40],
+});
+const markerOtherStation = new L.Icon({
+  iconUrl: markerOther,
+  iconSize: [42, 40],
   iconAnchor: [11, 28],
   popupAnchor: [0, -40],
 });
@@ -35,31 +42,28 @@ export const UserMarker = ({ pos }) => {
         icon={markerIcon}
         eventHandlers={{
           click: () => {
-            map.setView([pos.lat, pos.lng], 15);
+            map.setView([pos.lat, pos.lng], 16);
           },
         }}
       >
-        <Popup>
-          <span style={{ fontWeight: "700" }}>you are here !</span>
-        </Popup>
       </Marker>
     </>
   );
 };
 
-export const CreateMarkers = ({ formLocationData }) => {
+export const CreateMarkers = ({ filterTableData }) => {
   const map = useMap();
   return (
     <>
-      {!formLocationData.loading &&
-        formLocationData.locDatas?.map((item, idx) => (
+      {!filterTableData.loading &&
+        filterTableData.locDatas?.map((item, idx) => (
           <Marker
             key={idx}
             position={[item.latitude, item.longitude]}
-            icon={markerClick}
+            icon ={item.model === 'Eşarj' ? markerEcharge : markerOtherStation}
             eventHandlers={{
               click: () => {
-                map.setView([item.latitude, item.longitude], 13);
+                map.setView([item.latitude, item.longitude], 15);
               },
             }}
           >
@@ -71,7 +75,17 @@ export const CreateMarkers = ({ formLocationData }) => {
                     <img src={item.image} alt="ev_charge_foto" />
                   </Link>
                 </div>
-                <span>{item.type}</span>
+                <div className="detail">
+                  <span>{item.power}</span>
+                  <span>{"-"}</span>
+                  <span>{item.type}</span>
+                </div>
+                <div className="detail">
+                  <span>{item.model}</span>
+                  <span>{"-"}</span>
+                  <span>{"Socket :  " + item.total}</span>
+                </div>
+                <span style={{color: 'red'}}>{item.status}</span>
               </div>
             </Popup>
           </Marker>

@@ -164,3 +164,15 @@ td:hover {
   opacity: 1;
   transition: all 0.5s ease;
 }
+.sort-btn{
+  color: whitesmoke;
+  opacity: 0.8;
+  border: 1px solid red;
+  font-size: 1rem;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background:#130a3e;
+}
+.sort-btn:hover{
+  opacity: 1;
+}

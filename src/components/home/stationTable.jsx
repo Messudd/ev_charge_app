@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { faCircleInfo, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { toastData } from "../../data/animationData";
 import vehicle from "../../utility/images/vehicle.gif";
+import chargeImg from '../../utility/images/charge.png';
 import "react-toastify/dist/ReactToastify.css";
 import "../../css/station_table.css";
 
@@ -14,12 +15,11 @@ const StationTable = () => {
     pos,
     map,
     formLocationData,
-    setFormLocationData,
+    filterTableData,
+    setFilterTableData,
     userFavorites,
     setUserFavorites,
   } = useContext(globalContext);
-
-  const [filterTableData, setFilterTableData] = useState([]);
 
   const addFavoriteList = (param) => {
     if (userFavorites.length > 0) {
@@ -37,15 +37,14 @@ const StationTable = () => {
 
   const filterTable = (e) => {
     const { value, type } = e.target;
-    console.log("e_type : ", type);
-    setFormLocationData({
-      ...formLocationData,
+    setFilterTableData({
+      ...filterTableData,
       locDatas:
         type === "text"
-          ? formLocationData.locDatas.filter((item) =>
+          ? filterTableData.locDatas.filter((item) =>
               item.name.toLowerCase().includes(value.toLowerCase().trim())
             )
-          : formLocationData.locDatas.filter((item) => item.type === value),
+          : filterTableData.locDatas.filter((item) => item.type === value),
     });
   };
 
@@ -62,21 +61,42 @@ const StationTable = () => {
     }
   };
 
+  const sortFilterTable = () => {
+    let farDatas = [];
+    let nearDatas = [];
+    for (let item of filterTableData.locDatas) {
+      if (calculateDistance(pos, item).includes("Km")) {
+        farDatas.push(item);
+      } else nearDatas.push(item);
+    }
+    setFilterTableData({
+      ...filterTableData,
+      locDatas: [
+        ...nearDatas?.sort(
+          (a, b) =>
+            Number(calculateDistance(pos, a).split(" ")[0]) -
+            Number(calculateDistance(pos, b).split(" ")[0])
+        ),
+        ...farDatas?.sort(
+          (a, b) =>
+            Number(calculateDistance(pos, a).split(" ")[0]) -
+            Number(calculateDistance(pos, b).split(" ")[0])
+        ),
+      ],
+    });
+  };
+
   const loadAllData = () => {
-    setFormLocationData({ ...formLocationData, locDatas: filterTableData });
+    setFilterTableData({ ...formLocationData });
   };
 
   useEffect(() => {
-    setFilterTableData([...formLocationData.locDatas]);
-  }, []);
-
-  useEffect(() => {
-    console.log(("map : ", map));
-  }, [pos]);
+    setFilterTableData({ ...formLocationData });
+  }, [formLocationData.locDatas]);
 
   return (
     <>
-      {formLocationData.locDatas?.length > 0 ? (
+      {filterTableData.locDatas?.length > 0 ? (
         <div className="station-table">
           <div className="filter-table">
             <h2>Filter</h2>
@@ -102,6 +122,11 @@ const StationTable = () => {
                   AC
                 </option>
               </select>
+              {pos.lat && pos.lng && (
+                <button className="sort-btn" onClick={sortFilterTable}>
+                  The nearest
+                </button>
+              )}
             </div>
           </div>
           <div className="table-divv">
@@ -119,16 +144,25 @@ const StationTable = () => {
                         gap: "15px",
                       }}
                     >
-                      <img src={vehicle} alt="vehicle" width={40} />
+                      <img src={vehicle} alt="vehicle" width={30} />
                       Distance
                     </th>
                   )}
                   <th>Detail</th>
-                  <th>Favorite</th>
+                  <th
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "15px",
+                    }}
+                  >
+                    <img src={chargeImg} alt="charge" width={30} />
+                    Favorite
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                {formLocationData.locDatas.map((loc, index) => {
+                {filterTableData.locDatas.map((loc, index) => {
                   return (
                     <tr key={index}>
                       <td>{index + 1}</td>

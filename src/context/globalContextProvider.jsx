@@ -8,7 +8,7 @@ const GlobalContextProvider = ({ children }) => {
     user_town: '',
     user_street : '',
     user_neigh: '',
-  })
+  });
   const [map , setMap] = useState(null);
   const [pos, setPos] = useState({
     lat: "",
@@ -19,7 +19,8 @@ const GlobalContextProvider = ({ children }) => {
   const [formLocationData ,setFormLocationData] = useState({
     locDatas : null,
     loading : false,
-  })
+  });
+  const [filterTableData, setFilterTableData] = useState([]);
   const [mode, setMode] = useState('light');
   const [prewPopup, setPrewPopup] = useState(false);
   const [userNavInfo, setUserNavInfo] = useState({
@@ -40,6 +41,8 @@ const GlobalContextProvider = ({ children }) => {
         setMap,
         formLocationData,
         setFormLocationData,
+        filterTableData,
+        setFilterTableData,
         userNavInfo,
         setUserNavInfo,
         userFavorites,

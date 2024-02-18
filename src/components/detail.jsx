@@ -63,11 +63,11 @@ const Detail = () => {
             </p>
             <div className="coordinate">
               <p>
-                <span>Latitude {"-->"} </span>
+                <span>Latitude {" > "} </span>
                 <span>{detailLocation.latitude}</span>
               </p>
               <p>
-                <span>Longitude {"-->"} </span>
+                <span>Longitude {" > "} </span>
                 <span>{detailLocation.longitude}</span>
               </p>
             </div>

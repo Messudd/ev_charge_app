@@ -25,7 +25,7 @@ const Map = () => {
     { value: dark, label: "Dark" },
   ];
 
-  const { formLocationData, mapStyle, setMapStyle, pos, setPos } =
+  const { formLocationData, filterTableData, mapStyle, setMapStyle, pos, setPos } =
     useContext(globalContext);
   const [center, setCenter] = useState({
     lat: 39.925533,
@@ -99,7 +99,7 @@ const Map = () => {
         variants={variants}
         className="map-container"
       >
-        <MapContainer center={center} zoom={ZOOM_LEVEL} scrollWheelZoom={false}>
+        <MapContainer center={center} zoom={ZOOM_LEVEL} scrollWheelZoom = {false}>
           <TileLayer
             url={mapStyle}
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -114,7 +114,7 @@ const Map = () => {
               <UserMarker pos={pos} />
             </LayerGroup>
           )}
-          <CreateMarkers formLocationData={formLocationData} />
+          <CreateMarkers filterTableData={filterTableData} />
         </MapContainer>
       </motion.div>
     </>

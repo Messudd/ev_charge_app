@@ -52,12 +52,12 @@ const ManuelLocation = () => {
         `${BASE_API_URL}/street/${userChoise.user_city}/${userChoise.user_town}/${userChoise.user_neigh}/${userChoise.user_street}`
       );
     }
-    setUserChoise({
-      user_city: "",
-      user_town: "",
-      user_street: "",
-      user_neigh: "",
-    });
+    // setUserChoise({
+    //   user_city: "",
+    //   user_town: "",
+    //   user_street: "",
+    //   user_neigh: "",
+    // });
   };
 
   return (
@@ -72,10 +72,10 @@ const ManuelLocation = () => {
             className="city-select"
             name="user_city"
             id="user_city"
-            defaultValue= {userChoise.user_city}
+            defaultValue= ""
             onChange={locFormOnHandleInputChange}
           >
-            <option value="" disabled>
+            <option value= "" disabled>
               Please select a city
             </option>
             {cities.map((city, idx) => (
@@ -90,11 +90,11 @@ const ManuelLocation = () => {
             className="town-select"
             name="user_town"
             id="user_town"
-            defaultValue= {userChoise.user_town}
+            defaultValue= ""
             disabled={userChoise.user_city ? false : true}
             onChange={locFormOnHandleInputChange}
           >
-            <option value="" disabled>
+            <option value= "" disabled>
               Please select a town
             </option>
             {userChoise.user_city &&
@@ -112,7 +112,7 @@ const ManuelLocation = () => {
             type="text"
             id="user_neigh"
             name="user_neigh"
-            value={userChoise.user_neigh}
+            // value={userChoise.user_neigh}
             placeholder="Neighbourhood  [Optional]"
             onChange={locFormOnHandleInputChange}
           />
@@ -123,7 +123,7 @@ const ManuelLocation = () => {
             disabled={userChoise.user_neigh === ""}
             id="user_street"
             name="user_street"
-            value={userChoise.user_street}
+            // value={userChoise.user_street}
             placeholder="Street  [Optional]"
             onChange={locFormOnHandleInputChange}
           />
