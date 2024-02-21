@@ -41,14 +41,26 @@ const DataGraf = () => {
         <Doughnut data={barData} />
       </div>
       <div className="bar-content">
-        <h3>Total : {filterTableData.locDatas.length}</h3>
-        <p style={{color: 'red'}}>
+        <h3>
+          Total : <span>{filterTableData.locDatas.length}</span>
+        </h3>
+        <p style={{ color: "red" }}>
           AC :{" "}
-          {filterTableData.locDatas.filter((item) => item.type === "AC").length}
+          <span>
+            {
+              filterTableData.locDatas.filter((item) => item.type === "AC")
+                .length
+            }
+          </span>
         </p>
-        <p style={{color: 'whitesmoke'}}>
+        <p style={{ color: "whitesmoke" }}>
           DC :{" "}
-          {filterTableData.locDatas.filter((item) => item.type === "DC").length}
+          <span>
+            {
+              filterTableData.locDatas.filter((item) => item.type === "DC")
+                .length
+            }
+          </span>
         </p>
       </div>
     </div>

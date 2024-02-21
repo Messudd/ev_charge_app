@@ -204,7 +204,7 @@
 }
 .line-graf {
     display: flex;
-    width: 50%;
+    width: 40%;
     margin: 3px auto;
     gap: 2rem;
     padding: 3rem 0.5rem;
@@ -228,7 +228,17 @@
   }
   .bar-content h3{
     color: red;
+    letter-spacing: 0.1rem;
+    font-weight: 600;
   }
+  .bar-content span{
+    color: whitesmoke;
+  }
+  @media only screen and (max-width: 1000px){
+    .line-graf {
+      width: 80%;
+    }
+    }
   @media only screen and (max-width: 600px){
   .line-graf {
     width: 100%;
