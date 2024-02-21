@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { globalContext } from "../../context/globalContextProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -124,7 +124,7 @@ const StationTable = () => {
               </select>
               {pos.lat && pos.lng && (
                 <button className="sort-btn" onClick={sortFilterTable}>
-                  The nearest
+                  Nearest
                 </button>
               )}
             </div>

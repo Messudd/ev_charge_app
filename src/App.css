@@ -20,16 +20,24 @@ body {
 ::-webkit-scrollbar-thumb {
   background:#22136d;
 }
+@media only screen and (max-width: 600px){
+  body{
+    overflow-x: hidden;
+    font-size: 0.8rem;
+  }
+}
 .btn-try {
-  color: whitesmoke;
   background-color: #22136d;
-  font-weight: 600;
-  font-size: 1.1rem;
+  margin: 0 0.75rem;
+  color: whitesmoke;
+  padding: 0.75rem 3rem;
+  border-radius: 4px;
+  letter-spacing: 0.1em;
 }
 .btn-try:hover {
-  border: 1px solid whitesmoke;
+  border-color: whitesmoke;
   background-color: #22136d;
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.2rem;
   transition: all 0.5s ease;
 }
 .top-link {
@@ -70,7 +78,7 @@ body {
   background: #fff;
 }
 .leaflet-control-container .leaflet-top,.leaflet-left {
-  background : #e9e8e8;
+  background :none;
 }
 .home-main{
   width: 100vw;
@@ -85,7 +93,7 @@ body {
   border-radius: 3px;
 }
 .map-container {
-  margin-right: 12px;
+  margin-right: 7px;
   border:3px solid rgb(50, 97, 155);
   border-radius: 4px;
 }
@@ -165,4 +173,36 @@ select:focus{
   color: whitesmoke;
   font-size: 0.7rem;
   font-weight: bold;
+}
+.home-footer{
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.social-link{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.social-link a{
+  border-radius: 5px;
+  padding: 3px 10px;
+}
+@media only screen and (min-width: 600px){
+  .social-link a:hover {
+    background: #22136d;
+  }
+}
+@media only screen and (max-width: 600px){
+  .home-footer{
+    display: flex;
+    margin: 30px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .social-link a:active {
+    background: #22136d;
+  }
 }

@@ -1,10 +1,10 @@
-import { faUser ,faBookmark,faRightFromBracket, faGear ,faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { faUser ,faBookmark,faRightFromBracket, faGear ,faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 
 const userboxData = [
     {
-        title : 'General Infos',
-        icon: faCircleInfo,
-        linkTo : '/user/info',
+        title : 'Help',
+        icon: faQuestionCircle,
+        linkTo : '/user/help',
         class : 'c-side-nav'
     },
     {

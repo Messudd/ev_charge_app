@@ -202,3 +202,35 @@
 .toast-cont {
     color: darkred;
 }
+.line-graf {
+    display: flex;
+    width: 50%;
+    margin: 3px auto;
+    gap: 2rem;
+    padding: 3rem 0.5rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    background: rgb(26, 26, 77);
+  }
+  .bar-g{
+    display: flex;
+    width: 220px;
+    padding: 2rem;  
+    justify-content: center;
+    align-items: center;
+  }
+  .bar-content {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bar-content h3{
+    color: red;
+  }
+  @media only screen and (max-width: 600px){
+  .line-graf {
+    width: 100%;
+  }
+  }

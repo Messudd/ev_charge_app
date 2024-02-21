@@ -18,6 +18,8 @@
 }
 .filter-table .in{
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   gap: 18px;
 }
@@ -45,39 +47,40 @@
   padding: 5px 6px;
 }
 @media only screen and (max-width: 600px){
-  .station-table table,
+  table,
   th,
   tr,
   td {
     border: 1px solid #3b3072;
     border-collapse: collapse;
     padding: 3px 10px;
+    font-size: 0.33rem;
     color: whitesmoke;  
     }
   
-  .station-table table td {
+   table td {
     text-align: center;
   }
-  .station-table table tbody,
+  table tbody,
   tr,
   td {
     background: rgb(26, 26, 77);
   }
-  .station-table table th,
+  table th,
   td {
     opacity: 0.7;
     cursor: default;
   }
-  .station-table table th:hover,
+  table th:hover,
   td:hover {
     opacity: 0.9;
   }
-  .station-table th {
+  th {
     color: red;
     cursor: default;
   }
-  .station-table div {
-    max-height: 500px;
+  .station-table .table-divv {
+    max-height: 600px;
     overflow: auto;
   }
   .td-btn {
@@ -92,11 +95,11 @@
     padding: 3px 10px;
   }
 }
-.station-table table {
+ table {
   box-shadow: 1px 2px 3px rgb(26, 26, 77);
 }
 @media only screen and (min-width: 600px){
-  .station-table table,
+table,
 th,
 tr,
 td {
@@ -106,28 +109,32 @@ td {
   color: whitesmoke;  
   }
 
-.station-table table td {
+table td {
   text-align: center;
 }
-.station-table table tbody,
+table tbody,
 tr,
 td {
   background: rgb(26, 26, 77);
 }
-.station-table table th,
+table tbody tr:hover{
+  background-color: #130a3e;
+}
+table th,
 td {
   opacity: 0.7;
   cursor: default;
 }
-.station-table table th:hover,
+table th:hover,
 td:hover {
   opacity: 0.9;
 }
-.station-table th {
+th {
   color: red;
   cursor: default;
 }
 .station-table .table-divv {
+  max-height: 600px;
   padding: 2px 10px;
   overflow: auto;
 }
@@ -167,12 +174,21 @@ td:hover {
 .sort-btn{
   color: whitesmoke;
   opacity: 0.8;
-  border: 1px solid red;
+  border: 1px solid transparent;
   font-size: 1rem;
   padding: 5px 10px;
   border-radius: 4px;
   background:#130a3e;
 }
-.sort-btn:hover{
-  opacity: 1;
+@media only screen and (min-width: 600px){
+  .sort-btn:hover{
+    border-color: red;
+    opacity: 1;
+  }
+}
+@media only screen and (max-width: 600px){
+  .sort-btn:active{
+    opacity: 1;
+    border-color: red;
+  }
 }

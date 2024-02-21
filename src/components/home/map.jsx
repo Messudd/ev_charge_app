@@ -5,6 +5,9 @@ import { variants } from "../../data/animationData";
 import loc from "../../utility/images/current-location.png";
 import { MapContainer, TileLayer ,Circle,LayerGroup } from "react-leaflet";
 import { UserMarker, CreateMarkers } from "./Markers";
+import 'leaflet-control-geocoder/dist/Control.Geocoder';
+import LeafletGecoder from "./leafletGeocoder";
+import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 import "leaflet/dist/leaflet.css";
 // import MarkerClusterGroup from "react-leaflet-cluster"; // use cluster --  Don't forget !!
 
@@ -104,6 +107,7 @@ const Map = () => {
             url={mapStyle}
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
+          <LeafletGecoder/>
           {pos.loading && (
             <LayerGroup>
               <Circle
@@ -114,6 +118,9 @@ const Map = () => {
               <UserMarker pos={pos} />
             </LayerGroup>
           )}
+          {
+            // pos.loading && <LeafletRouting/>
+          }
           <CreateMarkers filterTableData={filterTableData} />
         </MapContainer>
       </motion.div>

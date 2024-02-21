@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBackward } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { globalContext } from "../context/globalContextProvider";
 import "../css/favorite.css";
 
@@ -25,7 +25,7 @@ const Favorites = () => {
         <section className="links-fav">
           <div className="back-link">
             <Link to="/user/home">
-              <FontAwesomeIcon icon={faBackward} color="whitesmoke" />
+              <FontAwesomeIcon icon={faChevronLeft} color="whitesmoke" fontSize= '1.1rem'/>
             </Link>
           </div>
           <div className="grb-btn">

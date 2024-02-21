@@ -7,7 +7,9 @@ import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import maleIcon from "../../utility/images/icons8-male.svg";
 import femaleIcon from "../../utility/images/icons8-female.svg";
 import StationTable from "./stationTable";
+import social from "../../data/social";
 import UserNavComp from "./usernav-comp";
+import DataGraf from './dataGraf';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer } from "react-toastify";
@@ -15,7 +17,7 @@ import PreviewPopup from "./previewPopup";
 import "../../css/home.css";
 
 const Home = () => {
-  const { userNavInfo, formLocationData, prewPopup, setPrewPopup } =
+  const { userNavInfo, formLocationData, filterTableData, prewPopup, setPrewPopup } =
     useContext(globalContext);
   const [userHover, setUserHover] = useState(false);
 
@@ -88,10 +90,30 @@ const Home = () => {
         </div>
         <ManuelLocation />
       </div>
-      {(formLocationData.locDatas) && (
-        <StationTable />
-      )}
+      {(filterTableData.locDatas?.length > 0) && <DataGraf/>}
+      {formLocationData.locDatas && <StationTable />}
       {prewPopup && <PreviewPopup />}
+      <div className="home-footer">
+        <p
+          style={{
+            background: "#130a3e",
+            color: "whitesmoke",
+            opacity: "0.8",
+            fontSize: '0.9rem'
+          }}
+        >
+          Copyright &copy; 2024 by ev charge finder
+        </p>
+        <div className="social-link">
+          { 
+            social.map((item,idx) => (
+              <Link key = {idx} to = {item.link}>
+               <FontAwesomeIcon icon={item.img} color="white"/>
+              </Link>
+            ))
+          }
+        </div>
+      </div>
     </>
   );
 };

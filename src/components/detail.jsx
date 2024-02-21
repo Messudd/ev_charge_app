@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { toastData } from "../data/animationData";
 import { useParams ,useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBackward } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import "../css/detail.css";
 
 const Detail = () => {
@@ -29,7 +29,7 @@ const Detail = () => {
 
   useEffect(() => {
     getLocDetail(id, BASE_API_URL);
-  }, []);
+  }, [id]);
 
   return (
     <div id="detail-root">
@@ -77,7 +77,7 @@ const Detail = () => {
               <FontAwesomeIcon
                style={{cursor: 'pointer'}}
                onClick={() => {history.push('/user/home')}}
-               icon={faBackward} width={30} color="red" />
+               icon={faChevronLeft} fontSize= '1.1rem' color="red" />
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import carImg from "./utility/images/e-car.png";
+import carImg from "./utility/images/evCharge.png";
 import { Switch, Route, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
@@ -67,7 +67,7 @@ function App() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 12 }}
                 >
-                  <img src={carImg} alt="ev-charge" width={600} />
+                  <img src={carImg} alt="ev-charge" width={650} />
                 </motion.div>
                 <h3 className="head-text text-red-700 text-3xl font-mono tracking-wide w-80 text-center">
                   Let's : {"  "}
@@ -82,7 +82,7 @@ function App() {
               <section className="py-6 my-10 flex justify-center">
                 <Link to="/user/home">
                   <motion.button
-                    className="btn-try my-3 px-12 py-3 rounded text-center tracking-widest"
+                    className="btn-try my-3 text-gray-50 px-12 py-3 rounded text-center tracking-widest"
                     initial={{ y: -1200 }}
                     animate={{ y: 0 }}
                     transition={{ duration: 1 }}

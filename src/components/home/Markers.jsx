@@ -1,11 +1,11 @@
 import { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Marker, Popup, useMap } from "react-leaflet";
 import { globalContext } from "../../context/globalContextProvider";
 import markerUserIcon from "../../utility/images/live.gif";
 import markerClickIcon from "../../utility/images/charging.png";
 import markerOther from "../../utility/images/other.png";
 import L from "leaflet";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const markerIcon = new L.Icon({
   iconUrl: markerUserIcon,
