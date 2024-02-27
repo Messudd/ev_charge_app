@@ -38,7 +38,7 @@ function App() {
             <div className="header py-12 w-full" style={{backgroundColor:' rgb(26, 26, 77) '}}>
               <h1 className="flex justify-center gap-2 flex-wrap my-8">
                 <motion.span
-                  className="text-gray-300 text-6xl p-3 font-dancing text-center"
+                  className="text-gray-300 text-5xl p-3 font-dancing text-center"
                   initial="hidden"
                   animate="visible"
                   variants={variants}
@@ -95,7 +95,7 @@ function App() {
                     animate={{ y: 0 }}
                     transition={{ duration: 1 }}
                   >
-                    Let's Try
+                    Get Started
                   </motion.button>
                 </Link>
               </section>

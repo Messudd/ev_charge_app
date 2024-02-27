@@ -3,15 +3,17 @@ import { globalContext } from "../../context/globalContextProvider";
 import { motion } from "framer-motion";
 import { variants } from "../../data/animationData";
 import loc from "../../utility/images/current-location.png";
-import { MapContainer, TileLayer ,Circle,LayerGroup } from "react-leaflet";
+import { MapContainer, TileLayer , useMap } from "react-leaflet";
 import { UserMarker, CreateMarkers } from "./Markers";
-import 'leaflet-control-geocoder/dist/Control.Geocoder';
+import "leaflet-control-geocoder/dist/Control.Geocoder";
 import LeafletGecoder from "./leafletGeocoder";
 import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 import "leaflet/dist/leaflet.css";
 // import MarkerClusterGroup from "react-leaflet-cluster"; // use cluster --  Don't forget !!
 
 const Map = () => {
+  const basic =
+    "https://api.maptiler.com/maps/openstreetmap/256/{z}/{x}/{y}.jpg?key=kHLg8AiFGgnch1FMqKRv";
   const satellite =
     "https://api.maptiler.com/maps/satellite/256/{z}/{x}/{y}.jpg?key=kHLg8AiFGgnch1FMqKRv";
   const topo =
@@ -22,43 +24,53 @@ const Map = () => {
     "https://api.maptiler.com/maps/streets-v2-dark/256/{z}/{x}/{y}.png?key=kHLg8AiFGgnch1FMqKRv";
 
   const mapOptions = [
+    { value: basic, label: "Default" },
     { value: satellite, label: "Satellite" },
     { value: topo, label: "Topo" },
     { value: street, label: "Street" },
     { value: dark, label: "Dark" },
   ];
 
-  const { formLocationData, filterTableData, mapStyle, setMapStyle, pos, setPos } =
-    useContext(globalContext);
+  const {
+    formLocationData,
+    filterTableData,
+    mapStyle,
+    setMapStyle,
+    pos,
+    setPos,
+  } = useContext(globalContext);
   const [center, setCenter] = useState({
     lat: 39.925533,
     lng: 32.866287,
   });
   const ZOOM_LEVEL = 6 || 0;
 
-  const blueOptions = { color: "blue", fillColor: "blue" };
-
   const changeMapStyle = (e) => {
     setMapStyle(e.target.value);
   };
 
   const getUserLocation = () => {
-    const onSucces = (position) => {
-      setPos({
-        ...pos,
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-        loading: !pos.loading,
-      });
-    };
-    const onError = (error) => {
-      alert("Geolocation is not support ! ", error);
-    };
+    if (navigator.geolocation) {
+      const onSucces = (position) => {
+        setPos({
+          ...pos,
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+          loading: true,
+        });
+      };
+      const onError = (error) => {
+        alert("User - location didn't find !", error);
+      };
 
-    navigator.geolocation.getCurrentPosition(onSucces, onError, {
-      enableHighAccuracy: true,
-      timeout: 5000,
-    });
+      navigator.geolocation.getCurrentPosition(onSucces, onError, {
+        enableHighAccuracy: true,
+        timeout: 5000,
+      });
+    }
+    else {
+      alert('Geolocation is not supporting by this browser !');
+    }
   };
 
   useEffect(() => {
@@ -79,7 +91,7 @@ const Map = () => {
             style={{ filter: pos.loading && "brightness(150%)" }}
             onClick={getUserLocation}
             src={loc}
-            alt=""
+            alt="location"
             width={26}
           />
         </div>
@@ -102,25 +114,13 @@ const Map = () => {
         variants={variants}
         className="map-container"
       >
-        <MapContainer center={center} zoom={ZOOM_LEVEL} scrollWheelZoom = {false}>
+        <MapContainer center={center} zoom={ZOOM_LEVEL} scrollWheelZoom={false}>
           <TileLayer
             url={mapStyle}
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          <LeafletGecoder/>
-          {pos.loading && (
-            <LayerGroup>
-              <Circle
-                center={pos}
-                pathOptions={blueOptions}
-                radius={250}
-              />
-              <UserMarker pos={pos} />
-            </LayerGroup>
-          )}
-          {
-            // pos.loading && <LeafletRouting/>
-          }
+          <LeafletGecoder />
+          {pos.loading && <UserMarker pos={pos} />}
           <CreateMarkers filterTableData={filterTableData} />
         </MapContainer>
       </motion.div>

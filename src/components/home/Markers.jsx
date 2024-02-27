@@ -5,7 +5,10 @@ import { globalContext } from "../../context/globalContextProvider";
 import markerUserIcon from "../../utility/images/live.gif";
 import markerClickIcon from "../../utility/images/charging.png";
 import markerOther from "../../utility/images/other.png";
-import L from "leaflet";
+import pin from "../../utility/images/pin.png";
+import L  from "leaflet";
+import 'leaflet-routing-machine';
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 
 const markerIcon = new L.Icon({
   iconUrl: markerUserIcon,
@@ -13,7 +16,12 @@ const markerIcon = new L.Icon({
   iconAnchor: [11, 28],
   popupAnchor: [0, -40],
 });
-
+const markerPin = new L.Icon({
+  iconUrl: pin,
+  iconSize: [15, 20],
+  iconAnchor: [11, 28],
+  popupAnchor: [0, -40],
+});
 const markerEcharge = new L.Icon({
   iconUrl: markerClickIcon,
   iconSize: [34, 38],
@@ -33,6 +41,8 @@ export const UserMarker = ({ pos }) => {
 
   useEffect(() => {
     setMap(map);
+    map.flyTo([pos.lat, pos.lng], 14,
+      { duration : 3 });
   }, []);
 
   return (
@@ -41,9 +51,11 @@ export const UserMarker = ({ pos }) => {
         position={[pos.lat, pos.lng]}
         icon={markerIcon}
         eventHandlers={{
-          click: () => {
-            map.setView([pos.lat, pos.lng], 16);
-          },
+          click: (() => {
+            map.flyTo([pos.lat, pos.lng],14,{
+              duration: 3
+            })
+          })
         }}
       >
       </Marker>
@@ -53,6 +65,31 @@ export const UserMarker = ({ pos }) => {
 
 export const CreateMarkers = ({ filterTableData }) => {
   const map = useMap();
+  const { pos } = useContext(globalContext);
+  const leafletRouting = (lat,lng) => {
+    L.Marker.prototype.options.icon = markerPin;
+    L.Routing.control({
+            waypoints: [
+              L.latLng(pos.lat,pos.lng),
+              L.latLng(lat,lng)
+            ],
+            lineOptions: {
+              styles : [
+                {
+                  color: 'darkred',
+                  weight: 6,
+                  opacity : 0.7
+                }
+              ]
+            },
+            routeWhileDragging: false,
+            addWaypoints: false,
+            fitSelectedRoutes: true,
+            routeWhileDragging: false,
+            showAlternatives: false,
+            pointMarkerStyle : false
+          }).addTo(map);
+  }
   return (
     <>
       {!filterTableData.loading &&
@@ -63,11 +100,12 @@ export const CreateMarkers = ({ filterTableData }) => {
             icon ={item.model === 'Eşarj' ? markerEcharge : markerOtherStation}
             eventHandlers={{
               click: () => {
-                map.setView([item.latitude, item.longitude], 15);
+                map.flyTo([item.latitude, item.longitude], 14,
+                 { duration : 3 })
               },
             }}
           >
-            <Popup>
+           <Popup>
               <div className="pops">
                 <h3>{item.name}</h3>
                 <div className="pop-img">
@@ -86,8 +124,13 @@ export const CreateMarkers = ({ filterTableData }) => {
                   <span>{"Socket :  " + item.total}</span>
                 </div>
                 <span style={{color: 'red'}}>{item.status}</span>
+                {
+                  pos.loading && (
+                    <button onClick={() => leafletRouting(item.latitude,item.longitude)}>Route</button>
+                  )
+                }
               </div>
-            </Popup>
+            </Popup> 
           </Marker>
         ))}
     </>

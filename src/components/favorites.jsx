@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { globalContext } from "../context/globalContextProvider";
+import Footer from "./footer";
 import "../css/favorite.css";
 
 const Favorites = () => {
@@ -89,6 +90,7 @@ const Favorites = () => {
           )}
         </section>
       </main>
+      <Footer/>
     </>
   );
 };

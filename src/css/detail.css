@@ -52,7 +52,7 @@
     padding: 30px 45px;
     background: rgb(26, 26, 77);
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     gap: 15px;
 }
 .detail-content .coordinate{
@@ -62,12 +62,26 @@
 }
 .detail-content h2{
     font-family: danss;
+    text-align: center;
     font-size: 2rem;
     color: red;
 }
 .detail-content p {
+    display: flex;
+    align-items: center;
+    gap: 15px;
     color: whitesmoke;
+}
+.detail-content p li{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    gap:10px;
 }
 .detail-content p span:first-child{
     color: red;
+}
+.back{
+    display: flex;
+    justify-content: flex-end;
 }

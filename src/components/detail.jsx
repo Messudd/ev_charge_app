@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { toastData } from "../data/animationData";
-import { useParams ,useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import "../css/detail.css";
@@ -61,6 +61,20 @@ const Detail = () => {
               <span>Type : </span>
               <span>{detailLocation.type}</span>
             </p>
+            <p>
+              <li>
+                <span>Power : </span>
+                <span>{detailLocation.power}{" ,"}</span>
+              </li>
+              <li>
+                <span>Total : </span>
+                <span>{detailLocation.total}{" ,"}</span>
+              </li>
+              <li>
+                <span>Status : </span>
+                <span>{detailLocation.status}</span>
+              </li>
+            </p>
             <div className="coordinate">
               <p>
                 <span>Latitude {" > "} </span>
@@ -71,13 +85,18 @@ const Detail = () => {
                 <span>{detailLocation.longitude}</span>
               </p>
             </div>
-            <p style={{ color: "red" }}>Description</p>
+            <p style={{ color: "red" }}>Adress : </p>
             <p>{detailLocation.description}</p>
             <div className="back">
               <FontAwesomeIcon
-               style={{cursor: 'pointer'}}
-               onClick={() => {history.push('/user/home')}}
-               icon={faChevronLeft} fontSize= '1.1rem' color="red" />
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  history.push("/user/home");
+                }}
+                icon={faChevronLeft}
+                fontSize="1.1rem"
+                color="red"
+              />
             </div>
           </div>
         </div>
