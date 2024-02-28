@@ -9,6 +9,7 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   background-color: #130a3e;
+  font-size: 0.75rem;
 }
 ::-webkit-scrollbar {
   width: 8px;
@@ -19,12 +20,6 @@ body {
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background:#22136d;
-}
-@media only screen and (max-width: 600px){
-  body{
-    overflow-x: hidden;
-    font-size: 0.8rem;
-  }
 }
 .btn-try {
   background-color: #22136d;
@@ -66,12 +61,12 @@ body {
 }
 .leaflet-container {
   width: 100%;
-  height: 620px;
+  height: 780px;
 }
 @media only screen and (max-width: 600px){
   .leaflet-container{
     width: 100%;
-    height: 520px;
+    height: 540px;
   }
 }
 .leaflet-control-zoom .leaflet-control-zoom-in span,
@@ -86,13 +81,34 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.leaflet-routing-alt h2,h3{
+  font-size: 0.7rem;
+  color: red;
+  font-weight: 700;
+}
+.leaflet-routing-alt h3 {
+  padding-bottom: 5px;
+}
 .leaflet-routing-alt table{
   width: 100%;
+}
+.leaflet-routing-alt table tr{
+  font-size: 0.6rem;
+  padding: 0;
+}
+.leaflet-routing-alt table td{
+  padding: 3px 5px;
 }
 .leaflet-routing-icon{
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 3px;
+}
+.leaflet-touch .leaflet-control-geocoder-icon{
+  background-image: url('./utility/images/search.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .home-main{
   width: 100vw;
@@ -110,7 +126,7 @@ body {
 }
 .loc-parag {
   font-family: danss;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   color: whitesmoke;
 }
 .button-location{
@@ -143,7 +159,7 @@ select:focus{
 .map-style h3{
   color: darkred;
   font-family: danss;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
 .map-style select{
   background: #130a3e;
@@ -153,16 +169,18 @@ select:focus{
   opacity: 0.8;
 }
 .map-container .pops{
+  max-width: 150px;
   display: flex;
   flex-direction: column ;
   align-items: center;
-  gap:10px;
+  gap: 8px;
   padding: 2px 5px;
 }
 .pops h3{
   color: red;
   font-size: 0.8rem;
   font-weight: 700;
+  text-align: center;
 }
 .pop-img {
   width: 100%;

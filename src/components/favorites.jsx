@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,7 @@ import "../css/favorite.css";
 
 const Favorites = () => {
   const [favBtn, setFavBtn] = useState(false);
-  const { userFavorites } = useContext(globalContext);
+  const { userFavorites , route , setRoute } = useContext(globalContext);
 
   const openAddFavorite = () => {
     setFavBtn(false);
@@ -16,6 +16,9 @@ const Favorites = () => {
   const openFavContainer = () => {
     setFavBtn(true);
   };
+  useEffect(() => {
+    setRoute({...route , route: false});
+  }, []);
 
   return (
     <>
@@ -26,7 +29,11 @@ const Favorites = () => {
         <section className="links-fav">
           <div className="back-link">
             <Link to="/user/home">
-              <FontAwesomeIcon icon={faChevronLeft} color="whitesmoke" fontSize= '1.1rem'/>
+              <FontAwesomeIcon
+                icon={faChevronLeft}
+                color="whitesmoke"
+                fontSize="1.1rem"
+              />
             </Link>
           </div>
           <div className="grb-btn">
@@ -73,7 +80,8 @@ const Favorites = () => {
                     {userFavorites?.map((item, key) => (
                       <tr key={key}>
                         <td>
-                            <img src= {item.image} alt="station" width={80}/></td>
+                          <img src={item.image} alt="station" width={80} />
+                        </td>
                         <td>{item.city}</td>
                         <td>{item.town}</td>
                         <td>{item.neighbourhood}</td>
@@ -90,7 +98,7 @@ const Favorites = () => {
           )}
         </section>
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 };

@@ -6,7 +6,8 @@ import { toast } from "react-toastify";
 import { faCircleInfo, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { toastData } from "../../data/animationData";
 import vehicle from "../../utility/images/vehicle.gif";
-import chargeImg from '../../utility/images/charge.png';
+import chargeImg from "../../utility/images/charge.png";
+import stationIcon from "../../utility/images/map.png";
 import "react-toastify/dist/ReactToastify.css";
 import "../../css/station_table.css";
 
@@ -19,6 +20,8 @@ const StationTable = () => {
     setFilterTableData,
     userFavorites,
     setUserFavorites,
+    route,
+    setRoute,
   } = useContext(globalContext);
 
   const addFavoriteList = (param) => {
@@ -90,6 +93,14 @@ const StationTable = () => {
     setFilterTableData({ ...formLocationData });
   };
 
+  const showStationOnMap = (lat, lng) => {
+    window.scrollTo(0, 0);
+    map.flyTo([lat, lng], 18, { duration: 3 });
+  };
+  useEffect(() => {
+    setRoute({ ...route, route: false });
+  }, [filterTableData.locDatas?.length]);
+
   useEffect(() => {
     setFilterTableData({ ...formLocationData });
   }, [formLocationData.locDatas]);
@@ -145,7 +156,7 @@ const StationTable = () => {
                       }}
                     >
                       <img src={vehicle} alt="vehicle" width={30} />
-                      Distance
+                      Map
                     </th>
                   )}
                   <th>Detail</th>
@@ -168,9 +179,21 @@ const StationTable = () => {
                       <td>{index + 1}</td>
                       <td>{loc.name}</td>
                       <td>{loc.type}</td>
-                      {pos.lat && pos.lng && (
-                        <td>{calculateDistance(pos, loc)}</td>
-                      )}
+                      <td
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        onClick={() =>
+                          showStationOnMap(loc.latitude, loc.longitude)
+                        }
+                      >
+                        <img
+                          style={{ margin: "0 auto" }}
+                          src={stationIcon}
+                          alt="station-icon"
+                          width={18}
+                        />
+                      </td>
                       <td className="td-btn">
                         <Link
                           to={`/user/detail/${loc.id}`}

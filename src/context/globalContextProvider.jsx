@@ -27,9 +27,15 @@ const GlobalContextProvider = ({ children }) => {
     userName: "Mesud",
     gender: "MALE",
   });
+  const [route , setRoute] = useState({
+    lat: '',
+    lng: '',
+    route: false
+  })
+  const [routes, setRoutes] = useState([]);
   const [userFavorites ,setUserFavorites] = useState([]);
   const [mapStyle ,setMapStyle] = useState(
-    'https://api.maptiler.com/maps/openstreetmap/256/{z}/{x}/{y}.jpg?key=kHLg8AiFGgnch1FMqKRv'
+    'https://api.maptiler.com/maps/bright-v2/{z}/{x}/{y}@2x.png?key=kHLg8AiFGgnch1FMqKRv'
   )
 
   return (
@@ -52,7 +58,11 @@ const GlobalContextProvider = ({ children }) => {
         mapStyle,
         setMapStyle,
         prewPopup,
-        setPrewPopup
+        setPrewPopup,
+        route,
+        setRoute,
+        routes,
+        setRoutes
       }}
     >
       {children}

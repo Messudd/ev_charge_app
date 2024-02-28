@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { globalContext } from "../context/globalContextProvider";
 import { toast } from "react-toastify";
 import { toastData } from "../data/animationData";
 import { useParams, useHistory } from "react-router-dom";
@@ -10,6 +11,7 @@ import "../css/detail.css";
 const Detail = () => {
   const BASE_API_URL = "http://192.168.1.13:8070/geolocation/ev";
   const [detailLocation, setDetailLocation] = useState(null);
+  const { route ,setRoute } = useContext(globalContext);
   let { id } = useParams();
 
   const history = useHistory();
@@ -30,6 +32,10 @@ const Detail = () => {
   useEffect(() => {
     getLocDetail(id, BASE_API_URL);
   }, [id]);
+
+  useEffect(() => {
+    setRoute({...route , route: false});
+  }, []);
 
   return (
     <div id="detail-root">

@@ -53,7 +53,7 @@
   td {
     border: 1px solid #3b3072;
     border-collapse: collapse;
-    padding: 3px 10px;
+    padding: 3px 8px;
     font-size: 0.33rem;
     color: whitesmoke;  
     }
@@ -105,7 +105,7 @@ tr,
 td {
   border: 1px solid #3b3072;
   border-collapse: collapse;
-  padding: 10px 30px;
+  padding: 10px 20px;
   color: whitesmoke;  
   }
 

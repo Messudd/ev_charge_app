@@ -28,7 +28,6 @@ const Home = () => {
   const onOpenContactPopup = () => {
     setPrewPopup(true);
   };
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -61,7 +60,7 @@ const Home = () => {
           <div className="first-head">
             <div className="nav-head">
               <h2>
-                Ev | Station<span>Dashboard</span>
+                Ev |<span>Service</span>
               </h2>
             </div>
           </div>

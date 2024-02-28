@@ -29,6 +29,7 @@ const ManuelLocation = () => {
             loading: false,
           });
         }, 500);
+        toast.success('stations were found in this area.',{...toastData});
       })
       .catch((err) => {
         toast.error(err.response.data.message, { ...toastData });

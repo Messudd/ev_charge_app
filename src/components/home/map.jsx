@@ -3,11 +3,10 @@ import { globalContext } from "../../context/globalContextProvider";
 import { motion } from "framer-motion";
 import { variants } from "../../data/animationData";
 import loc from "../../utility/images/current-location.png";
-import { MapContainer, TileLayer , useMap } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import { UserMarker, CreateMarkers } from "./Markers";
-import "leaflet-control-geocoder/dist/Control.Geocoder";
 import LeafletGecoder from "./leafletGeocoder";
-import "leaflet-control-geocoder/dist/Control.Geocoder.css";
+import LeafletRouting from "./leafletRouting";
 import "leaflet/dist/leaflet.css";
 // import MarkerClusterGroup from "react-leaflet-cluster"; // use cluster --  Don't forget !!
 
@@ -38,6 +37,7 @@ const Map = () => {
     setMapStyle,
     pos,
     setPos,
+    route,
   } = useContext(globalContext);
   const [center, setCenter] = useState({
     lat: 39.925533,
@@ -67,9 +67,8 @@ const Map = () => {
         enableHighAccuracy: true,
         timeout: 5000,
       });
-    }
-    else {
-      alert('Geolocation is not supporting by this browser !');
+    } else {
+      alert("Geolocation is not supporting by this browser !");
     }
   };
 
@@ -79,7 +78,7 @@ const Map = () => {
 
   useEffect(() => {
     console.log("pos :", pos);
-  }, [pos]);
+  }, [pos.lat, pos.lng]);
 
   return (
     <>
@@ -114,7 +113,11 @@ const Map = () => {
         variants={variants}
         className="map-container"
       >
-        <MapContainer center={center} zoom={ZOOM_LEVEL} scrollWheelZoom={false}>
+        <MapContainer
+          center={center}
+          zoom={ZOOM_LEVEL}
+          scrollWheelZoom={false}
+        >
           <TileLayer
             url={mapStyle}
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -122,6 +125,7 @@ const Map = () => {
           <LeafletGecoder />
           {pos.loading && <UserMarker pos={pos} />}
           <CreateMarkers filterTableData={filterTableData} />
+          {route.route && <LeafletRouting />}
         </MapContainer>
       </motion.div>
     </>
