@@ -3,7 +3,7 @@ import { globalContext } from "../../context/globalContextProvider";
 import { motion } from "framer-motion";
 import { variants } from "../../data/animationData";
 import loc from "../../utility/images/current-location.png";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { Circle, LayersControl, MapContainer, Rectangle, TileLayer } from "react-leaflet";
 import { UserMarker, CreateMarkers } from "./Markers";
 import LeafletGecoder from "./leafletGeocoder";
 import LeafletRouting from "./leafletRouting";
@@ -38,6 +38,7 @@ const Map = () => {
     pos,
     setPos,
     route,
+    circle,
   } = useContext(globalContext);
   const [center, setCenter] = useState({
     lat: 39.925533,
@@ -113,17 +114,28 @@ const Map = () => {
         variants={variants}
         className="map-container"
       >
-        <MapContainer
-          center={center}
-          zoom={ZOOM_LEVEL}
-          scrollWheelZoom={false}
-        >
+        <MapContainer center={center} zoom={ZOOM_LEVEL} scrollWheelZoom={false}>
           <TileLayer
             url={mapStyle}
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
           <LeafletGecoder />
-          {pos.loading && <UserMarker pos={pos} />}
+          {pos.loading && (
+            <LayersControl position="bottomright">
+              <LayersControl.Overlay checked name="user location">
+                {pos.loading && <UserMarker pos={pos} />}
+              </LayersControl.Overlay>
+              {circle && (
+                <LayersControl.Overlay name="user location area" checked pathOptions = {{fillColor: 'blue'}}>
+                  <Circle
+                    pathOptions={{ color: "blue" }}
+                    center={[pos.lat, pos.lng]}
+                    radius={300}
+                  />
+                </LayersControl.Overlay>
+              )}
+            </LayersControl>
+          )}
           <CreateMarkers filterTableData={filterTableData} />
           {route.route && <LeafletRouting />}
         </MapContainer>

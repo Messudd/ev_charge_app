@@ -19,7 +19,7 @@ const LeafletGecoder = () => {
           lng: e.geocode.center.lng,
           loading: true,
         });
-        map.flyTo([e.geocode.center.lat, e.geocode.center.lng], 14, {
+        map?.flyTo([e.geocode.center.lat, e.geocode.center.lng], 14, {
           duration: 3,
         });
         setRoute({ ...route, route: false });

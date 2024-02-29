@@ -20,6 +20,7 @@ const GlobalContextProvider = ({ children }) => {
     locDatas : null,
     loading : false,
   });
+  const [circle, setCircle] = useState(false);
   const [filterTableData, setFilterTableData] = useState([]);
   const [mode, setMode] = useState('light');
   const [prewPopup, setPrewPopup] = useState(false);
@@ -62,7 +63,9 @@ const GlobalContextProvider = ({ children }) => {
         route,
         setRoute,
         routes,
-        setRoutes
+        setRoutes,
+        circle,
+        setCircle
       }}
     >
       {children}

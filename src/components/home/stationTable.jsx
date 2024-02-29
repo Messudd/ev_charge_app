@@ -22,6 +22,7 @@ const StationTable = () => {
     setUserFavorites,
     route,
     setRoute,
+    setCircle
   } = useContext(globalContext);
 
   const addFavoriteList = (param) => {
@@ -95,7 +96,11 @@ const StationTable = () => {
 
   const showStationOnMap = (lat, lng) => {
     window.scrollTo(0, 0);
+    setCircle(false);
     map.flyTo([lat, lng], 18, { duration: 3 });
+    setTimeout(() => {
+      setCircle(true);
+    }, 3500);
   };
   useEffect(() => {
     setRoute({ ...route, route: false });

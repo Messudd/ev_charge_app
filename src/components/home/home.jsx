@@ -14,6 +14,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer } from "react-toastify";
 import PreviewPopup from "./previewPopup";
 import Footer from '../footer';
+import ev from '../../utility/images/ev.png';
 import "../../css/home.css";
 
 const Home = () => {
@@ -59,8 +60,9 @@ const Home = () => {
           </div>
           <div className="first-head">
             <div className="nav-head">
+              <img src= {ev} alt="ev-icn" width={40}/>
               <h2>
-                Ev |<span>Service</span>
+                Charge |<span>Service</span>
               </h2>
             </div>
           </div>
