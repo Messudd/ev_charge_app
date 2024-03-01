@@ -10,7 +10,7 @@ const BASE_API_URL = "http://192.168.1.13:8070/geolocation/ev";
 
 const ManuelLocation = () => {
   const { userChoise, setUserChoise } = useContext(globalContext);
-  const { formLocationData, setFormLocationData } = useContext(globalContext);
+  const { formLocationData, setFormLocationData ,setColorStatus , colorStatus } = useContext(globalContext);
   const cities = citys_data.map((item) => item.il);
 
   const locFormOnHandleInputChange = (e) => {
@@ -29,6 +29,7 @@ const ManuelLocation = () => {
             loading: false,
           });
         }, 500);
+        setColorStatus(!colorStatus);
         toast.success('stations were found in this area.',{...toastData});
       })
       .catch((err) => {

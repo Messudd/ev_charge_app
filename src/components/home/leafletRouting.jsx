@@ -12,7 +12,7 @@ const LeafletRouting = () => {
 
     const markerPin = new L.Icon({
         iconUrl: pin,
-        iconSize: [15, 20],
+        iconSize: [10, 10],
         iconAnchor: [11, 28],
         popupAnchor: [0, -40],
       });
@@ -27,7 +27,7 @@ const LeafletRouting = () => {
                 lineOptions: {
                   styles : [
                     {
-                      color: 'darkred',
+                      color: 'green',
                       weight: 6,
                       opacity : 0.7
                     }
@@ -38,10 +38,13 @@ const LeafletRouting = () => {
                 fitSelectedRoutes: true,
                 routeWhileDragging: false,
                 showAlternatives: false,
-                pointMarkerStyle : false
+                pointMarkerStyle : false,
+                showAlternatives : false,
+                
               })
               .on('routesfound', function(e) {
                 setRoutes(e.routes);
+                console.log(e.routes);
               }).addTo(map);
         return () => map.removeControl(routingControl);
     },[route.lat,route.lng,pos.lat,pos.lng])

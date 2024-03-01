@@ -76,7 +76,7 @@ const Home = () => {
             </a>
             <Link className="home-nav" to="/">
               <FontAwesomeIcon icon={faSignOutAlt} />
-              <span style={{ background: "none", paddingLeft: "10px" }}>
+              <span style={{ background: "none", paddingLeft: "10px", cursor: 'pointer'}}>
                 Logout
               </span>
             </Link>

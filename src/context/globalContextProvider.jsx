@@ -24,6 +24,7 @@ const GlobalContextProvider = ({ children }) => {
   const [filterTableData, setFilterTableData] = useState([]);
   const [mode, setMode] = useState('light');
   const [prewPopup, setPrewPopup] = useState(false);
+  const [colorStatus , setColorStatus] = useState(false);
   const [userNavInfo, setUserNavInfo] = useState({
     userName: "Mesud",
     gender: "MALE",
@@ -46,6 +47,8 @@ const GlobalContextProvider = ({ children }) => {
         setPos,
         map,
         setMap,
+        colorStatus,
+        setColorStatus,
         formLocationData,
         setFormLocationData,
         filterTableData,

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Marker, Popup, useMap } from "react-leaflet";
 import { globalContext } from "../../context/globalContextProvider";
@@ -6,6 +6,8 @@ import markerUserIcon from "../../utility/images/live.gif";
 import markerClickIcon from "../../utility/images/charging.png";
 import markerOther from "../../utility/images/other.png";
 import L from "leaflet";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 
 const markerIcon = new L.Icon({
   iconUrl: markerUserIcon,
@@ -32,18 +34,19 @@ export const UserMarker = ({ pos }) => {
   const { setMap, setCircle } = useContext(globalContext);
 
   useEffect(() => {
-    setMap(map);
-    setCircle(false);
-    map?.flyTo([pos.lat, pos.lng], 15, { duration: 3 });
-    setTimeout(() => {
-      setCircle(true);
-    }, 3500);
-  }, [pos.lat, pos.lng]);
+     setMap(map);
+     setCircle(false);
+     map?.flyTo([pos.lat, pos.lng], 15, { duration: 3 });
+     setTimeout(() => {
+       setCircle(true);
+     }, 3500);
+   }, [pos.lat, pos.lng]);  
 
   return (
     <Marker
       position={[pos.lat, pos.lng]}
       icon={markerIcon}
+      draggable={false}
       eventHandlers={{
         click: () => {
           setCircle(false);
@@ -60,7 +63,8 @@ export const UserMarker = ({ pos }) => {
 };
 
 export const CreateMarkers = ({ filterTableData }) => {
-  const { pos, route, setRoute } = useContext(globalContext);
+  const myMap = useMap();
+  const { pos, route, setRoute, setMap } = useContext(globalContext);
 
   const setleafletRouting = (lat, lng) => {
     setRoute({ ...route, route: false });
@@ -72,6 +76,10 @@ export const CreateMarkers = ({ filterTableData }) => {
       });
     }, 300);
   };
+  useEffect(() => {
+    setMap(myMap);
+  },[]);
+
   return (
     <>
       {!filterTableData.loading &&
@@ -107,7 +115,8 @@ export const CreateMarkers = ({ filterTableData }) => {
                       setleafletRouting(item.latitude, item.longitude)
                     }
                   >
-                    Route
+                    <span>Route</span>
+                    <FontAwesomeIcon icon={faLocationArrow} color="#fff"/>
                   </button>
                 )}
               </div>

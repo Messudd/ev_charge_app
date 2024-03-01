@@ -61,7 +61,7 @@ body {
 }
 .leaflet-container {
   width: 100%;
-  height: 780px;
+  height: 750px; 
 }
 @media only screen and (max-width: 600px){
   .leaflet-container{
@@ -105,7 +105,7 @@ body {
   border-radius: 3px;
 }
 .leaflet-touch .leaflet-control-geocoder-icon{
-  background-image: url('./utility/images/search.png');
+  background-image: url('./utility/images/find.svg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -124,18 +124,30 @@ body {
 .location-form {
   flex: 1;
 }
-.loc-parag {
-  font-family: danss;
-  font-size: 1.1rem;
-  color: whitesmoke;
-}
 .button-location{
   padding: 0;
 }
-.get-location{
+.leaflet-left .leaflet-control-zoom {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
+.leaflet-left .leaflet-control-zoom span{
+  cursor: pointer;
   background: none;
-  padding: 3px;
-  filter: brightness(90%);
+}
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar{
+  border:none;
+}
+.leaflet-marker-pane .leaflet-marker-draggable{
+  display: none;
+}
+.get-location{
+  background-color: #fff;
+  border-radius: 3px;
+  color: gray;
+  padding: 4px 2px;
   cursor:pointer;
 }
 .leaflet-popup-content-wrapper{
@@ -152,7 +164,7 @@ select:focus{
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 10px 30px ;
+  padding: 3px 10px;
   justify-content: flex-end;
   gap: 15px;
 }

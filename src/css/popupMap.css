@@ -1,0 +1,44 @@
+.block-map{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0 ,0,0.6);
+}
+.popup-map{
+    flex: 0.35;
+    height: 300px;
+}
+@media only screen and (max-width: 600px){
+    .popup-map{
+        flex: 0.8;
+        height: 300px;
+    }
+  }
+.close-map{
+    padding: 10px 5px;
+    cursor:pointer;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.pop-p{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:5px;
+}
+.pop-p li {
+    list-style-type: none;
+    color: red;
+}
+.pop-p li span {
+    font-size: 0.7rem;
+    color: #fff;
+}

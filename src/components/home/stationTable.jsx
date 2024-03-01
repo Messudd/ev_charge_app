@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { globalContext } from "../../context/globalContextProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,8 +22,11 @@ const StationTable = () => {
     setUserFavorites,
     route,
     setRoute,
-    setCircle
+    setCircle,
+    colorStatus
   } = useContext(globalContext);
+
+  const [nearest , setNearest] = useState(false);
 
   const addFavoriteList = (param) => {
     if (userFavorites.length > 0) {
@@ -88,16 +91,16 @@ const StationTable = () => {
         ),
       ],
     });
+    setNearest(true);
   };
 
   const loadAllData = () => {
     setFilterTableData({ ...formLocationData });
   };
-
   const showStationOnMap = (lat, lng) => {
     window.scrollTo(0, 0);
     setCircle(false);
-    map.flyTo([lat, lng], 18, { duration: 3 });
+    map?.flyTo([lat, lng], 18, { duration: 3 });
     setTimeout(() => {
       setCircle(true);
     }, 3500);
@@ -109,6 +112,25 @@ const StationTable = () => {
   useEffect(() => {
     setFilterTableData({ ...formLocationData });
   }, [formLocationData.locDatas]);
+
+  useEffect(() => {
+    const trArray = document.querySelectorAll('.table-divv table tbody tr'); 
+    if(trArray.length > 0 && nearest){
+      trArray[0].style.background = 'red';
+      trArray[1].style.background = 'gray';
+      trArray[2].style.background = 'green';
+    }
+  },[nearest])
+
+  useEffect(() => {
+    const trArray = document.querySelectorAll('.table-divv table tbody tr');
+    setNearest(false);
+    if(trArray.length > 0 && pos){
+      trArray[0].style.background = 'none';
+      trArray[1].style.background = 'none';
+      trArray[2].style.background = 'none';
+    }
+  },[pos,colorStatus]);
 
   return (
     <>
@@ -232,14 +254,13 @@ const StationTable = () => {
       ) : (
         <div className="info-catch">
           <button className="table-info-btn" onClick={loadAllData}>
-            All
+            Back Load
           </button>
           <p
             style={{
               color: "red",
-              fontWeight: "600",
-              fontFamily: "danss",
-              fontSize: "1.5rem",
+              fontWeight: "400",
+              fontSize: "1rem",
             }}
           >
             No Station !

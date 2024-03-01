@@ -4,14 +4,14 @@
 }
 .home-header{
     width: 100vw;
-    padding: 5px 25px;
+    padding: 0 10px;
 }
 .user-box{
     position: fixed;
     display: flex;
     flex-direction: column;
     background: #130a3e;
-    z-index: 5;
+    z-index: 1;
     top:0;
     left: 0;
     width: 300px;
@@ -262,18 +262,39 @@
   }
   .route-btn{
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
     text-align: center;
     border-radius: 4px;
     padding: 3px 0;
     font-weight: 700;
-    opacity: 0.85;
+    opacity: 0.8;
     cursor: pointer;
     background: red;
     transition: all 0.3s ease;
+  }
+  .route-btn span{
+    color: #fff;
   }
   .route-btn:hover{
     opacity: 1;
   }
   .pops h3, span {
     cursor: default;
+  }
+  #route{
+    display: flex;
+    width: 250px;
+    margin: 8px auto;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 10px;
+    gap: 10px;
+    border-radius: 2px;
+    background: red;
+  }
+  #route span{
+    font-weight: 600;
   }

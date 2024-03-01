@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { globalContext } from "../context/globalContextProvider";
+import stationIcon from "../utility/images/map.png";
+import MapPopup from '../components/mapPopup';
 import Footer from "./footer";
 import "../css/favorite.css";
 
 const Favorites = () => {
   const [favBtn, setFavBtn] = useState(false);
-  const { userFavorites , route , setRoute } = useContext(globalContext);
+  const { userFavorites, route, setRoute } =
+    useContext(globalContext);
+  
+  const [ popMap , setPopMap ] = useState([]);
 
   const openAddFavorite = () => {
     setFavBtn(false);
@@ -16,8 +21,11 @@ const Favorites = () => {
   const openFavContainer = () => {
     setFavBtn(true);
   };
+  const showFavStationOnMap = (lat,lng) => {
+    setPopMap([lat,lng]);
+  }
   useEffect(() => {
-    setRoute({...route , route: false});
+    setRoute({ ...route, route: false });
   }, []);
 
   return (
@@ -67,28 +75,34 @@ const Favorites = () => {
                   <thead>
                     <tr>
                       <th>image</th>
-                      <th>City</th>
-                      <th>Town</th>
-                      <th>Neighbourhood</th>
-                      <th>Street</th>
+                      <th>Adress</th>
                       <th>Type</th>
-                      <th>Detail</th>
-                      <th>Delete</th>
+                      <th>Power</th>
+                      <th>Map</th>
+                      <th>Remove</th>
                     </tr>
                   </thead>
                   <tbody>
                     {userFavorites?.map((item, key) => (
                       <tr key={key}>
                         <td>
-                          <img src={item.image} alt="station" width={80} />
+                          <img src={item.image} alt="station" width={60} />
                         </td>
-                        <td>{item.city}</td>
-                        <td>{item.town}</td>
-                        <td>{item.neighbourhood}</td>
-                        <td>{item.street}</td>
+                        <td>{item.description}</td>
                         <td>{item.type}</td>
-                        <td></td>
-                        <td></td>
+                        <td>{item.power}</td>
+                        <td
+                          style={{ cursor: "pointer" }}
+                          onClick={() => showFavStationOnMap(item.latitude, item.longitude)}
+                        >
+                          <img
+                            style={{ margin: "0 auto" }}
+                            src={stationIcon}
+                            alt="station-icon"
+                            width={18}
+                          />
+                        </td>
+                        <td>del</td>
                       </tr>
                     ))}
                   </tbody>
@@ -99,6 +113,7 @@ const Favorites = () => {
         </section>
       </main>
       <Footer />
+      {popMap.length > 0  && <MapPopup value = {popMap} setPopMap = {setPopMap}/>}
     </>
   );
 };

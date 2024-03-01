@@ -2,13 +2,14 @@ import React, { useEffect, useState, useContext } from "react";
 import { globalContext } from "../../context/globalContextProvider";
 import { motion } from "framer-motion";
 import { variants } from "../../data/animationData";
-import loc from "../../utility/images/current-location.png";
-import { Circle, LayersControl, MapContainer, Rectangle, TileLayer } from "react-leaflet";
+import { Circle, LayersControl, MapContainer, TileLayer } from "react-leaflet";
 import { UserMarker, CreateMarkers } from "./Markers";
 import LeafletGecoder from "./leafletGeocoder";
 import LeafletRouting from "./leafletRouting";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import "leaflet/dist/leaflet.css";
-// import MarkerClusterGroup from "react-leaflet-cluster"; // use cluster --  Don't forget !!
+
 
 const Map = () => {
   const basic =
@@ -29,7 +30,6 @@ const Map = () => {
     { value: street, label: "Street" },
     { value: dark, label: "Dark" },
   ];
-
   const {
     formLocationData,
     filterTableData,
@@ -72,7 +72,6 @@ const Map = () => {
       alert("Geolocation is not supporting by this browser !");
     }
   };
-
   useEffect(() => {
     console.log("locDatas : ", formLocationData.locDatas);
   }, [formLocationData.loading, formLocationData.locDatas]);
@@ -84,15 +83,14 @@ const Map = () => {
   return (
     <>
       <div className="map-style">
-        <p className="loc-parag">Live</p>
         <div className="button-location">
-          <img
+          <FontAwesomeIcon
             className="get-location"
-            style={{ filter: pos.loading && "brightness(150%)" }}
+            icon={faLocationArrow}
+            style={{ backgroundColor: pos.loading && '#26ade5',
+                     color: pos.loading && '#fff' }}
             onClick={getUserLocation}
-            src={loc}
-            alt="location"
-            width={26}
+            width={30}
           />
         </div>
         <h3>Map : </h3>
@@ -107,14 +105,28 @@ const Map = () => {
           ))}
         </select>
       </div>
-
+      {document.querySelector(".leaflet-routing-alt h3") ? (
+        <p id="route">
+          <span style={{ color: "#000", fontWeight: "bold" }}>
+            Road route {" >"}
+          </span>
+          <span style={{ color: "#fff" }}>
+            {document.querySelector(".leaflet-routing-alt h3").textContent}
+          </span>
+        </p>
+      ) : null}
       <motion.div
         initial="hidden"
         animate="visible"
         variants={variants}
         className="map-container"
       >
-        <MapContainer center={center} zoom={ZOOM_LEVEL} scrollWheelZoom={false}>
+        <MapContainer
+          id="map-con"
+          center={center}
+          zoom={ZOOM_LEVEL}
+          scrollWheelZoom={false}
+        >
           <TileLayer
             url={mapStyle}
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -126,9 +138,13 @@ const Map = () => {
                 {pos.loading && <UserMarker pos={pos} />}
               </LayersControl.Overlay>
               {circle && (
-                <LayersControl.Overlay name="user location area" checked pathOptions = {{fillColor: 'blue'}}>
+                <LayersControl.Overlay
+                  name="user location area"
+                  checked
+                  pathOptions={{ fillColor: "blue" }}
+                >
                   <Circle
-                    pathOptions={{ color: "blue" }}
+                    pathOptions={{ color: "lightblue" }}
                     center={[pos.lat, pos.lng]}
                     radius={300}
                   />
