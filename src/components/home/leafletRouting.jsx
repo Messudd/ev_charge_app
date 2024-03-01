@@ -6,8 +6,8 @@ import L  from "leaflet";
 import 'leaflet-routing-machine';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 
-const LeafletRouting = () => {
-    const { pos,route ,setRoutes } = useContext(globalContext);
+const LeafletRouting = ({pos}) => {
+    const { route ,setRoutes } = useContext(globalContext);
     const map = useMap();
 
     const markerPin = new L.Icon({

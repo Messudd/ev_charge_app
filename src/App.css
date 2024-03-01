@@ -131,7 +131,7 @@ body {
   border: none;
   display: flex;
   flex-direction: column;
-  gap:10px;
+  gap: 5px;
 }
 .leaflet-left .leaflet-control-zoom span{
   cursor: pointer;

@@ -152,8 +152,8 @@ const Map = () => {
               )}
             </LayersControl>
           )}
-          <CreateMarkers filterTableData={filterTableData} />
-          {route.route && <LeafletRouting />}
+          <CreateMarkers Data = {filterTableData} />
+          {route.route && <LeafletRouting pos={pos} />}
         </MapContainer>
       </motion.div>
     </>

@@ -7,7 +7,7 @@ import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 
 const LeafletGecoder = () => {
   const map = useMap();
-  const { setPos, route, setRoute } = useContext(globalContext);
+  const { setPos, route, setRoute , setOtherPos } = useContext(globalContext);
 
   useEffect(() => {
     L.Control.geocoder({
@@ -19,6 +19,10 @@ const LeafletGecoder = () => {
           lng: e.geocode.center.lng,
           loading: true,
         });
+        setOtherPos({
+          lat: e.geocode.center.lat,
+          lng: e.geocode.center.lng,
+        })
         map?.flyTo([e.geocode.center.lat, e.geocode.center.lng], 14, {
           duration: 3,
         });

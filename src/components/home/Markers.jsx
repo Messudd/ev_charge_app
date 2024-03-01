@@ -62,7 +62,7 @@ export const UserMarker = ({ pos }) => {
   );
 };
 
-export const CreateMarkers = ({ filterTableData }) => {
+export const CreateMarkers = ({ Data }) => {
   const myMap = useMap();
   const { pos, route, setRoute, setMap } = useContext(globalContext);
 
@@ -82,8 +82,8 @@ export const CreateMarkers = ({ filterTableData }) => {
 
   return (
     <>
-      {!filterTableData.loading &&
-        filterTableData.locDatas?.map((item, idx) => (
+      {!Data.loading &&
+        Data.locDatas?.map((item, idx) => (
           <Marker
             key={idx}
             position={[item.latitude, item.longitude]}

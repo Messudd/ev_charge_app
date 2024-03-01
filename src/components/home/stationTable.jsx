@@ -23,10 +23,10 @@ const StationTable = () => {
     route,
     setRoute,
     setCircle,
-    colorStatus
+    colorStatus,
   } = useContext(globalContext);
 
-  const [nearest , setNearest] = useState(false);
+  const [nearest, setNearest] = useState(false);
 
   const addFavoriteList = (param) => {
     if (userFavorites.length > 0) {
@@ -76,6 +76,7 @@ const StationTable = () => {
         farDatas.push(item);
       } else nearDatas.push(item);
     }
+
     setFilterTableData({
       ...filterTableData,
       locDatas: [
@@ -96,7 +97,9 @@ const StationTable = () => {
 
   const loadAllData = () => {
     setFilterTableData({ ...formLocationData });
+    setNearest(false);
   };
+
   const showStationOnMap = (lat, lng) => {
     window.scrollTo(0, 0);
     setCircle(false);
@@ -105,6 +108,7 @@ const StationTable = () => {
       setCircle(true);
     }, 3500);
   };
+
   useEffect(() => {
     setRoute({ ...route, route: false });
   }, [filterTableData.locDatas?.length]);
@@ -114,23 +118,29 @@ const StationTable = () => {
   }, [formLocationData.locDatas]);
 
   useEffect(() => {
-    const trArray = document.querySelectorAll('.table-divv table tbody tr'); 
-    if(trArray.length > 0 && nearest){
-      trArray[0].style.background = 'red';
-      trArray[1].style.background = 'gray';
-      trArray[2].style.background = 'green';
+    const trArray = document.querySelectorAll(".table-divv table tbody tr");
+    if (trArray.length > 0 && nearest) {
+      if(trArray[0]){
+        trArray[0].style.background = "red";
+      }
+      if(trArray[1]){
+        trArray[1].style.background = "gray";
+      }
     }
-  },[nearest])
+  }, [nearest]);
 
   useEffect(() => {
-    const trArray = document.querySelectorAll('.table-divv table tbody tr');
+    const trArray = document.querySelectorAll(".table-divv table tbody tr");
     setNearest(false);
-    if(trArray.length > 0 && pos){
-      trArray[0].style.background = 'none';
-      trArray[1].style.background = 'none';
-      trArray[2].style.background = 'none';
+    if (trArray.length > 0 && pos) {
+      if(trArray[0]){
+        trArray[0].style.background = "none";
+      }
+      if(trArray[1]){
+        trArray[1].style.background = "none";
+      }
     }
-  },[pos,colorStatus]);
+  }, [pos, colorStatus]);
 
   return (
     <>
@@ -174,18 +184,17 @@ const StationTable = () => {
                   <th>No</th>
                   <th>Station Name</th>
                   <th>Type</th>
-                  {pos.lat && pos.lng && (
-                    <th
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "15px",
-                      }}
-                    >
-                      <img src={vehicle} alt="vehicle" width={30} />
-                      Map
-                    </th>
-                  )}
+                  <th
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "15px",
+                    }}
+                  >
+                    <img src={vehicle} alt="vehicle" width={30} />
+                    Map
+                  </th>
+
                   <th>Detail</th>
                   <th
                     style={{

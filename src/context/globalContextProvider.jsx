@@ -34,6 +34,10 @@ const GlobalContextProvider = ({ children }) => {
     lng: '',
     route: false
   })
+  const [otherPos, setOtherPos] = useState({
+    lat: '',
+    lng: ''
+  })
   const [routes, setRoutes] = useState([]);
   const [userFavorites ,setUserFavorites] = useState([]);
   const [mapStyle ,setMapStyle] = useState(
@@ -68,7 +72,9 @@ const GlobalContextProvider = ({ children }) => {
         routes,
         setRoutes,
         circle,
-        setCircle
+        setCircle,
+        otherPos,
+        setOtherPos
       }}
     >
       {children}
