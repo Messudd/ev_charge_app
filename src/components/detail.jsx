@@ -11,10 +11,13 @@ import "../css/detail.css";
 const Detail = () => {
   const BASE_API_URL = "http://192.168.1.13:8070/geolocation/ev";
   const [detailLocation, setDetailLocation] = useState(null);
-  const { route ,setRoute } = useContext(globalContext);
+  const { route, setRoute } = useContext(globalContext);
   let { id } = useParams();
 
   const history = useHistory();
+
+  const defaultImage =
+    "https://www.seekpng.com/png/detail/523-5232035_traditional-ev-charging-sign.png";
 
   const getLocDetail = async (param, url) => {
     await axios
@@ -34,7 +37,7 @@ const Detail = () => {
   }, [id]);
 
   useEffect(() => {
-    setRoute({...route , route: false});
+    setRoute({ ...route, route: false });
   }, []);
 
   return (
@@ -43,7 +46,11 @@ const Detail = () => {
         <div className="detail-container">
           <div
             className="detail-image"
-            style={{ backgroundImage: `url(${detailLocation.image})` }}
+            style={{
+              backgroundImage: detailLocation.image
+                ? `url(${detailLocation.image})`
+                : `url(${defaultImage})`,
+            }}
           ></div>
           <div className="detail-content">
             <h2>{detailLocation.name}</h2>
@@ -70,11 +77,17 @@ const Detail = () => {
             <p>
               <li>
                 <span>Power : </span>
-                <span>{detailLocation.power}{" ,"}</span>
+                <span>
+                  {detailLocation.power}
+                  {" ,"}
+                </span>
               </li>
               <li>
                 <span>Total : </span>
-                <span>{detailLocation.total}{" ,"}</span>
+                <span>
+                  {detailLocation.total}
+                  {" ,"}
+                </span>
               </li>
               <li>
                 <span>Status : </span>

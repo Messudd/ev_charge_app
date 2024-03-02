@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { globalContext } from "../../context/globalContextProvider";
 import { motion } from "framer-motion";
 import { variants } from "../../data/animationData";
@@ -9,7 +9,6 @@ import LeafletRouting from "./leafletRouting";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import "leaflet/dist/leaflet.css";
-
 
 const Map = () => {
   const basic =
@@ -39,13 +38,15 @@ const Map = () => {
     setPos,
     route,
     circle,
-    setOtherPos
+    setCircle,
+    setOtherPos,
   } = useContext(globalContext);
   const [center, setCenter] = useState({
     lat: 39.925533,
     lng: 32.866287,
   });
   const ZOOM_LEVEL = 6 || 0;
+  const mapbox = useRef();
 
   const changeMapStyle = (e) => {
     setMapStyle(e.target.value);
@@ -60,11 +61,15 @@ const Map = () => {
           lng: position.coords.longitude,
           loading: true,
         });
+        setCircle(false);
+        mapbox.current?.flyTo([position.coords.latitude, position.coords.longitude], 15, { duration: 3 });
+        setTimeout(() => {
+          setCircle(true);
+        }, 3500);
       };
       const onError = (error) => {
         alert("User - location didn't find !", error);
       };
-
       navigator.geolocation.getCurrentPosition(onSucces, onError, {
         enableHighAccuracy: true,
         timeout: 5000,
@@ -73,6 +78,7 @@ const Map = () => {
       alert("Geolocation is not supporting by this browser !");
     }
   };
+
   useEffect(() => {
     console.log("locDatas : ", formLocationData.locDatas);
   }, [formLocationData.loading, formLocationData.locDatas]);
@@ -82,8 +88,8 @@ const Map = () => {
   }, [pos.lat, pos.lng]);
 
   useEffect(() => {
-    return () => setOtherPos({lat: '', lng: ''});
-  },[])
+    return () => setOtherPos({ lat: "", lng: "" });
+  }, []);
 
   return (
     <>
@@ -92,8 +98,10 @@ const Map = () => {
           <FontAwesomeIcon
             className="get-location"
             icon={faLocationArrow}
-            style={{ backgroundColor: pos.loading && '#26ade5',
-                     color: pos.loading && '#fff' }}
+            style={{
+              backgroundColor: pos.loading && "#26ade5",
+              color: pos.loading && "#fff",
+            }}
             onClick={getUserLocation}
             width={30}
           />
@@ -127,6 +135,7 @@ const Map = () => {
         className="map-container"
       >
         <MapContainer
+          ref={mapbox}
           id="map-con"
           center={center}
           zoom={ZOOM_LEVEL}
@@ -157,7 +166,7 @@ const Map = () => {
               )}
             </LayersControl>
           )}
-          <CreateMarkers Data = {filterTableData} />
+          <CreateMarkers Data={filterTableData} />
           {route.route && <LeafletRouting pos={pos} />}
         </MapContainer>
       </motion.div>

@@ -31,17 +31,8 @@ const markerOtherStation = new L.Icon({
 
 export const UserMarker = ({ pos }) => {
   const map = useMap();
-  const { setMap, setCircle } = useContext(globalContext);
-
-  useEffect(() => {
-     setMap(map);
-     setCircle(false);
-     map?.flyTo([pos.lat, pos.lng], 15, { duration: 3 });
-     setTimeout(() => {
-       setCircle(true);
-     }, 3500);
-   }, [pos.lat, pos.lng]);  
-
+  const { setCircle } = useContext(globalContext);
+  
   return (
     <Marker
       position={[pos.lat, pos.lng]}

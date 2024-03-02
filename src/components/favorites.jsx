@@ -8,6 +8,7 @@ import stationIcon from "../utility/images/map.png";
 import MapPopup from "../components/mapPopup";
 import Footer from "./footer";
 import DelPopup from "./delPopup";
+import AddFavoriteComp from "./addFavoriteComp";
 import "../css/favorite.css";
 
 const Favorites = () => {
@@ -73,9 +74,7 @@ const Favorites = () => {
         </section>
         <section className="container-fav">
           {!favBtn ? (
-            <article className="add-fav" style={{ color: "white" }}>
-              add Favorite Container
-            </article>
+            <AddFavoriteComp />
           ) : userFavorites.length > 0 ? (
             <article className="show-favList" style={{ color: "white" }}>
               {userFavorites && (

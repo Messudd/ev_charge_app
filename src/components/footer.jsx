@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Footer = () => {
   return (
-    <div className="home-footer">
+    <div className="home-footer" style={{borderTop: '1px solid rgb(26, 26, 77)'}}>
       <p
         style={{
           background: "#130a3e",
