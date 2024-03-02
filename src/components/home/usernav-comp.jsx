@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import userBoxData from "../../data/userboxData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 
 const UserNavComp = ({ toggleSideNav }) => {
   return (
@@ -31,6 +31,12 @@ const UserNavComp = ({ toggleSideNav }) => {
         />
       </li>
       <ul>
+        <li className="c-side-nav" style={{cursor: 'pointer'}}>
+          <p>
+            <FontAwesomeIcon icon={faQuestionCircle} />
+            <span>Help</span>
+          </p>
+        </li>
         {userBoxData.map((item, idx) => {
           return (
             <li className={item.class} key={idx}>

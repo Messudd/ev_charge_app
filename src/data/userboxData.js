@@ -1,12 +1,6 @@
-import { faUser ,faBookmark,faRightFromBracket, faGear ,faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { faUser ,faBookmark,faRightFromBracket, faGear } from "@fortawesome/free-solid-svg-icons";
 
 const userboxData = [
-    {
-        title : 'Help',
-        icon: faQuestionCircle,
-        linkTo : '/user/help',
-        class : 'c-side-nav'
-    },
     {
         title : 'Profile',
         icon:  faUser,

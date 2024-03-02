@@ -38,10 +38,25 @@
     gap: 15px;
     color: whitesmoke
 }
+.user-box ul li p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    border-left: 12px solid #22136d;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    gap: 15px;
+    color: whitesmoke
+}
 .user-box ul li a:hover{
     background: #22136d;
 }
+.user-box ul li p:hover{
+    background: #22136d;
+}
 .user-box ul li span{
+    cursor: pointer;
     background: transparent;
 }
 .home-header nav{

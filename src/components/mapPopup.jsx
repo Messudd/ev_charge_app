@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import mark from "../utility/images/mark.png";
+import perMark from "../utility/images/user.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
@@ -16,6 +17,13 @@ const favMarker = new L.Icon({
   iconAnchor: [11, 28],
   popupAnchor: [0, -40],
 });
+
+const personMarker = new L.Icon({
+    iconUrl: perMark,
+    iconSize: [34, 38],
+    iconAnchor: [11, 28],
+    popupAnchor: [0, -40],
+  });
 
 const MapPopup = ({ value, setPopMap }) => {
   const { route, setRoute, otherPos , setOtherPos } = useContext(globalContext);
@@ -36,7 +44,9 @@ const MapPopup = ({ value, setPopMap }) => {
   };
 
   useEffect(() => {
+        document.body.style.overflow = 'hidden';
     return () => {
+        document.body.style.overflow = 'auto';
         setOtherPos({lat : '', lng : ''});
         setRoute({ ...route, route: false })
     };
@@ -76,7 +86,7 @@ const MapPopup = ({ value, setPopMap }) => {
               icon={favMarker}
               eventHandlers={{
                 click: () => {
-                  popRef.current?.flyTo([value[0], value[1]], 18, {
+                  popRef.current?.flyTo([value[0], value[1]], 15, {
                     duration: 3,
                   });
                 },
@@ -105,8 +115,19 @@ const MapPopup = ({ value, setPopMap }) => {
             {otherPos.lat && otherPos.lng && (
               <Marker
                 position={[otherPos.lat, otherPos.lng]}
-                icon={favMarker}
-              ></Marker>
+                icon={personMarker}
+                eventHandlers={{
+                    click: () => {
+                      popRef.current?.flyTo([otherPos.lat, otherPos.lng], 15, {
+                        duration: 3,
+                      });
+                    },
+                  }}
+              >
+                <Popup>
+                    <p>You are here !</p>
+                </Popup>
+              </Marker>
             )}
             {route.route && <LeafletRouting pos={otherPos} />}
           </MapContainer>

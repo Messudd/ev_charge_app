@@ -24,6 +24,7 @@ const GlobalContextProvider = ({ children }) => {
   const [filterTableData, setFilterTableData] = useState([]);
   const [mode, setMode] = useState('light');
   const [prewPopup, setPrewPopup] = useState(false);
+  const [isdelLoading, setdelLoading] = useState(false);
   const [colorStatus , setColorStatus] = useState(false);
   const [userNavInfo, setUserNavInfo] = useState({
     userName: "Mesud",
@@ -74,7 +75,9 @@ const GlobalContextProvider = ({ children }) => {
         circle,
         setCircle,
         otherPos,
-        setOtherPos
+        setOtherPos,
+        isdelLoading,
+        setdelLoading,
       }}
     >
       {children}

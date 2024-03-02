@@ -1,19 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { globalContext } from "../context/globalContextProvider";
+import { ToastContainer } from "react-toastify";
 import stationIcon from "../utility/images/map.png";
-import MapPopup from '../components/mapPopup';
+import MapPopup from "../components/mapPopup";
 import Footer from "./footer";
+import DelPopup from "./delPopup";
 import "../css/favorite.css";
 
 const Favorites = () => {
   const [favBtn, setFavBtn] = useState(false);
-  const { userFavorites, route, setRoute } =
-    useContext(globalContext);
-  
-  const [ popMap , setPopMap ] = useState([]);
+  const { userFavorites, route, setRoute } = useContext(globalContext);
+
+  const [popMap, setPopMap] = useState([]);
+  const [delItem, setDelItem] = useState(null);
+  const [delPopComp, setDelPopComp] = useState(false);
 
   const openAddFavorite = () => {
     setFavBtn(false);
@@ -21,9 +24,14 @@ const Favorites = () => {
   const openFavContainer = () => {
     setFavBtn(true);
   };
-  const showFavStationOnMap = (lat,lng) => {
-    setPopMap([lat,lng]);
-  }
+  const showFavStationOnMap = (lat, lng) => {
+    setPopMap([lat, lng]);
+  };
+  const delteLocFromFavlist = (val) => {
+    setDelPopComp(true);
+    setDelItem(val);
+  };
+
   useEffect(() => {
     setRoute({ ...route, route: false });
   }, []);
@@ -68,7 +76,7 @@ const Favorites = () => {
             <article className="add-fav" style={{ color: "white" }}>
               add Favorite Container
             </article>
-          ) : (
+          ) : userFavorites.length > 0 ? (
             <article className="show-favList" style={{ color: "white" }}>
               {userFavorites && (
                 <table className="fav-table">
@@ -93,7 +101,9 @@ const Favorites = () => {
                         <td>{item.power}</td>
                         <td
                           style={{ cursor: "pointer" }}
-                          onClick={() => showFavStationOnMap(item.latitude, item.longitude)}
+                          onClick={() =>
+                            showFavStationOnMap(item.latitude, item.longitude)
+                          }
                         >
                           <img
                             style={{ margin: "0 auto" }}
@@ -102,18 +112,35 @@ const Favorites = () => {
                             width={18}
                           />
                         </td>
-                        <td>del</td>
+                        <td
+                          style={{ cursor: "pointer" }}
+                          onClick={() => delteLocFromFavlist(item)}
+                        >
+                          <FontAwesomeIcon icon={faTrash} color="#fff" />
+                        </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               )}
             </article>
+          ) : (
+            <p style={{ color: "#fff", letterSpacing: "0.05rem" }}>
+              Your favorites are empty !
+            </p>
           )}
         </section>
       </main>
       <Footer />
-      {popMap.length > 0  && <MapPopup value = {popMap} setPopMap = {setPopMap}/>}
+      {popMap.length > 0 && <MapPopup value={popMap} setPopMap={setPopMap} />}
+      {delPopComp && (
+        <DelPopup
+          setDelPopComp={setDelPopComp}
+          delItem={delItem}
+          txt="Are you sure you want to delete the station ?"
+        />
+      )}
+      <ToastContainer />
     </>
   );
 };

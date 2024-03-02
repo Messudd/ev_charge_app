@@ -50,9 +50,11 @@ export const UserMarker = ({ pos }) => {
       eventHandlers={{
         click: () => {
           setCircle(false);
-          map?.flyTo([pos.lat, pos.lng], 15, {
-            duration: 3,
-          });
+          setTimeout(() => {
+            map?.flyTo([pos.lat, pos.lng], 15, {
+              duration: 3,
+            });
+          },500);
           setTimeout(() => {
             setCircle(true);
           }, 3500);
@@ -115,7 +117,7 @@ export const CreateMarkers = ({ Data }) => {
                       setleafletRouting(item.latitude, item.longitude)
                     }
                   >
-                    <span>Route</span>
+                    <span style={{cursor: 'pointer'}}>Route</span>
                     <FontAwesomeIcon icon={faLocationArrow} color="#fff"/>
                   </button>
                 )}

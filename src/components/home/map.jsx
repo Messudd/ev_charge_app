@@ -39,6 +39,7 @@ const Map = () => {
     setPos,
     route,
     circle,
+    setOtherPos
   } = useContext(globalContext);
   const [center, setCenter] = useState({
     lat: 39.925533,
@@ -79,6 +80,10 @@ const Map = () => {
   useEffect(() => {
     console.log("pos :", pos);
   }, [pos.lat, pos.lng]);
+
+  useEffect(() => {
+    return () => setOtherPos({lat: '', lng: ''});
+  },[])
 
   return (
     <>

@@ -14,7 +14,7 @@ const social = [
    },
    { 
     img  :  faYoutube,
-    link : '7'
+    link : '/'
    },
    { 
     img  : faBriefcase,

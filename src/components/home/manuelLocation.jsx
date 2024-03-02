@@ -28,7 +28,7 @@ const ManuelLocation = () => {
             locDatas: res.data,
             loading: false,
           });
-        }, 500);
+        },200);
         setColorStatus(!colorStatus);
         toast.success('stations were found in this area.',{...toastData});
       })
