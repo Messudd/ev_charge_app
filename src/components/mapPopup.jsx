@@ -77,7 +77,7 @@ const MapPopup = ({ value, setPopMap }) => {
             dragging={true}
           >
             <TileLayer
-              url="https://api.maptiler.com/maps/bright-v2/{z}/{x}/{y}@2x.png?key=kHLg8AiFGgnch1FMqKRv"
+              url="https://api.maptiler.com/maps/bright-v2/{z}/{x}/{y}@2x.png?key=CWyh1uHbXXLuNG4xZYXU"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
             <LeafletGecoder />

@@ -42,7 +42,7 @@ const GlobalContextProvider = ({ children }) => {
   const [routes, setRoutes] = useState([]);
   const [userFavorites ,setUserFavorites] = useState([]);
   const [mapStyle ,setMapStyle] = useState(
-    'https://api.maptiler.com/maps/bright-v2/{z}/{x}/{y}@2x.png?key=kHLg8AiFGgnch1FMqKRv'
+    'https://api.maptiler.com/maps/bright-v2/{z}/{x}/{y}@2x.png?key=CWyh1uHbXXLuNG4xZYXU'
   )
 
   return (

@@ -1,111 +1,231 @@
 .fav-header h2 {
-    text-align: center;
-    font-family: danss;
-    color: red;
-    font-size: 2.5rem;
+  text-align: center;
+  font-family: danss;
+  color: red;
+  font-size: 2.5rem;
 }
 .fav-main {
-    margin: 25px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
+  margin: 25px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
-.links-fav{
-    display: flex;
-    padding: 3px 5px;
-    align-items: center;
-    justify-content: space-between;
-    gap: 4rem;
+.links-fav {
+  display: flex;
+  padding: 3px 5px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
 }
 .grb-btn {
-    display: flex;
-    gap : 25px;
+  display: flex;
+  gap: 25px;
 }
 .links-fav button {
-    border-bottom: 1px solid #ccc;
-    background: rgb(33, 65, 104);
-    border-radius: 3px;
-    color: whitesmoke;
-    padding: 5px 18px;
+  border-bottom: 1px solid #ccc;
+  background: rgb(33, 65, 104);
+  border-radius: 3px;
+  color: whitesmoke;
+  padding: 5px 18px;
 }
 .container-fav {
-    display: flex;
-    justify-content: center;
-    margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
 }
-
-@media only screen and (max-width: 600px){
-    .container-fav{
-      width: 100%;
-      height: auto;
-      overflow-x: auto;
-    }
-    .fav-table table,tr,td,th{
-        font-size: 0.33rem;
-    }
+@media only screen and (min-width: 1000px) {
+  .container-fav{
+    width: 70%;
   }
-  .del-big{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0,0,0,0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .fav-search{
+    width: 70%;
   }
-  .delpop{
-    flex: 0.25;
-    display: flex;
-    padding: 25px 0;
-    flex-direction: column;
-    align-items: center;
+}
+@media only screen and (min-width: 700px) and (max-width: 1000){
+  .container-fav{
+    width: 80%;
+  }
+  .fav-search{
+    width: 80%;
+  }
+}
+.fav-search{
+  display: flex;
+  align-items: center;
+  gap:15px;
+  padding-left: 30px;
+}
+.fav-search input{
+  padding: 5px 10px;
+  border: 1px solid rgb(33, 65, 104);
+  font-size: 0.9rem;
+  color: red;
+  opacity: 0.8;
+  
+}
+.fav-search input:focus{
+  outline:none;
+}
+.cards-container {
+  flex: 1;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid rgb(33, 65, 104);
+  padding: 30px;
+  border-radius: 3px;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.card-fav {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid transparent;
+  background: #180e4b;
+  gap: 10px;
+  border-radius: 4px;
+  padding: 15px; 
+}
+.card-fav:hover {
+  box-shadow: 2px 3px 8px rgb(33, 65, 104);
+}
+.card-image {
+  width: 100%;
+  height: 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.card-adress{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  gap:10px;
+}
+.card-adress span {
+  color: #fff;
+  font-size: 0.6rem;
+}
+.type-pow{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap:20px;
+}
+.type-pow span:first-child{
+  color: red;
+  font-weight: 700;
+}
+.type-pow span:last-child{
+  color: #fff;
+}
+.card-btns{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+@media only screen and (max-width: 700px) {
+  .container-fav {
+    width: 100%;
+    height: auto;
+  }
+  .cards-container{
+    border: none;
+  }
+  .card-fav{
+    border: 1px solid rgb(33, 65, 104);
+  }
+  .fav-search{
+    width: 100%;
+  }
+}
+.del-big {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.delpop {
+  flex: 0.25;
+  display: flex;
+  padding: 25px;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  border-radius: 5px;
+  height: 200px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.delpop h3 {
+  text-align: center;
+  color: red;
+  font-family: danss;
+  font-size: 2rem;
+  letter-spacing: 0.05rem;
+  font-weight: 700;
+}
+.delpop p {
+  color: #fff;
+  letter-spacing: 0.08rem;
+}
+.delpop div {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 35px;
+}
+.delpop div button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 20px;
+  width: 100px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: rgb(33, 65, 104);
+  color: #fff;
+  transition: all 0.5s ease;
+}
+.delpop div button:hover {
+  background: none;
+  border-color: rgb(33, 65, 104);
+}
+@media only screen and (max-width: 600px) {
+  .del-big {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  .delpop {
+    flex: 0.8;
+    padding: 10px 5px;
+    height: 180px;
     gap: 2rem;
-    border-radius: 3px;
-    height: 200px;
-    background-color: #130a3e;
+    border-radius: 5px;
   }
-  .delpop h3{
-    text-align: center;
-    color: red;
-    font-size: 1.4rem;
-    letter-spacing: 0.05rem;
-    font-weight: 700;
-  }
-  .delpop p {
-    color: #fff;
-    letter-spacing: 0.05rem;
-  }
-  .delpop div{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 25px;
-  }
-  .delpop div button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 4px 20px;
-    border-radius: 4px;
-    background: rgb(33, 65, 104);
-    color: #fff;
-  }
-  @media only screen and (max-width: 600px){
-    .del-big{
-        background-color: rgba(0,0,0,0.9);
-    }
-    .delpop{
-        flex: 0.8;
-        padding: 10px 5px;
-        height: 180px;
-        gap: 2rem;
-        border-radius: 5px;
-        margin-bottom: 6rem;
-      }
-  }
-
+}
+.empty-fav {
+  width: 300px;
+  height: 250px;
+  display: flex;
+  opacity: 0.8;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  color: #fff;
+  letter-spacing: 0.05rem;
+}

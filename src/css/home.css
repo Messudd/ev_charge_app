@@ -73,12 +73,6 @@
     padding-bottom: 3px;
     flex: 3;
 }
-@media only screen and (max-width: 600px){
-    .first-head {
-        flex-basis: 300px;
-        padding: 10px 0 15px 0;
-    }
-}
 .sec-head{
     display: flex;
     justify-content: flex-end;
@@ -97,8 +91,19 @@
     background: rgb(26, 26, 77) ;
 }
 @media only screen and (max-width: 600px){
+    .first-head {
+        flex-basis: 300px;
+        padding: 10px 0 15px 0;
+    }
+    .sec-head{
+        flex-basis: 300px;
+        flex-wrap: wrap;
+        padding-bottom: 8px;
+        gap: 15px;
+    }
     .home-nav {
         flex: 1;
+        flex-basis: 200px;
     }
 }
 .nav-head{

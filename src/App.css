@@ -217,6 +217,13 @@ select:focus{
   display: flex;
   justify-content: space-around;
   align-items: center;
+  border-top: 1px solid rgb(26, 26, 77);
+}
+.home-footer p {
+  background: none;
+  color: whitesmoke;
+  opacity: 0.8;
+  font-size: 0.9rem;
 }
 .social-link{
   display: flex;
@@ -236,6 +243,7 @@ select:focus{
   .home-footer{
     display: flex;
     margin: 30px;
+    padding-top: 30px;
     flex-direction: column;
     align-items: center;
     gap: 20px;

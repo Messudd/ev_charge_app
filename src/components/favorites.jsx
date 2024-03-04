@@ -1,19 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { globalContext } from "../context/globalContextProvider";
 import { ToastContainer } from "react-toastify";
-import stationIcon from "../utility/images/map.png";
 import MapPopup from "../components/mapPopup";
 import Footer from "./footer";
 import DelPopup from "./delPopup";
+import FavCard from "./home/favCard";
 import AddFavoriteComp from "./addFavoriteComp";
 import "../css/favorite.css";
 
 const Favorites = () => {
   const [favBtn, setFavBtn] = useState(false);
   const { userFavorites, route, setRoute } = useContext(globalContext);
+  const [inValue, setInValue] = useState("");
 
   const [popMap, setPopMap] = useState([]);
   const [delItem, setDelItem] = useState(null);
@@ -25,14 +26,6 @@ const Favorites = () => {
   const openFavContainer = () => {
     setFavBtn(true);
   };
-  const showFavStationOnMap = (lat, lng) => {
-    setPopMap([lat, lng]);
-  };
-  const delteLocFromFavlist = (val) => {
-    setDelPopComp(true);
-    setDelItem(val);
-  };
-
   useEffect(() => {
     setRoute({ ...route, route: false });
   }, []);
@@ -68,69 +61,52 @@ const Favorites = () => {
                 borderColor: favBtn && "red",
               }}
             >
-              Favorite List
+              My Favorite
             </button>
           </div>
         </section>
+        {favBtn && userFavorites.length > 0 && (
+          <div className="fav-search">
+            <label htmlFor="fav-search">
+              <FontAwesomeIcon icon={faSearch} color="red" fontSize="1rem" />
+            </label>
+            <input
+              type="text"
+              placeholder="Adress , type , power"
+              id="fav-search"
+              onChange={(e) => setInValue(e.target.value)}
+            />
+          </div>
+        )}
         <section className="container-fav">
           {!favBtn ? (
             <AddFavoriteComp />
           ) : userFavorites.length > 0 ? (
-            <article className="show-favList" style={{ color: "white" }}>
-              {userFavorites && (
-                <table className="fav-table">
-                  <thead>
-                    <tr>
-                      <th>image</th>
-                      <th>Adress</th>
-                      <th>Type</th>
-                      <th>Power</th>
-                      <th>Map</th>
-                      <th>Remove</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {userFavorites?.map((item, key) => (
-                      <tr key={key}>
-                        <td>
-                          <img src={item.image} alt="station" width={60} />
-                        </td>
-                        <td>{item.description}</td>
-                        <td>{item.type}</td>
-                        <td>{item.power}</td>
-                        <td
-                          style={{ cursor: "pointer" }}
-                          onClick={() =>
-                            showFavStationOnMap(item.latitude, item.longitude)
-                          }
-                        >
-                          <img
-                            style={{ margin: "0 auto" }}
-                            src={stationIcon}
-                            alt="station-icon"
-                            width={18}
-                          />
-                        </td>
-                        <td
-                          style={{ cursor: "pointer" }}
-                          onClick={() => delteLocFromFavlist(item)}
-                        >
-                          <FontAwesomeIcon icon={faTrash} color="#fff" />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              )}
-            </article>
+            <div className="cards-container">
+              {userFavorites
+                .filter(
+                  (item) =>
+                    item.description
+                      .toLowerCase()
+                      .includes(inValue.toLowerCase()) ||
+                    item.type.toLowerCase().includes(inValue.toLowerCase()) ||
+                    item.power.toLowerCase().includes(inValue.toLowerCase())
+                )
+                .map((item, idx) => (
+                  <FavCard
+                    key={idx}
+                    favData={item}
+                    setDelItem={setDelItem}
+                    setDelPopComp={setDelPopComp}
+                    setPopMap={setPopMap}
+                  />
+                ))}
+            </div>
           ) : (
-            <p style={{ color: "#fff", letterSpacing: "0.05rem" }}>
-              Your favorites are empty !
-            </p>
+            <p className="empty-fav">Your favorites are empty !</p>
           )}
         </section>
       </main>
-      <Footer />
       {popMap.length > 0 && <MapPopup value={popMap} setPopMap={setPopMap} />}
       {delPopComp && (
         <DelPopup
@@ -140,6 +116,7 @@ const Favorites = () => {
         />
       )}
       <ToastContainer />
+      <Footer />
     </>
   );
 };

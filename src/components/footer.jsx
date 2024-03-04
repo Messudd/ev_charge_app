@@ -4,17 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Footer = () => {
   return (
-    <div className="home-footer" style={{borderTop: '1px solid rgb(26, 26, 77)'}}>
-      <p
-        style={{
-          background: "#130a3e",
-          color: "whitesmoke",
-          opacity: "0.8",
-          fontSize: "0.9rem",
-        }}
-      >
-        Copyright &copy; 2024 by ev charge finder
-      </p>
+    <div className="home-footer">
+      <p>Copyright &copy; 2024 by ev charge finder</p>
       <div className="social-link">
         {social.map((item, idx) => (
           <Link key={idx} to={item.link}>

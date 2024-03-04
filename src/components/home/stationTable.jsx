@@ -247,11 +247,12 @@ const StationTable = () => {
                             fontSize: "1.3rem",
                             fontWeight: "900",
                             padding: "4px",
+                            cursor: 'pointer'
                           }}
                         >
                           +
                         </span>
-                        <span>add</span>
+                        <span style={{cursor: 'pointer'}}>add</span>
                       </td>
                     </tr>
                   );

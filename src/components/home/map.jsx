@@ -12,15 +12,15 @@ import "leaflet/dist/leaflet.css";
 
 const Map = () => {
   const basic =
-    "https://api.maptiler.com/maps/openstreetmap/256/{z}/{x}/{y}.jpg?key=kHLg8AiFGgnch1FMqKRv";
+    "https://api.maptiler.com/maps/openstreetmap/256/{z}/{x}/{y}.jpg?key=CWyh1uHbXXLuNG4xZYXU";
   const satellite =
-    "https://api.maptiler.com/maps/satellite/256/{z}/{x}/{y}.jpg?key=kHLg8AiFGgnch1FMqKRv";
+    "https://api.maptiler.com/maps/satellite/256/{z}/{x}/{y}.jpg?key=CWyh1uHbXXLuNG4xZYXU";
   const topo =
-    "https://api.maptiler.com/maps/topo-v2/256/{z}/{x}/{y}.png?key=kHLg8AiFGgnch1FMqKRv";
+    "https://api.maptiler.com/maps/topo-v2/256/{z}/{x}/{y}.png?key=CWyh1uHbXXLuNG4xZYXU";
   const street =
-    "https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=kHLg8AiFGgnch1FMqKRv";
+    "https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=CWyh1uHbXXLuNG4xZYXU";
   const dark =
-    "https://api.maptiler.com/maps/streets-v2-dark/256/{z}/{x}/{y}.png?key=kHLg8AiFGgnch1FMqKRv";
+    "https://api.maptiler.com/maps/streets-v2-dark/256/{z}/{x}/{y}.png?key=CWyh1uHbXXLuNG4xZYXU";
 
   const mapOptions = [
     { value: basic, label: "Default" },
