@@ -13,7 +13,8 @@ const SignUp = () => {
     userName: "",
     email: "",
     password: "",
-    gender: "",
+    gender: "MALE",
+    note: null,
   };
   const [userSignData, setUserSignData] = useState(userSignInitial);
   const [isUserSignValid, setUserSignValid] = useState(false);
@@ -46,29 +47,33 @@ const SignUp = () => {
     ),
   });
 
-  const validationContol = (param,val) => {
+  const validationContol = (param, val) => {
     Yup.reach(userSignFormSchema, param)
-    .validate(val)
-    .then((val) => {
-      setuserSignError({ ...userSignError, [param]: "" });
-    })
-    .catch((err) => {
-      setuserSignError({ ...userSignError, [param]: err.errors[0] });
-    });
-  }
+      .validate(val)
+      .then((val) => {
+        setuserSignError({ ...userSignError, [param]: "" });
+      })
+      .catch((err) => {
+        setuserSignError({ ...userSignError, [param]: err.errors[0] });
+      });
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserSignData({ ...userSignData, [name]: value });
-    validationContol(name,value);
-   
+    validationContol(name, value);
   };
 
   const handleSignSubmit = (e) => {
     e.preventDefault();
-    alert('submit edildi ...');
+    alert("submit edildi ...");
+    console.log("userData : ", userSignData);
+    setUserSignData(userSignInitial);
     // spring tarafına sign up datayı gönder ve ve database de email kayıtlı ise feedback ver ve kaydetme degilse kaydet
-  }
+  };
+  const userDataReset = () => {
+    setUserSignData(userSignInitial);
+  };
 
   useEffect(() => {
     userSignFormSchema.isValid(userSignData).then((valid) => {
@@ -89,7 +94,7 @@ const SignUp = () => {
           initial="hidden"
           animate="visible"
           variants={moveForm}
-          transition={{ duration: 1}}
+          transition={{ duration: 1 }}
           className="sign-form"
         >
           <form onSubmit={handleSignSubmit}>
@@ -98,8 +103,9 @@ const SignUp = () => {
               <input
                 type="text"
                 name="fullName"
+                value={userSignData.fullName}
                 id="full-name"
-                placeholder= "Robert De"
+                placeholder="Robert De"
                 onChange={handleInputChange}
               />
               {userSignError?.fullName && <li>{userSignError.fullName}</li>}
@@ -109,8 +115,9 @@ const SignUp = () => {
               <input
                 type="text"
                 name="userName"
+                value={userSignData.userName}
                 id="sign-username"
-                placeholder= "Robert1453"
+                placeholder="Robert1453"
                 onChange={handleInputChange}
               />
               {userSignError?.userName && <li>{userSignError.userName}</li>}
@@ -120,8 +127,9 @@ const SignUp = () => {
               <input
                 type="email"
                 name="email"
+                value={userSignData.email}
                 id="sign-email"
-                placeholder= "robert_de@gmail.com"
+                placeholder="robert_de@gmail.com"
                 onChange={handleInputChange}
               />
               {userSignError?.email && <li>{userSignError.email}</li>}
@@ -131,8 +139,9 @@ const SignUp = () => {
               <input
                 type="password"
                 name="password"
+                value={userSignData.password}
                 id="sign-password"
-                placeholder= "create a password"
+                placeholder="create a password"
                 onChange={handleInputChange}
               />
               {userSignError?.password && <li>{userSignError.password}</li>}
@@ -171,7 +180,9 @@ const SignUp = () => {
               <button type="submit" disabled={!isUserSignValid}>
                 Sign Up
               </button>
-              <button type="reset">Reset</button>
+              <button type="reset" onClick={userDataReset}>
+                Reset
+              </button>
             </motion.article>
           </form>
         </motion.div>

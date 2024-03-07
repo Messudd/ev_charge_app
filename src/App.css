@@ -5,21 +5,23 @@
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  overflow-x: hidden !important;
+}
 body {
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   scroll-behavior: smooth;
   background-color: #130a3e;
   font-size: 0.75rem;
 }
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background:#130a3e;
+  background: rgb(26, 26, 77);
 }
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background:#22136d;
+  background: #261968;
 }
 .btn-try {
   background-color: #22136d;
@@ -39,7 +41,7 @@ body {
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding:  20px 45px;
+  padding: 20px 45px;
   justify-content: flex-end;
   background-color: rgb(26, 26, 77);
   gap: 45px;
@@ -61,10 +63,10 @@ body {
 }
 .leaflet-container {
   width: 100%;
-  height: 750px; 
+  height: 750px;
 }
-@media only screen and (max-width: 600px){
-  .leaflet-container{
+@media only screen and (max-width: 600px) {
+  .leaflet-container {
     width: 100%;
     height: 540px;
   }
@@ -73,15 +75,17 @@ body {
 .leaflet-control-zoom-out span {
   background: #fff;
 }
-.leaflet-control-container .leaflet-top,.leaflet-left {
-  background :none;
+.leaflet-control-container .leaflet-top,
+.leaflet-left {
+  background: none;
 }
-.leaflet-routing-alt{
+.leaflet-routing-alt {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.leaflet-routing-alt h2,h3{
+.leaflet-routing-alt h2,
+h3 {
   font-size: 0.7rem;
   color: red;
   font-weight: 700;
@@ -89,33 +93,33 @@ body {
 .leaflet-routing-alt h3 {
   padding-bottom: 5px;
 }
-.leaflet-routing-alt table{
+.leaflet-routing-alt table {
   width: 100%;
 }
-.leaflet-routing-alt table tr{
+.leaflet-routing-alt table tr {
   font-size: 0.6rem;
   padding: 0;
 }
-.leaflet-routing-alt table td{
+.leaflet-routing-alt table td {
   padding: 3px 5px;
 }
-.leaflet-routing-icon{
+.leaflet-routing-icon {
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 3px;
 }
-.leaflet-touch .leaflet-control-geocoder-icon{
-  background-image: url('./utility/images/find.svg');
+.leaflet-touch .leaflet-control-geocoder-icon {
+  background-image: url("./utility/images/find.svg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
-.home-main{
+.home-main {
   width: 100vw;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  gap:20px;
+  gap: 20px;
 }
 .class-map {
   z-index: 0;
@@ -124,7 +128,7 @@ body {
 .location-form {
   flex: 1;
 }
-.button-location{
+.button-location {
   padding: 0;
 }
 .leaflet-left .leaflet-control-zoom {
@@ -133,34 +137,35 @@ body {
   flex-direction: column;
   gap: 5px;
 }
-.leaflet-left .leaflet-control-zoom span{
+.leaflet-left .leaflet-control-zoom span {
   cursor: pointer;
   background: none;
 }
-.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar{
-  border:none;
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+  border: none;
 }
-.leaflet-marker-pane .leaflet-marker-draggable{
+.leaflet-marker-pane .leaflet-marker-draggable {
   display: none;
 }
-.get-location{
+.get-location {
   background-color: #fff;
   border-radius: 3px;
   color: gray;
   padding: 4px 2px;
-  cursor:pointer;
+  cursor: pointer;
 }
-.leaflet-popup-content-wrapper{
-  background:#130a3e;
+.leaflet-popup-content-wrapper {
+  background: #130a3e;
   color: white;
 }
-.leaflet-marker-pane img{
+.leaflet-marker-pane img {
   background: none;
 }
-select:focus{
+select:focus {
   outline: none;
 }
-.map-style{
+.map-style {
   width: 100%;
   display: flex;
   align-items: center;
@@ -168,27 +173,27 @@ select:focus{
   justify-content: flex-end;
   gap: 15px;
 }
-.map-style h3{
+.map-style h3 {
   color: darkred;
   font-family: danss;
   font-size: 1.1rem;
 }
-.map-style select{
+.map-style select {
   background: #130a3e;
   color: whitesmoke;
   border-bottom: 1px solid darkred;
   padding: 4px;
   opacity: 0.8;
 }
-.map-container .pops{
+.map-container .pops {
   max-width: 150px;
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
   align-items: center;
   gap: 8px;
   padding: 2px 5px;
 }
-.pops h3{
+.pops h3 {
   color: red;
   font-size: 0.8rem;
   font-weight: 700;
@@ -199,20 +204,21 @@ select:focus{
   height: 80px;
   overflow: hidden;
 }
-.pop-img img{
-  object-fit:cover;
+.pop-img img {
+  object-fit: cover;
 }
 .pops .detail {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-.pops span{
+.pops span {
   color: whitesmoke;
   font-size: 0.7rem;
   font-weight: bold;
 }
-.home-footer{
+.home-footer {
+  width: 100%;
   height: 50px;
   display: flex;
   justify-content: space-around;
@@ -225,22 +231,22 @@ select:focus{
   opacity: 0.8;
   font-size: 0.9rem;
 }
-.social-link{
+.social-link {
   display: flex;
   align-items: center;
   gap: 20px;
 }
-.social-link a{
+.social-link a {
   border-radius: 5px;
   padding: 3px 10px;
 }
-@media only screen and (min-width: 600px){
+@media only screen and (min-width: 600px) {
   .social-link a:hover {
     background: #22136d;
   }
 }
-@media only screen and (max-width: 600px){
-  .home-footer{
+@media only screen and (max-width: 600px) {
+  .home-footer {
     display: flex;
     margin: 30px;
     padding-top: 30px;
@@ -252,7 +258,7 @@ select:focus{
     background: #22136d;
   }
 }
-.bg-section{
+.bg-section {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -262,7 +268,7 @@ select:focus{
   row-gap: 6rem;
   flex-wrap: wrap;
 }
-.stations{
+.stations {
   width: 100%;
   padding: 2rem 0;
   display: flex;
@@ -270,7 +276,7 @@ select:focus{
   align-items: center;
   gap: 25px;
 }
-.stations h2{
+.stations h2 {
   font-size: 3rem;
   font-family: danss;
   font-weight: 700;
@@ -279,27 +285,27 @@ select:focus{
   letter-spacing: 0.2rem;
   color: red;
 }
-.stations .cards-block{
+.stations .cards-block {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background-color:rgb(26, 26, 77);
+  background-color: rgb(26, 26, 77);
   margin-top: 1rem;
   gap: 55px;
 }
-@media only screen and (min-width: 600px){
-  .stations .cards-block{
+@media only screen and (min-width: 600px) {
+  .stations .cards-block {
     width: 85%;
     padding: 4rem;
   }
 }
-@media only screen and (max-width: 600px){
-  .stations .cards-block{
+@media only screen and (max-width: 600px) {
+  .stations .cards-block {
     padding: 4rem 3rem;
   }
 }
-.stations .cards-block .station-card{
+.stations .cards-block .station-card {
   display: flex;
   flex: 1;
   flex-basis: 250px;
@@ -307,41 +313,41 @@ select:focus{
   align-items: center;
   overflow: hidden;
   border-radius: 5px;
-  gap:10px;
+  gap: 10px;
   background-color: rgb(236, 236, 236);
 }
-.station-card .img-card{
+.station-card .img-card {
   width: 100%;
   height: 180px;
   overflow: hidden;
-} 
-.station-card .img-card img:hover{
+}
+.station-card .img-card img:hover {
   transform: scale(1.1);
   transition: all 0.4s ease;
 }
-.station-card h3{
-  color : red;
+.station-card h3 {
+  color: red;
   font-weight: bold;
   letter-spacing: 0.1rem;
 }
-.station-card p{
+.station-card p {
   color: #000;
   padding: 2px 25px;
   font-size: 0.72rem;
   letter-spacing: 1px;
   opacity: 0.8;
 }
-.station-card a{
+.station-card a {
   letter-spacing: 0.5px;
 }
-.mainpage-footer{
+.mainpage-footer {
   z-index: 0;
   margin-top: 3rem;
-  background-color:rgb(26, 26, 77);
+  background-color: rgb(26, 26, 77);
   width: 100%;
   height: 250px;
 }
-.fixed-social{
+.fixed-social {
   position: fixed;
   z-index: 1;
   display: flex;
@@ -355,12 +361,12 @@ select:focus{
   width: 38px;
   background-color: #22136d;
 }
-.fix-social{
+.fix-social {
   display: flex;
   justify-content: center;
   width: 100%;
   padding: 15px;
 }
-.fix-social:hover{
-  background-color: #000 ;
+.fix-social:hover {
+  background-color: #000;
 }

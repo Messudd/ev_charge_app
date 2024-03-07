@@ -8,18 +8,25 @@ import maleIcon from "../../utility/images/icons8-male.svg";
 import femaleIcon from "../../utility/images/icons8-female.svg";
 import StationTable from "./stationTable";
 import UserNavComp from "./usernav-comp";
-import DataGraf from './dataGraf';
+import DataGraf from "./dataGraf";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer } from "react-toastify";
 import PreviewPopup from "./previewPopup";
-import Footer from '../footer';
-import ev from '../../utility/images/ev.png';
+import Footer from "../footer";
+import ev from "../../utility/images/ev.png";
+import FetchList from "./fetchList";
 import "../../css/home.css";
 
 const Home = () => {
-  const { userNavInfo, formLocationData, filterTableData, prewPopup, setPrewPopup } =
-    useContext(globalContext);
+  const {
+    userNavInfo,
+    formLocationData,
+    filterTableData,
+    prewPopup,
+    setPrewPopup,
+    fetchList,
+  } = useContext(globalContext);
   const [userHover, setUserHover] = useState(false);
 
   const handleToggleUser = () => {
@@ -60,7 +67,7 @@ const Home = () => {
           </div>
           <div className="first-head">
             <div className="nav-head">
-              <img src= {ev} alt="ev-icn" width={40}/>
+              <img src={ev} alt="ev-icn" width={40} />
               <h2>
                 Charge |<span>Service</span>
               </h2>
@@ -76,7 +83,13 @@ const Home = () => {
             </a>
             <Link className="home-nav" to="/">
               <FontAwesomeIcon icon={faSignOutAlt} />
-              <span style={{ background: "none", paddingLeft: "10px", cursor: 'pointer'}}>
+              <span
+                style={{
+                  background: "none",
+                  paddingLeft: "10px",
+                  cursor: "pointer",
+                }}
+              >
                 Logout
               </span>
             </Link>
@@ -91,10 +104,11 @@ const Home = () => {
         </div>
         <ManuelLocation />
       </div>
-      {(filterTableData.locDatas?.length > 0) && <DataGraf/>}
+      {filterTableData.locDatas?.length > 0 && <DataGraf />}
       {formLocationData.locDatas && <StationTable />}
+      {(fetchList.length > 0) && <FetchList />}
       {prewPopup && <PreviewPopup />}
-      <Footer/>
+      <Footer />
     </>
   );
 };

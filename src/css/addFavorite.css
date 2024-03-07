@@ -77,7 +77,7 @@
 .c-div input{
     flex: 1;
 }
-.c-div span{
+.c-div label{
     flex: 10;
     color: #fff;
     opacity: 0.8;

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { globalContext } from "../../context/globalContextProvider";
 import { citys_data } from "../../data/localData";
 import BeatLoader from "react-spinners/BeatLoader";
@@ -9,8 +9,10 @@ import axios from "axios";
 const BASE_API_URL = "http://192.168.1.13:8070/geolocation/ev";
 
 const ManuelLocation = () => {
-  const { userChoise, setUserChoise } = useContext(globalContext);
-  const { formLocationData, setFormLocationData ,setColorStatus , colorStatus } = useContext(globalContext);
+  const { userChoise, setUserChoise, fetchList, setFetchList } =
+    useContext(globalContext);
+  const { formLocationData, setFormLocationData, setColorStatus, colorStatus } =
+    useContext(globalContext);
   const cities = citys_data.map((item) => item.il);
 
   const locFormOnHandleInputChange = (e) => {
@@ -19,6 +21,7 @@ const ManuelLocation = () => {
   };
 
   const fetchLocation = async (url) => {
+    let count = 0;
     return await axios
       .get(url)
       .then((res) => {
@@ -28,9 +31,23 @@ const ManuelLocation = () => {
             locDatas: res.data,
             loading: false,
           });
-        },200);
+          if (fetchList.length >= 0) {
+            if (fetchList.length === 0) {
+              setFetchList([...fetchList, res.data]);
+            } else {
+              for (let item of fetchList) {
+                if (item[0].town === res.data[0].town) {
+                  count++;
+                }
+              }
+              if (count !== 1) {
+                setFetchList([...fetchList, res.data]);
+              }
+            }
+          }
+        }, 200);
         setColorStatus(!colorStatus);
-        toast.success('stations were found in this area.',{...toastData});
+        toast.success("stations were found in this area.", { ...toastData });
       })
       .catch((err) => {
         toast.error(err.response.data.message, { ...toastData });
@@ -74,10 +91,10 @@ const ManuelLocation = () => {
             className="city-select"
             name="user_city"
             id="user_city"
-            defaultValue= ""
+            defaultValue=""
             onChange={locFormOnHandleInputChange}
           >
-            <option value= "" disabled>
+            <option value="" disabled>
               Please select a city
             </option>
             {cities.map((city, idx) => (
@@ -92,11 +109,11 @@ const ManuelLocation = () => {
             className="town-select"
             name="user_town"
             id="user_town"
-            defaultValue= ""
+            defaultValue=""
             disabled={userChoise.user_city ? false : true}
             onChange={locFormOnHandleInputChange}
           >
-            <option value= "" disabled>
+            <option value="" disabled>
               Please select a town
             </option>
             {userChoise.user_city &&

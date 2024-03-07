@@ -5,7 +5,7 @@ import { globalContext } from "../../context/globalContextProvider";
 import "../../css/popup.css";
 
 const PreviewPopup = () => {
- const {prewPopup , setPrewPopup } = useContext(globalContext);
+  const { prewPopup, setPrewPopup } = useContext(globalContext);
 
   const setContactClose = () => {
     setPrewPopup(false);
@@ -36,7 +36,14 @@ const PreviewPopup = () => {
             <h1>Feedback</h1>
             <div className="feedback-form">
               <form>
-                <input name="topic" type="text" placeholder="Topic..." />
+                <input
+                  style={{
+                    background: "none",
+                  }}
+                  name="topic"
+                  type="text"
+                  placeholder="Topic..."
+                />
                 <textarea
                   name="message"
                   rows={4}

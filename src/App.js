@@ -12,6 +12,7 @@ import Favorites from "./components/favorites";
 import stations from "./data/stations";
 import social from "./data/social";
 import "./App.css";
+import Profile from "./components/profile";
 
 function App() {
   const [text] = useTypewriter({
@@ -35,7 +36,10 @@ function App() {
                 Sign Up
               </Link>
             </div>
-            <div className="header py-12 w-full" style={{backgroundColor:' rgb(26, 26, 77) '}}>
+            <div
+              className="header py-12 w-full"
+              style={{ backgroundColor: " rgb(26, 26, 77) " }}
+            >
               <h1 className="flex justify-center gap-2 flex-wrap my-8">
                 <motion.span
                   className="text-gray-300 text-5xl p-3 font-dancing text-center"
@@ -59,13 +63,11 @@ function App() {
               </h1>
             </div>
             <div className="fixed-social">
-              {
-                social.map((item,idx) => (
-                  <Link className = 'fix-social' key={idx} to = {item.link}>
-                     <FontAwesomeIcon icon={item.img} color="white"/>
-                  </Link>
-                ))
-              }
+              {social.map((item, idx) => (
+                <Link className="fix-social" key={idx} to={item.link}>
+                  <FontAwesomeIcon icon={item.img} color="white" />
+                </Link>
+              ))}
             </div>
             <main>
               <section className="bg-section">
@@ -105,7 +107,7 @@ function App() {
                   {stations.map((item, idx) => (
                     <div className="station-card" key={idx}>
                       <div className="img-card">
-                        <img src= {item.img} alt="station-info" />
+                        <img src={item.img} alt="station-info" />
                       </div>
                       <h3>{item.name}</h3>
                       <p>{item.label}</p>
@@ -125,8 +127,7 @@ function App() {
                   ))}
                 </div>
               </section>
-              <footer className="mainpage-footer">
-              </footer>
+              <footer className="mainpage-footer"></footer>
             </main>
           </div>
         </Route>
@@ -138,6 +139,9 @@ function App() {
         </Route>
         <Route path="/user/detail/:id" exact>
           <Detail />
+        </Route>
+        <Route path="/user/profile" exact>
+          <Profile/>
         </Route>
         <Route path="/sign_up" exact>
           <SignUp />

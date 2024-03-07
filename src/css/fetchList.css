@@ -1,0 +1,115 @@
+.fetch-list {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  overflow: auto;
+  padding: 10px;
+}
+.fetch-list::-webkit-scrollbar {
+  display: none;
+}
+.mapping {
+  display: flex;
+  padding: 25px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.mapping button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:15px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: rgb(26, 26, 77);
+  color: #fff;
+}
+.mapping button span{
+    cursor: pointer;
+}
+.hide-show {
+  cursor: pointer;
+  background-color: rgb(26, 26, 77);
+  padding: 8px;
+  border-radius: 4px;
+}
+.mapping button:hover,
+.mapping button:active,
+.hide-show:hover,
+.hide-show:active {
+  opacity: 0.8;
+}
+.fetch-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  color: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.fetch-card:hover,
+.fetch-card:active {
+  filter: brightness(80%);
+}
+.fetch-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 40px;
+  justify-content: space-around;
+  background-color: rgb(26, 26, 77);
+}
+.fetch-bg {
+  width: 100%;
+  height: 100px;
+  background-image: url("../utility//images/charge_bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.fetch-bg .ex {
+  width: 100%;
+  display: flex;
+  padding-top: 2px;
+  padding-right: 5px;
+  justify-content: flex-end;
+}
+.city {
+  color: red;
+}
+.town {
+  color: #fff;
+}
+.fetch-card p {
+  color: #fff;
+}
+@media only screen and (min-width: 700px) {
+  .fetch-list {
+    width: 50%;
+    margin: 30px auto;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .fetch-list {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+  }
+}
+.ex {
+  cursor: pointer;
+}
+.xfetch {
+  color: #000;
+  font-size: 0.85rem;
+}
+.xfetch:hover,
+.xfetch:active {
+  color: red;
+}

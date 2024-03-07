@@ -1,7 +1,7 @@
 import React from "react";
 import { faLocationDot, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import stationIcon from '../../utility/images/map.png';
+import stationIcon from "../../utility/images/map.png";
 
 const FavCard = ({ favData, setDelItem, setDelPopComp, setPopMap }) => {
   const showFavStationOnMap = (lat, lng) => {
@@ -21,7 +21,7 @@ const FavCard = ({ favData, setDelItem, setDelPopComp, setPopMap }) => {
         }}
       ></div>
       <div className="card-adress">
-        <FontAwesomeIcon icon={faLocationDot} color="red" fontSize = '1rem' />
+        <FontAwesomeIcon icon={faLocationDot} color="red" fontSize="1rem" />
         <span>{favData.description}</span>
       </div>
       <div className="type-pow">
@@ -42,7 +42,7 @@ const FavCard = ({ favData, setDelItem, setDelPopComp, setPopMap }) => {
           />
         </button>
         <button onClick={() => delteLocFromFavlist(favData)}>
-          <FontAwesomeIcon icon={faTrash} color="#fff"  fontSize= '0.6rem' />
+          <FontAwesomeIcon icon={faTrash} color="#fff" fontSize="0.6rem" />
         </button>
       </div>
     </div>

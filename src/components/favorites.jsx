@@ -67,15 +67,18 @@ const Favorites = () => {
         </section>
         {favBtn && userFavorites.length > 0 && (
           <div className="fav-search">
-            <label htmlFor="fav-search">
-              <FontAwesomeIcon icon={faSearch} color="red" fontSize="1rem" />
-            </label>
-            <input
-              type="text"
-              placeholder="Adress , type , power"
-              id="fav-search"
-              onChange={(e) => setInValue(e.target.value)}
-            />
+            <div className="custom-search">
+              <label htmlFor="fav-search">
+                <FontAwesomeIcon icon={faSearch} color="#fff" fontSize="1rem" />
+              </label>
+              <input
+                type="text"
+                placeholder="Adress , type , power"
+                id="fav-search"
+                onChange={(e) => setInValue(e.target.value)}
+              />
+            </div>
+            <p>Total : <span>{userFavorites.length}</span></p>
           </div>
         )}
         <section className="container-fav">
