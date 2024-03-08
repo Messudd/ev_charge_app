@@ -7,8 +7,8 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import L from "leaflet";
 import { globalContext } from "../context/globalContextProvider";
-import LeafletGecoder from "./home/leafletGeocoder";
-import LeafletRouting from "./home/leafletRouting";
+import LeafletGecoder from "./leafletGeocoder";
+import LeafletRouting from "./leafletRouting";
 import "../css/popupMap.css";
 
 const favMarker = new L.Icon({

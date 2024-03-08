@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Marker, Popup, useMap } from "react-leaflet";
-import { globalContext } from "../../context/globalContextProvider";
-import markerUserIcon from "../../utility/images/live.gif";
-import markerClickIcon from "../../utility/images/charging.png";
-import markerOther from "../../utility/images/other.png";
+import { globalContext } from "../context/globalContextProvider";
+import markerUserIcon from "../utility/images/live.gif";
+import markerClickIcon from "../utility/images/charging.png";
+import MarkerClusterGroup from "react-leaflet-cluster";
 import L from "leaflet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
@@ -18,13 +18,7 @@ const markerIcon = new L.Icon({
 
 const markerEcharge = new L.Icon({
   iconUrl: markerClickIcon,
-  iconSize: [34, 38],
-  iconAnchor: [11, 28],
-  popupAnchor: [0, -40],
-});
-const markerOtherStation = new L.Icon({
-  iconUrl: markerOther,
-  iconSize: [42, 40],
+  iconSize: [30, 34],
   iconAnchor: [11, 28],
   popupAnchor: [0, -40],
 });
@@ -32,7 +26,7 @@ const markerOtherStation = new L.Icon({
 export const UserMarker = ({ pos }) => {
   const map = useMap();
   const { setCircle } = useContext(globalContext);
-  
+
   return (
     <Marker
       position={[pos.lat, pos.lng]}
@@ -45,7 +39,7 @@ export const UserMarker = ({ pos }) => {
             map?.flyTo([pos.lat, pos.lng], 15, {
               duration: 3,
             });
-          },500);
+          }, 500);
           setTimeout(() => {
             setCircle(true);
           }, 3500);
@@ -71,7 +65,7 @@ export const CreateMarkers = ({ Data }) => {
   };
   useEffect(() => {
     setMap(myMap);
-  },[]);
+  }, []);
 
   return (
     <>
@@ -80,7 +74,7 @@ export const CreateMarkers = ({ Data }) => {
           <Marker
             key={idx}
             position={[item.latitude, item.longitude]}
-            icon={item.model === "Eşarj" ? markerEcharge : markerOtherStation}
+            icon={markerEcharge}
           >
             <Popup>
               <div className="pops">
@@ -108,8 +102,8 @@ export const CreateMarkers = ({ Data }) => {
                       setleafletRouting(item.latitude, item.longitude)
                     }
                   >
-                    <span style={{cursor: 'pointer'}}>Route</span>
-                    <FontAwesomeIcon icon={faLocationArrow} color="#fff"/>
+                    <span style={{ cursor: "pointer" }}>Route</span>
+                    <FontAwesomeIcon icon={faLocationArrow} color="#fff" />
                   </button>
                 )}
               </div>

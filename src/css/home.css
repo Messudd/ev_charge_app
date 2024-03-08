@@ -301,7 +301,7 @@
   .route-btn:hover{
     opacity: 1;
   }
-  .pops h3, span {
+  .pops h3, .pops span {
     cursor: default;
   }
   #route{

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { globalContext } from "../../context/globalContextProvider";
+import { globalContext } from "../context/globalContextProvider";
 import { Chart } from "chart.js/auto";
 import { CategoryScale, Legend, Tooltip } from "chart.js";
 import { Doughnut } from "react-chartjs-2";

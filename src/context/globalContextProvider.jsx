@@ -20,8 +20,8 @@ const GlobalContextProvider = ({ children }) => {
     locDatas: null,
     loading: false,
   });
-  const [fetchList ,setFetchList] = useState([]);
-  const [showFetchList , setShowFetchList] = useState(true);
+  const [fetchList, setFetchList] = useState([]);
+  const [showFetchList, setShowFetchList] = useState(false);
   const [circle, setCircle] = useState(false);
   const [filterTableData, setFilterTableData] = useState([]);
   const [mode, setMode] = useState("light");

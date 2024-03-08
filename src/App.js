@@ -4,15 +4,16 @@ import { motion } from "framer-motion";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { variants } from "./data/animationData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SignUp from "./components/signUp";
-import Login from "./components/login";
-import Home from "./components/home/home";
-import Detail from "./components/detail";
-import Favorites from "./components/favorites";
+import SignUp from "./pages/signUp";
+import Login from "./pages/login";
+import Home from "./pages/home";
+import Detail from "./pages/detail";
+import Favorites from "./pages/favorites";
 import stations from "./data/stations";
 import social from "./data/social";
+import Profile from "./pages/profile";
+import Footer from "./components/footer";
 import "./App.css";
-import Profile from "./components/profile";
 
 function App() {
   const [text] = useTypewriter({
@@ -127,7 +128,7 @@ function App() {
                   ))}
                 </div>
               </section>
-              <footer className="mainpage-footer"></footer>
+              <Footer/>
             </main>
           </div>
         </Route>

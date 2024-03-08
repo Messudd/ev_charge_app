@@ -1,9 +1,9 @@
 import React, { useContext, useRef } from "react";
-import { globalContext } from "../../context/globalContextProvider";
+import { globalContext } from "../context/globalContextProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
-import stationIcon from "../../utility/images/map.png";
-import "../../css/fetchList.css";
+import stationIcon from "../utility/images/map.png";
+import "../css/fetchList.css";
 
 const FetchList = () => {
   const {
@@ -86,7 +86,7 @@ const FetchList = () => {
         </div>
       </div>
       {showFetchList && (
-        <div className="fetch-list">
+        <div className="fetch-list" style={{overflowX: 'auto'}}>
           {fetchList.map((list, i) => (
             <div className="fetch-card" key={i}>
               <div className="fetch-bg">

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { globalContext } from "../../context/globalContextProvider";
-import "../../css/popup.css";
+import { globalContext } from "../context/globalContextProvider";
+import "../css/popup.css";
 
 const PreviewPopup = () => {
   const { prewPopup, setPrewPopup } = useContext(globalContext);

@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import { globalContext } from "../../context/globalContextProvider";
+import { globalContext } from "../context/globalContextProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from "react-toastify";
 import { faCircleInfo, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { toastData } from "../../data/animationData";
-import vehicle from "../../utility/images/vehicle.gif";
-import chargeImg from "../../utility/images/charge.png";
-import stationIcon from "../../utility/images/map.png";
+import { toastData } from "../data/animationData";
+import vehicle from "../utility/images/vehicle.gif";
+import chargeImg from "../utility/images/charge.png";
+import stationIcon from "../utility/images/map.png";
 import "react-toastify/dist/ReactToastify.css";
-import "../../css/station_table.css";
+import "../css/station_table.css";
 
 const StationTable = () => {
   const {
@@ -103,7 +103,7 @@ const StationTable = () => {
   const showStationOnMap = (lat, lng) => {
     window.scrollTo(0, 0);
     setCircle(false);
-    map?.flyTo([lat, lng], 18, { duration: 3 });
+    map?.flyTo([lat, lng], 17, { duration: 3 });
     setTimeout(() => {
       setCircle(true);
     }, 3500);

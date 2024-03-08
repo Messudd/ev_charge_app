@@ -1,19 +1,3 @@
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html {
-  overflow-x: hidden !important;
-}
-body {
-  overflow-x: hidden !important;
-  scroll-behavior: smooth;
-  background-color: #130a3e;
-  font-size: 0.75rem;
-}
 ::-webkit-scrollbar {
   width: 7px;
 }
@@ -21,7 +5,7 @@ body {
   background: rgb(26, 26, 77);
 }
 ::-webkit-scrollbar-thumb {
-  background: #261968;
+  background: #24185e;
 }
 .btn-try {
   background-color: #22136d;
@@ -64,12 +48,6 @@ body {
 .leaflet-container {
   width: 100%;
   height: 750px;
-}
-@media only screen and (max-width: 600px) {
-  .leaflet-container {
-    width: 100%;
-    height: 540px;
-  }
 }
 .leaflet-control-zoom .leaflet-control-zoom-in span,
 .leaflet-control-zoom-out span {
@@ -218,11 +196,10 @@ select:focus {
   font-weight: bold;
 }
 .home-footer {
-  width: 100%;
-  height: 50px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 20px 0;
   border-top: 1px solid rgb(26, 26, 77);
 }
 .home-footer p {
@@ -239,24 +216,6 @@ select:focus {
 .social-link a {
   border-radius: 5px;
   padding: 3px 10px;
-}
-@media only screen and (min-width: 600px) {
-  .social-link a:hover {
-    background: #22136d;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .home-footer {
-    display: flex;
-    margin: 30px;
-    padding-top: 30px;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-  .social-link a:active {
-    background: #22136d;
-  }
 }
 .bg-section {
   display: flex;
@@ -292,34 +251,25 @@ select:focus {
   flex-wrap: wrap;
   background-color: rgb(26, 26, 77);
   margin-top: 1rem;
-  gap: 55px;
-}
-@media only screen and (min-width: 600px) {
-  .stations .cards-block {
-    width: 85%;
-    padding: 4rem;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .stations .cards-block {
-    padding: 4rem 3rem;
-  }
+  gap: 40px;
 }
 .stations .cards-block .station-card {
   display: flex;
-  flex: 1;
-  flex-basis: 250px;
+  flex-basis: 300px;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
   border-radius: 5px;
-  gap: 10px;
-  background-color: rgb(236, 236, 236);
+  gap: 8px;
+  background-color: #130a3e;
 }
 .station-card .img-card {
   width: 100%;
-  height: 180px;
   overflow: hidden;
+}
+.station-card .img-card img{
+  width: 100%;
+  height: 190px;
 }
 .station-card .img-card img:hover {
   transform: scale(1.1);
@@ -331,21 +281,14 @@ select:focus {
   letter-spacing: 0.1rem;
 }
 .station-card p {
-  color: #000;
+  color: #fff;
   padding: 2px 25px;
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   letter-spacing: 1px;
   opacity: 0.8;
 }
 .station-card a {
   letter-spacing: 0.5px;
-}
-.mainpage-footer {
-  z-index: 0;
-  margin-top: 3rem;
-  background-color: rgb(26, 26, 77);
-  width: 100%;
-  height: 250px;
 }
 .fixed-social {
   position: fixed;
@@ -369,4 +312,32 @@ select:focus {
 }
 .fix-social:hover {
   background-color: #000;
+}
+@media only screen and (min-width: 600px) {
+  .stations .cards-block {
+    width: 85%;
+    padding: 4rem;
+  }
+  .social-link a:hover {
+    background: #22136d;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .leaflet-container {
+    width: 100%;
+    height: 540px;
+  }
+  .home-footer {
+    display: flex;
+    padding: 20px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .social-link a:active {
+    background: #22136d;
+  }
+  .stations .cards-block {
+    padding: 4rem 3rem;
+  }
 }

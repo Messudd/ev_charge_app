@@ -1,75 +1,85 @@
 .login-page {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.login-con{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid rgb(30, 66, 110);
-    box-shadow: 2px 2px 4px rgb(54, 76, 102);
-    border-radius: 5px;
-    padding: 3rem 5rem;
-    gap: 3px;
+.login-con {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #180e4b;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 3rem 5rem;
+  gap: 3px;
 }
-@media only screen and (max-width: 600px){
-    .login-page {
-     overflow-y: hidden;
-    }
-    .login-con{
-     max-width: 350px;
-     margin-bottom: 4rem;
-    }
+.login-con:hover {
+  box-shadow: 2px 3px 8px rgb(33, 65, 104);
+  transition: all 0.4s ease;
+}
+@media only screen and (max-width: 600px) {
+  .login-page {
+    overflow-y: hidden;
   }
-.login-con h1{
-    font-family: danss;
-    color: red;
-    font-size: 2rem;
+  .login-con {
+    max-width: 350px;
+    margin-bottom: 4rem;
+  }
 }
-.log-form{
-    display: flex;
-    padding: 20px;
-    flex-direction: column;
-    gap: 25px;
+.login-con h1 {
+  font-family: danss;
+  color: red;
+  opacity: 0.8;
+  font-size: 2rem;
+}
+.log-form {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  gap: 25px;
 }
 .log-form:hover {
-    box-shadow: none;
+  box-shadow: none;
 }
 .log-form input {
-    padding: 0.5rem 2.5rem;
-    color: whitesmoke;
+  border-bottom: 1px solid #fff;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  color: whitesmoke;
 }
 .log-form input:focus {
-    outline: none;
+  outline: none;
 }
 .log-form p {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 4px;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px;
+  gap: 15px;
+  align-items: center;
 }
 .log-form p span {
-    color: whitesmoke;
-    font-size: 0.7rem;
+  color: whitesmoke;
+  opacity: 0.8;
+  font-size: 0.7rem;
 }
 .log-form p a {
-    color: red;
-    font-size: 0.7rem;
-    text-decoration: underline;
+  color: red;
+  font-size: 0.7rem;
+  text-decoration: underline;
 }
 .log-form button {
-    flex: 1;
-    padding: 4px;
-    color: whitesmoke;
-    cursor: pointer;
-    border-radius: 3px;
-    letter-spacing: 0.1rem;
-    background-color: rgb(30, 66, 110);
+  flex: 1;
+  padding: 4px;
+  margin-top: 10px;
+  color: whitesmoke;
+  cursor: pointer;
+  border-radius: 3px;
+  letter-spacing: 0.1rem;
+  background-color: rgb(30, 66, 110);
 }
-.log-form button:hover{
-    filter: brightness(120%);
-    transition: all 0.4s ease;
+.log-form button:hover {
+  filter: brightness(120%);
+  transition: all 0.4s ease;
 }

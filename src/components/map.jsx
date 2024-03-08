@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
-import { globalContext } from "../../context/globalContextProvider";
+import { globalContext } from "../context/globalContextProvider";
 import { motion } from "framer-motion";
-import { variants } from "../../data/animationData";
+import { variants } from "../data/animationData";
 import { Circle, LayersControl, MapContainer, TileLayer } from "react-leaflet";
 import { UserMarker, CreateMarkers } from "./Markers";
 import LeafletGecoder from "./leafletGeocoder";

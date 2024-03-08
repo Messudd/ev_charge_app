@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { globalContext } from "../../context/globalContextProvider";
+import { globalContext } from "../context/globalContextProvider";
 import { useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet-control-geocoder/dist/Control.Geocoder";

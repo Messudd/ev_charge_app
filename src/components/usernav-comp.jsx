@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import userBoxData from "../../data/userboxData";
+import userBoxData from "../data/userboxData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 

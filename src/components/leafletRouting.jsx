@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
-import { globalContext } from '../../context/globalContextProvider';
+import { globalContext } from '../context/globalContextProvider';
 import { useMap } from "react-leaflet";
-import pin from "../../utility/images/pin.png";
+import pin from "../utility/images/pin.png";
 import L  from "leaflet";
 import 'leaflet-routing-machine';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';

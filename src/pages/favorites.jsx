@@ -5,10 +5,10 @@ import { faChevronLeft, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { globalContext } from "../context/globalContextProvider";
 import { ToastContainer } from "react-toastify";
 import MapPopup from "../components/mapPopup";
-import Footer from "./footer";
-import DelPopup from "./delPopup";
-import FavCard from "./home/favCard";
-import AddFavoriteComp from "./addFavoriteComp";
+import Footer from "../components/footer";
+import DelPopup from "../components/delPopup";
+import FavCard from "../components/favCard";
+import AddFavoriteComp from "../components/addFavoriteComp";
 import "../css/favorite.css";
 
 const Favorites = () => {

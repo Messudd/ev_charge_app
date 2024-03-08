@@ -1,22 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Map from "./map";
-import ManuelLocation from "./manuelLocation";
-import { globalContext } from "../../context/globalContextProvider";
+import Map from "../components/map";
+import ManuelLocation from "../components/manuelLocation";
+import { globalContext } from "../context/globalContextProvider";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import maleIcon from "../../utility/images/icons8-male.svg";
-import femaleIcon from "../../utility/images/icons8-female.svg";
-import StationTable from "./stationTable";
-import UserNavComp from "./usernav-comp";
-import DataGraf from "./dataGraf";
+import maleIcon from "../utility/images/icons8-male.svg";
+import femaleIcon from "../utility/images/icons8-female.svg";
+import StationTable from "../components/stationTable";
+import UserNavComp from "../components/usernav-comp";
+import DataGraf from "../components/dataGraf";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer } from "react-toastify";
-import PreviewPopup from "./previewPopup";
-import Footer from "../footer";
-import ev from "../../utility/images/ev.png";
-import FetchList from "./fetchList";
-import "../../css/home.css";
+import PreviewPopup from "../components/previewPopup";
+import Footer from "../components/footer";
+import ev from "../utility/images/ev.png";
+import FetchList from "../components/fetchList";
+import "../css/home.css";
 
 const Home = () => {
   const {
