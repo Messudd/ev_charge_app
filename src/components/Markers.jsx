@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Marker, Popup, useMap } from "react-leaflet";
 import { globalContext } from "../context/globalContextProvider";
@@ -52,6 +52,7 @@ export const UserMarker = ({ pos }) => {
 export const CreateMarkers = ({ Data }) => {
   const myMap = useMap();
   const { pos, route, setRoute, setMap } = useContext(globalContext);
+  const [towns, setTowns] = useState([]);
 
   const setleafletRouting = (lat, lng) => {
     setRoute({ ...route, route: false });
@@ -63,9 +64,16 @@ export const CreateMarkers = ({ Data }) => {
       });
     }, 300);
   };
+
   useEffect(() => {
     setMap(myMap);
+    console.log("component did mount");
   }, []);
+
+  useEffect(() => {
+    setTowns([...new Set(Data.locDatas?.map((item) => item.town))]);
+    console.log("towns : ", towns);
+  }, [Data.locDatas]);
 
   return (
     <>
@@ -76,7 +84,7 @@ export const CreateMarkers = ({ Data }) => {
             position={[item.latitude, item.longitude]}
             icon={markerEcharge}
           >
-            <Popup>
+            <Popup autoClose={true} closeOnClick={true}>
               <div className="pops">
                 <h3>{item.name}</h3>
                 <div className="pop-img">
