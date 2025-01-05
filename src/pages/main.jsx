@@ -38,12 +38,28 @@ const Main = () => {
               </Link>
             </div>
             <div
-              className="header py-12 w-full"
-              style={{ backgroundColor: " rgb(26, 26, 77) " }}
+              style={{
+                backgroundColor: " rgb(26, 26, 77) ",
+                padding: "3rem 0",
+                width: "100%",
+              }}
             >
-              <h1 className="flex justify-center gap-2 flex-wrap my-8">
+              <h1
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  flexWrap: "wrap",
+                  gap: "4px",
+                  margin: "4px 0",
+                }}
+              >
                 <motion.span
-                  className="text-gray-300 text-5xl p-3 font-dancing text-center"
+                  style={{
+                    color: "rgb(209 213 219 )",
+                    fontSize: "3rem",
+                    textAlign: "center",
+                    fontFamily: "danss",
+                  }}
                   initial="hidden"
                   animate="visible"
                   variants={variants}
@@ -51,7 +67,13 @@ const Main = () => {
                   EV ~ CHARGE |
                 </motion.span>
                 <motion.span
-                  className="text-red-700 text-6xl p-3 my-6 font-dancing"
+                  style={{
+                    color: "rgb(185 28 28)",
+                    fontSize: "3.75rem",
+                    padding: "0.75rem",
+                    margin: "1.5rem 0",
+                    fontFamily: "danss",
+                  }}
                   initial={{ opacity: 0 }}
                   animate={{
                     opacity: 1,
@@ -80,9 +102,26 @@ const Main = () => {
                 >
                   <img src={carImg} alt="ev-charge" width={600} />
                 </motion.div>
-                <h3 className="head-text text-red-700 text-3xl font-mono tracking-wide w-80 text-center">
+                <h3
+                  className="head-text"
+                  style={{
+                    color: "rgb(185 28 28)",
+                    fontSize: "1.4rem",
+                    letterSpacing: "0.025rem",
+                    width: "20rem",
+                    textAlign: "center",
+                  }}
+                >
                   Let's : {"  "}
-                  <span className="text-gray-100 font-mono text-xl">
+                  <span
+                    style={{
+                      color: "rgb(243 244 246)",
+                      paddingLeft: "1rem",
+                      fontSize: "1rem",
+                      opacity: "0.8",
+                      lineHeight: "1.75rem",
+                    }}
+                  >
                     {text}
                   </span>
                   <span style={{ color: "whitesmoke" }}>
@@ -90,8 +129,15 @@ const Main = () => {
                   </span>
                 </h3>
               </section>
-              <section className="py-6 my-10 flex justify-center">
-                <Link to="/user/home">
+              <section
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  padding: "1.5rem 0",
+                  margin: "2.5rem 0",
+                }}
+              >
+                <Link to="/">
                   <motion.button
                     className="btn-try my-3 text-gray-50 px-12 py-3 rounded text-center tracking-widest"
                     initial={{ y: -1200 }}

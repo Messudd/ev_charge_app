@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { globalContext } from "../context/globalContextProvider";
 import { citys_data } from "../data/localData";
 import BeatLoader from "react-spinners/BeatLoader";
@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { toastData } from "../data/animationData";
 import axios from "axios";
 
-const BASE_API_URL = "http://192.168.1.13:8070/geolocation/ev";
+const BASE_API_URL = "https://192.168.1.13:8040/geolocation/ev";
 
 const ManuelLocation = () => {
   const { userChoise, setUserChoise, fetchList, setFetchList } =
@@ -50,7 +50,7 @@ const ManuelLocation = () => {
         toast.success("stations were found in this area.", { ...toastData });
       })
       .catch((err) => {
-        toast.error(err.response.data.message, { ...toastData });
+        toast.error(err.response?.data.message, { ...toastData });
         setFormLocationData({ ...formLocationData, loading: false });
       });
   };
@@ -71,12 +71,12 @@ const ManuelLocation = () => {
         `${BASE_API_URL}/street/${userChoise.user_city}/${userChoise.user_town}/${userChoise.user_neigh}/${userChoise.user_street}`
       );
     }
-    // setUserChoise({
-    //   user_city: "",
-    //   user_town: "",
-    //   user_street: "",
-    //   user_neigh: "",
-    // });
+   setUserChoise({
+     user_city: "",
+     user_town: "",
+     user_street: "",
+     user_neigh: ""
+   });
   };
 
   return (
@@ -91,7 +91,7 @@ const ManuelLocation = () => {
             className="city-select"
             name="user_city"
             id="user_city"
-            defaultValue=""
+            value= {userChoise.user_city}
             onChange={locFormOnHandleInputChange}
           >
             <option value="" disabled>
@@ -109,7 +109,7 @@ const ManuelLocation = () => {
             className="town-select"
             name="user_town"
             id="user_town"
-            defaultValue=""
+            value= {userChoise.user_town}
             disabled={userChoise.user_city ? false : true}
             onChange={locFormOnHandleInputChange}
           >
@@ -131,7 +131,7 @@ const ManuelLocation = () => {
             type="text"
             id="user_neigh"
             name="user_neigh"
-            // value={userChoise.user_neigh}
+            value={userChoise.user_neigh}
             placeholder="Neighbourhood  [Optional]"
             onChange={locFormOnHandleInputChange}
           />
@@ -142,12 +142,14 @@ const ManuelLocation = () => {
             disabled={userChoise.user_neigh === ""}
             id="user_street"
             name="user_street"
-            // value={userChoise.user_street}
+            value={userChoise.user_street}
             placeholder="Street  [Optional]"
             onChange={locFormOnHandleInputChange}
           />
         </div>
         <button
+          style={{padding: '5px', height: '40px', display: 'flex', 
+                  alignItems: 'center', justifyContent: 'center'}}
           disabled={
             !(userChoise.user_city !== "" && userChoise.user_town !== "")
           }
@@ -157,8 +159,8 @@ const ManuelLocation = () => {
             <BeatLoader
               loading={formLocationData.loading}
               color="#fff"
-              size={10}
-              style={{ background: "rgb(26, 26, 77)" }}
+              size={8}
+              style={{ background: "rgb(26, 26, 77)" ,margin:'8px' }}
             ></BeatLoader>
           ) : (
             "Search"

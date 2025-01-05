@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { globalContext } from "../context/globalContextProvider";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import API_BASE_URL from "../data/apiBaseUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from "react-toastify";
 import { faCircleInfo, faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -18,8 +20,6 @@ const StationTable = () => {
     formLocationData,
     filterTableData,
     setFilterTableData,
-    userFavorites,
-    setUserFavorites,
     route,
     setRoute,
     setCircle,
@@ -28,18 +28,37 @@ const StationTable = () => {
 
   const [nearest, setNearest] = useState(false);
 
-  const addFavoriteList = (param) => {
-    if (userFavorites.length > 0) {
-      if (userFavorites.filter((item) => item.id === param.id).length > 0) {
-        toast.warn("Station is already in favorites !", { ...toastData });
-      } else {
-        setUserFavorites([...userFavorites, param]);
-        toast.success("Station added to favorites.", { ...toastData });
-      }
-    } else {
-      setUserFavorites([...userFavorites, param]);
-      toast.success("Station added to favorites.", { ...toastData });
+  const addFavoriteList = async(param) => {
+    const station = {
+      stationName: param.name,
+      latitude: param.latitude,
+      longitude: param.longitude,
+      city: param.city,
+      town: param.town,
+      district: param.neighbourhood,
+      street: param.street,
+      power: param.power,
+      type: param.type,
+      address: param.description,
+      imageUrl: param.image,
     }
+    let userValues = atob(localStorage.getItem("session")).split(":");
+    let userId = localStorage.getItem("userId");
+    await axios
+      .post(`${API_BASE_URL}/user/station/${userId}`,station, {
+        auth: {
+          username: userValues[0],
+          password: userValues[1],
+        },
+      })
+      .then((res) => {
+        console.log("res-station:", res.data);
+        toast.success("Station added to favorites.", { ...toastData })
+      })
+      .catch((err) => {
+        console.log('error:' ,err.response.data.message);
+        toast.warn("Station is already in favorites !", { ...toastData })
+      });
   };
 
   const filterTable = (e) => {

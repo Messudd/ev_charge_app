@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { globalContext } from "../context/globalContextProvider";
 import { toastData } from "../data/animationData";
 import { toast } from "react-toastify";
+import axios from "axios";
+import API_BASE_URL from "../data/apiBaseUrl";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const DelPopup = ({ setDelPopComp, delItem, txt }) => {
@@ -12,20 +14,29 @@ const DelPopup = ({ setDelPopComp, delItem, txt }) => {
     setDelPopComp(false);
   };
 
-  const deleteItemMethod = (val) => {
+  const deleteItemMethod = async(val) => {
     setdelLoading(true);
-    try {
-      setTimeout(() => {
+    let userValues = atob(localStorage.getItem("session")).split(":");
+    let userId = localStorage.getItem("userId");
+    console.log(val.id);
+    await axios
+      .delete(`${API_BASE_URL}/user/station/${userId}/${val.id}`,{
+        auth: {
+          username: userValues[0],
+          password: userValues[1],
+        }
+      })
+      .then((res) => {
         setUserFavorites(userFavorites.filter((item) => item.id !== val.id));
+        toast.success(`Station removed from list. stationId : ${res.data.id}`, { ...toastData });
         setdelLoading(false);
-        toast.success("Station removed from list.", { ...toastData });
         setDelPopComp(false);
-      }, 500);
-    } catch {
-      toast.error("An error occurred while deleting !", { ...toastData });
-      setdelLoading(false);
-      setDelPopComp(false);
-    }
+      })
+      .catch((err) => {
+        toast.warn(`${err?.response.data.message}`, { ...toastData })
+        setdelLoading(false);
+        setDelPopComp(false);
+      });
   };
 
   useEffect(() => {

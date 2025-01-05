@@ -45,14 +45,14 @@ const Map = () => {
     lat: 39.925533,
     lng: 32.866287,
   });
-  const ZOOM_LEVEL = 6 || 0;
+  const ZOOM_LEVEL = 5 || 0;
   const mapbox = useRef();
 
   const changeMapStyle = (e) => {
     setMapStyle(e.target.value);
   };
 
-  const getUserLocation = () => {
+  const getUserLocation = async() => {
     if (navigator.geolocation) {
       const onSucces = (position) => {
         setPos({
@@ -68,11 +68,12 @@ const Map = () => {
         }, 3500);
       };
       const onError = (error) => {
-        alert("User - location didn't find !", error);
+        alert(error.code +' , ' + error.message);
       };
       navigator.geolocation.getCurrentPosition(onSucces, onError, {
         enableHighAccuracy: true,
         timeout: 5000,
+        maximumAge:0
       });
     } else {
       alert("Geolocation is not supporting by this browser !");

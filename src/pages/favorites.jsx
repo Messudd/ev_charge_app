@@ -1,5 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Link ,useHistory } from "react-router-dom";
+import axios from "axios";
+import API_BASE_URL from "../data/apiBaseUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { globalContext } from "../context/globalContextProvider";
@@ -13,12 +15,14 @@ import "../css/favorite.css";
 
 const Favorites = () => {
   const [favBtn, setFavBtn] = useState(false);
-  const { userFavorites, route, setRoute } = useContext(globalContext);
+  const { userFavorites, setUserFavorites, route, setRoute } = useContext(globalContext);
   const [inValue, setInValue] = useState("");
 
   const [popMap, setPopMap] = useState([]);
   const [delItem, setDelItem] = useState(null);
   const [delPopComp, setDelPopComp] = useState(false);
+
+  const redicrect = useHistory();
 
   const openAddFavorite = () => {
     setFavBtn(false);
@@ -28,7 +32,32 @@ const Favorites = () => {
   };
   useEffect(() => {
     setRoute({ ...route, route: false });
-  }, []);
+    let userValues = atob(localStorage.getItem("session")).split(":");
+    let userId = localStorage.getItem("userId");
+    axios
+      .get(`${API_BASE_URL}/user/station/all/${userId}`,{
+        auth: {
+          username: userValues[0],
+          password: userValues[1],
+        },
+      })
+      .then((res) => {
+        setUserFavorites(res.data);
+        console.log("user-stations:", res.data);
+      })
+      .catch((err) => {
+        console.log('error:' ,err.response?.data.message)
+      });
+  }, [favBtn]);
+
+  useEffect(() => {
+    let userId = localStorage.getItem('userId');
+    userId === null && redicrect.push('/login');
+  },[])
+
+  useEffect(() => {
+    setInValue('');
+  },[favBtn])
 
   return (
     <>
@@ -74,6 +103,7 @@ const Favorites = () => {
               <input
                 type="text"
                 placeholder="Adress , type , power"
+                value={inValue}
                 id="fav-search"
                 onChange={(e) => setInValue(e.target.value)}
               />
@@ -89,7 +119,7 @@ const Favorites = () => {
               {userFavorites
                 .filter(
                   (item) =>
-                    item.description
+                    item.address
                       .toLowerCase()
                       .includes(inValue.toLowerCase()) ||
                     item.type.toLowerCase().includes(inValue.toLowerCase()) ||

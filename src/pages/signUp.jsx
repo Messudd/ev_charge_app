@@ -4,33 +4,39 @@ import { moveForm, moveBtn } from "../data/animationData";
 import * as Yup from "yup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import API_BASE_URL from "../data/apiBaseUrl";
 import "../css/signup.css";
+import axios from "axios";
+import Info from "../components/info";
 
 const SignUp = () => {
   const userSignInitial = {
     fullName: "",
-    userName: "",
+    usrName: "",
     email: "",
     password: "",
     gender: "MALE",
-    note: null,
   };
   const [userSignData, setUserSignData] = useState(userSignInitial);
   const [isUserSignValid, setUserSignValid] = useState(false);
+  const[errorMsg ,setErrorMsg] = useState('');
+  const[succes ,setSucces] = useState(false);
   const [userSignError, setuserSignError] = useState({
     fullName: "",
-    userName: "",
+    usrName: "",
     email: "",
     password: "",
     gender: "",
   });
+
+  const history = useHistory();
   // Sıgn Up  - Validation
   const userSignFormSchema = Yup.object().shape({
     fullName: Yup.string()
       .required("you must enter your name and surname.")
       .min(3, "must be at least 3 characters."),
-    userName: Yup.string()
+    usrName: Yup.string()
       .required("you must enter an username.")
       .min(3, "must be at least 3 characters.")
       .max(10, "up to 10 characters."),
@@ -64,15 +70,35 @@ const SignUp = () => {
     validationContol(name, value);
   };
 
-  const handleSignSubmit = (e) => {
-    e.preventDefault();
-    alert("submit edildi ...");
-    console.log("userData : ", userSignData);
-    setUserSignData(userSignInitial);
-    // spring tarafına sign up datayı gönder ve ve database de email kayıtlı ise feedback ver ve kaydetme degilse kaydet
-  };
   const userDataReset = () => {
     setUserSignData(userSignInitial);
+  };
+
+  const userRegister = async(signData) => {
+
+    const data = await axios
+    .post(`${API_BASE_URL}/auth/register`,signData)
+    .then((responce) => {
+      setSucces(true);
+      return responce.data;
+    })
+    .catch((err) => {
+       return err.response.data;
+      });
+      return data;
+  }
+
+  const handleSignSubmit = async(e) => {
+    e.preventDefault();
+    const data = await userRegister(userSignData);
+    setUserSignData(userSignInitial);
+    if(!(data.message)){
+      setTimeout(() => {
+        setSucces(false);
+        history.push("/login");
+      },1200);
+    }
+    else setErrorMsg(data.message);
   };
 
   useEffect(() => {
@@ -80,6 +106,12 @@ const SignUp = () => {
       setUserSignValid(valid);
     });
   }, [userSignData]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setErrorMsg("");
+    },2200);
+  },[errorMsg])
 
   return (
     <>
@@ -114,13 +146,13 @@ const SignUp = () => {
               <label htmlFor="sign-username">Username</label>
               <input
                 type="text"
-                name="userName"
-                value={userSignData.userName}
+                name="usrName"
+                value={userSignData.usrName}
                 id="sign-username"
                 placeholder="Robert1453"
                 onChange={handleInputChange}
               />
-              {userSignError?.userName && <li>{userSignError.userName}</li>}
+              {userSignError?.usrName && <li>{userSignError.usrName}</li>}
             </div>
             <div className="sign-email">
               <label htmlFor="sign-email">Email</label>
@@ -187,6 +219,8 @@ const SignUp = () => {
           </form>
         </motion.div>
       </div>
+      {errorMsg && <Info message={errorMsg}/>}
+      {succes && <Info message={'Registration Successful!'}/>}
     </>
   );
 };

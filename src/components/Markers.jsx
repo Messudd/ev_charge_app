@@ -1,13 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Marker, Popup, useMap } from "react-leaflet";
 import { globalContext } from "../context/globalContextProvider";
 import markerUserIcon from "../utility/images/live.gif";
 import markerClickIcon from "../utility/images/charging.png";
-import MarkerClusterGroup from "react-leaflet-cluster";
 import L from "leaflet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
+import { faRoute } from "@fortawesome/free-solid-svg-icons";
 
 const markerIcon = new L.Icon({
   iconUrl: markerUserIcon,
@@ -52,7 +51,6 @@ export const UserMarker = ({ pos }) => {
 export const CreateMarkers = ({ Data }) => {
   const myMap = useMap();
   const { pos, route, setRoute, setMap } = useContext(globalContext);
-  const [towns, setTowns] = useState([]);
 
   const setleafletRouting = (lat, lng) => {
     setRoute({ ...route, route: false });
@@ -67,13 +65,7 @@ export const CreateMarkers = ({ Data }) => {
 
   useEffect(() => {
     setMap(myMap);
-    console.log("component did mount");
   }, []);
-
-  useEffect(() => {
-    setTowns([...new Set(Data.locDatas?.map((item) => item.town))]);
-    console.log("towns : ", towns);
-  }, [Data.locDatas]);
 
   return (
     <>
@@ -111,7 +103,7 @@ export const CreateMarkers = ({ Data }) => {
                     }
                   >
                     <span style={{ cursor: "pointer" }}>Route</span>
-                    <FontAwesomeIcon icon={faLocationArrow} color="#fff" />
+                    <FontAwesomeIcon icon={faRoute} color="#fff" fontSize={15}/>
                   </button>
                 )}
               </div>

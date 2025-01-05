@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Map from "../components/map";
 import ManuelLocation from "../components/manuelLocation";
 import { globalContext } from "../context/globalContextProvider";
@@ -9,6 +9,8 @@ import femaleIcon from "../utility/images/icons8-female.svg";
 import StationTable from "../components/stationTable";
 import UserNavComp from "../components/usernav-comp";
 import DataGraf from "../components/dataGraf";
+import axios from "axios";
+import API_BASE_URL from "../data/apiBaseUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer } from "react-toastify";
@@ -21,13 +23,17 @@ import "../css/home.css";
 const Home = () => {
   const {
     userNavInfo,
+    setUserNavInfo,
     formLocationData,
     filterTableData,
     prewPopup,
     setPrewPopup,
     fetchList,
+    setProfile,
+    profile,
   } = useContext(globalContext);
   const [userHover, setUserHover] = useState(false);
+  const redicrect = useHistory();
 
   const handleToggleUser = () => {
     setUserHover(!userHover);
@@ -36,9 +42,53 @@ const Home = () => {
   const onOpenContactPopup = () => {
     setPrewPopup(true);
   };
+  function userLogout() {
+    window.location.reload();
+    localStorage.clear();
+    setTimeout(() => {
+      redicrect.push("/");
+    }, 500);
+  }
+
+  // let header = new Headers(); fetch !
+  // header.append('Authorization','Basic' + btoa(unique.email +':'+ unique.password)); fetch method !
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    let userValues = atob(localStorage.getItem("session")).split(":");
+    console.log("val : ", userValues);
+    (userValues.length === 2 ) ? (
+       axios
+          .get(`${API_BASE_URL}/user/byEmail/${userValues[0]}`, {
+            auth: {
+              username: userValues[0],
+              password: userValues[1],
+            },
+          })
+          .then((res) => {
+            setUserNavInfo(res.data);
+            localStorage.setItem(
+              "info",
+              JSON.stringify({
+                gender: res.data.gender,
+                username: res.data.username,
+              })
+            );
+            localStorage.setItem("userId", res.data.id);
+            setProfile(res.data.profileResponce);
+            if (res.data.profileResponce.id !== 0) {
+              localStorage.setItem("id", res.data.profileResponce.id);
+            }
+            console.log("resUserInfo : ", res.data);
+          })
+          .catch((err) => {
+            console.log("error : ", err.message);
+          })): redicrect.push('/');
   }, []);
+
+  useEffect(() => {
+    console.log("profileRes : ", profile);
+  }, [profile]);
 
   return (
     <>
@@ -56,12 +106,22 @@ const Home = () => {
                 />
               </div>
               <div className="info-group-user">
-                <img
-                  src={userNavInfo.gender === "MALE" ? maleIcon : femaleIcon}
-                  alt="user-icon"
-                  width={26}
-                />
-                <span className="username-info">{userNavInfo.userName}</span>
+                {profile && (
+                  <img
+                    style={{ width: "30", height: "30", borderRadius: "100%" }}
+                    src={
+                      profile.image !== null
+                        ? profile.image
+                        : userNavInfo.gender === "MALE"
+                        ? maleIcon
+                        : femaleIcon
+                    }
+                    alt="user-icon"
+                  />
+                )}
+                <span style={{ fontSize: "1rem" }} className="username-info">
+                  {userNavInfo.username}
+                </span>
               </div>
             </div>
           </div>
@@ -81,7 +141,7 @@ const Home = () => {
             >
               Contact
             </a>
-            <Link className="home-nav" to="/">
+            <span className="home-nav" onClick={userLogout}>
               <FontAwesomeIcon icon={faSignOutAlt} />
               <span
                 style={{
@@ -92,7 +152,7 @@ const Home = () => {
               >
                 Logout
               </span>
-            </Link>
+            </span>
           </div>
         </nav>
       </header>
@@ -106,7 +166,7 @@ const Home = () => {
       </div>
       {filterTableData.locDatas?.length > 0 && <DataGraf />}
       {formLocationData.locDatas && <StationTable />}
-      {(fetchList.length > 0) && <FetchList />}
+      {fetchList.length > 0 && <FetchList />}
       {prewPopup && <PreviewPopup />}
       <Footer />
     </>

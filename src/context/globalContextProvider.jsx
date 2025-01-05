@@ -9,6 +9,10 @@ const GlobalContextProvider = ({ children }) => {
     user_street: "",
     user_neigh: "",
   });
+  const [unique ,setUnique] = useState({
+    email :"",
+    password: ""
+  });
   const [map, setMap] = useState(null);
   const [pos, setPos] = useState({
     lat: "",
@@ -28,10 +32,8 @@ const GlobalContextProvider = ({ children }) => {
   const [prewPopup, setPrewPopup] = useState(false);
   const [isdelLoading, setdelLoading] = useState(false);
   const [colorStatus, setColorStatus] = useState(false);
-  const [userNavInfo, setUserNavInfo] = useState({
-    userName: "Mesud",
-    gender: "MALE",
-  });
+  const [userNavInfo, setUserNavInfo] = useState({});
+  const [profile, setProfile] = useState(null);
   const [route, setRoute] = useState({
     lat: "",
     lng: "",
@@ -84,6 +86,10 @@ const GlobalContextProvider = ({ children }) => {
         setFetchList,
         showFetchList,
         setShowFetchList,
+        unique,
+        setUnique,
+        profile,
+        setProfile
       }}
     >
       {children}

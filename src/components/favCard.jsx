@@ -11,18 +11,31 @@ const FavCard = ({ favData, setDelItem, setDelPopComp, setPopMap }) => {
     setDelPopComp(true);
     setDelItem(val);
   };
-
   return (
     <div className="card-fav">
       <div
         className="card-image"
         style={{
-          backgroundImage: `url(${favData.image})`,
+          backgroundImage: `url(${favData.imageUrl})`,
         }}
       ></div>
+      <span
+        style={{
+          width: '100%',
+          padding: '1px 4px',
+          textAlign: 'center',
+          backgroundColor: "darkred",
+          borderRadius: "2px",
+          color: "#fff",
+          opacity: '0.8',
+          fontSize: "0.82rem",
+        }}
+      >
+        {favData.stationName}
+      </span>
       <div className="card-adress">
         <FontAwesomeIcon icon={faLocationDot} color="red" fontSize="1rem" />
-        <span>{favData.description}</span>
+        <span>{favData.address}</span>
       </div>
       <div className="type-pow">
         <span>{favData.type}</span>

@@ -27,9 +27,9 @@ const LeafletRouting = ({pos}) => {
                 lineOptions: {
                   styles : [
                     {
-                      color: 'green',
+                      color: 'blue',
                       weight: 6,
-                      opacity : 0.7
+                      opacity : 0.6
                     }
                   ]
                 },
@@ -39,8 +39,6 @@ const LeafletRouting = ({pos}) => {
                 routeWhileDragging: false,
                 showAlternatives: false,
                 pointMarkerStyle : false,
-                showAlternatives : false,
-                
               })
               .on('routesfound', function(e) {
                 setRoutes(e.routes);

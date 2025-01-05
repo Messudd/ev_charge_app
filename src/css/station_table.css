@@ -103,6 +103,7 @@ table,
 th,
 tr,
 td {
+  font-size: 0.8rem;
   border: 1px solid #3b3072;
   border-collapse: collapse;
   padding: 10px 20px;

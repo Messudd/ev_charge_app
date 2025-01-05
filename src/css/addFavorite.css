@@ -108,6 +108,14 @@
     color: #fff;
     border: 1px solid rgb(33, 65, 104);
 }
+.other-info select{
+    width: 100%;
+    padding: 8px;
+    color: #fff;
+    border: 1px solid rgb(33, 65, 104);
+    background-color: #180E4B;
+    opacity: 0.6;
+}
 .other-info button{
     width: 100%;
     border: 1px solid transparent;
