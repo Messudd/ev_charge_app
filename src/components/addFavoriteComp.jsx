@@ -24,6 +24,7 @@ const AddFavoriteComp = () => {
   const [check, setCheck] = useState(false);
   const [favoriteLoc, setFavoriteLoc] = useState(initialFavorite);
 
+  const BASE_API_EV = "http://192.168.1.37:4000/geolocation/ev";
   const cities = citys_data.map((item) => item.il);
 
   const handleInChange = (e) => {
@@ -38,24 +39,50 @@ const AddFavoriteComp = () => {
     e.preventDefault();
     let adrs = `${favoriteLoc.district} - ${favoriteLoc.street} - 
     ${favoriteLoc.town}/${favoriteLoc.city.toUpperCase()}`;
-    let data = { ...favoriteLoc, address: adrs }
+    let data = { ...favoriteLoc, address: adrs };
     let userValues = atob(localStorage.getItem("session")).split(":");
     let userId = localStorage.getItem("userId");
     await axios
-      .post(`${API_BASE_URL}/user/station/${userId}`,data,{
+      .post(`${API_BASE_URL}/user/station/${userId}`, data, {
         auth: {
           username: userValues[0],
           password: userValues[1],
         },
       })
       .then((res) => {
-        toast.success(`Station added to favorites. stationId: ${res.data.id}`, { ...toastData })
+        toast.success(`Station added to favorites. stationId: ${res.data.id}`, {
+          ...toastData,
+        });
       })
       .catch((err) => {
-        toast.warn(`${err.response.data.message}`, { ...toastData })
+        toast.warn(`${err.response.data.message}`, { ...toastData });
       });
+    await saveEvStation(favoriteLoc);
     setFavoriteLoc(initialFavorite);
     setCheck(false);
+  };
+
+  const saveEvStation = async (station) => {
+    const ev = {
+      name: station.stationName,
+      latitude: station.latitude,
+      longitude: station.longitude,
+      city:  station.city,
+      town:  station.town,
+      street: station.street,
+      neighbourhood: station.district,
+      image: station.imageUrl,
+      type:  station.type,
+      power: station.power
+    };
+    await axios
+      .post(`${BASE_API_EV}/`,ev, {})
+      .then((res) => {
+        console.log("station added !", res.data);
+      })
+      .catch((err) => {
+        console.log(`${err.response.data.message}`);
+      });
   };
 
   useEffect(() => {

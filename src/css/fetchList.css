@@ -22,7 +22,7 @@
   padding: 10px 15px;
   border-radius: 4px;
   cursor: pointer;
-  background-color: rgb(26, 26, 77);
+  background-color: #454545;
   color: #fff;
 }
 .mapping button span{
@@ -30,7 +30,7 @@
 }
 .hide-show {
   cursor: pointer;
-  background-color: rgb(26, 26, 77);
+  background-color:#454545;
   padding: 8px;
   border-radius: 4px;
 }
@@ -59,7 +59,7 @@
   cursor: pointer;
   padding: 10px 40px;
   justify-content: space-around;
-  background-color: rgb(26, 26, 77);
+  background-color:#222222;
 }
 .fetch-bg {
   width: 100%;

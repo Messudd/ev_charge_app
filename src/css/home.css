@@ -10,7 +10,7 @@
     position: fixed;
     display: flex;
     flex-direction: column;
-    background: #130a3e;
+    background: #222222;
     z-index: 1;
     top:0;
     left: 0;
@@ -32,7 +32,7 @@
     justify-content: center;
     align-items: center;
     height: 60px;
-    border-left: 12px solid #22136d;
+    border-left: 12px solid #454545;
     border-radius: 8px;
     font-size: 0.8rem;
     gap: 15px;
@@ -43,17 +43,14 @@
     justify-content: center;
     align-items: center;
     height: 60px;
-    border-left: 12px solid #22136d;
+    border-left: 12px solid #222222;
     border-radius: 8px;
     font-size: 0.8rem;
     gap: 15px;
     color: whitesmoke
 }
 .user-box ul li a:hover{
-    background: #22136d;
-}
-.user-box ul li p:hover{
-    background: #22136d;
+    background: #454545;
 }
 .user-box ul li span{
     cursor: pointer;
@@ -88,7 +85,7 @@
     text-align: center;
     border-radius: 4px;
     padding: 3px 12px;
-    background: rgb(26, 26, 77) ;
+    background:#454545;
 }
 @media only screen and (max-width: 600px){
     .first-head {
@@ -196,7 +193,7 @@
 }
 
 .city-select,.town-select {
-    background: #130a3e;
+    background: #222222;
     border: 1px solid darkred;
     color: whitesmoke;
     flex: 1;
@@ -218,7 +215,7 @@
     color: whitesmoke;
     font-family: danss;
     margin-top: 10px;
-    background: rgb(26, 26, 77);
+    background: #454545;
     font-size: 1.4rem;
     padding: 3px 30px;
     opacity: 0.8;
@@ -247,7 +244,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 3px;
-    background: rgb(26, 26, 77);
+    background: #323232;
   }
   .bar-g{
     display: flex;

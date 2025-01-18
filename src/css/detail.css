@@ -50,7 +50,7 @@
     display: flex;
     flex: 1;
     padding: 30px 45px;
-    background: rgb(26, 26, 77);
+    background: #222222;
     flex-direction: column;
     /* align-items: center; */
     gap: 15px;

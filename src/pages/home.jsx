@@ -44,10 +44,13 @@ const Home = () => {
   };
   function userLogout() {
     window.location.reload();
-    localStorage.clear();
+    localStorage.removeItem('session');
+    localStorage.removeItem('id');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('info');
     setTimeout(() => {
       redicrect.push("/");
-    }, 500);
+    }, 300);
   }
 
   // let header = new Headers(); fetch !

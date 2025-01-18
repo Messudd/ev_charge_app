@@ -23,24 +23,24 @@
     }
   }
 .sign-form form div label,input {
-    background: #180e4b;
+    background:#222222;
 }
 .sign-form form {
     display: flex;
-    background: #180e4b;
+    background: #222222;
     border: 1px solid transparent;
     padding: 25px;
     flex-direction: column;
     gap: 15px;
 }
 form:hover {
-    box-shadow: 2px 3px 8px rgb(33, 65, 104);
+    box-shadow: 2px 3px 8px #454545;
     transition: all 0.4s ease;
 }
 .sign-form form div {
     display: flex;
     flex-direction: column;
-    background: #180e4b;
+    background: #222222;
     gap: 15px;
 }
 .sign-form form div label{
@@ -56,13 +56,13 @@ form:hover {
     outline:  none;
 }
 .sign-form form div li {
-    background:#180e4b;
+    background:#222222;
     font-size: 0.7rem;
     color: whitesmoke;
     opacity: 0.8;
 }
 .gender-spn {
-    background: #180e4b;
+    background: #222222;
     color: rgb(185,28,28);
     opacity: 0.9;
     font-weight: 700;
@@ -73,10 +73,10 @@ form:hover {
     display: flex;
     padding: 2px;
     gap :30px;
-    background: #180e4b;
+    background: #222222;
 }
 .sign-gender label {
-    background: #180e4b;
+    background: #222222;
     color: rgb(185,28,28);
     padding-right: 3px;
 }
@@ -86,8 +86,8 @@ form:hover {
     align-items: center;
     flex-wrap: wrap;
     padding-top: 10px;
-    background:#180e4b;
-    gap: 30px;
+    background:#222222;
+    gap: 30px;  
 }
 #sign-buttons button {
     border: 1px solid transparent;
@@ -95,11 +95,11 @@ form:hover {
     color: whitesmoke;
     padding: 4px 25px;
     border-radius: 3px;
-    background: rgb(30, 66, 110);
+    background:#454545;
     flex-basis: 150px;
 }
 #sign-buttons button:hover {
-    background: rgb(50, 97, 155);
+    background: #545454;
     transition: all 0.3s ease;
 }
 .sign-head .arrow {

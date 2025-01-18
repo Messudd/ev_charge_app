@@ -26,7 +26,6 @@ const GlobalContextProvider = ({ children }) => {
   });
   const [fetchList, setFetchList] = useState([]);
   const [showFetchList, setShowFetchList] = useState(false);
-  const [circle, setCircle] = useState(false);
   const [filterTableData, setFilterTableData] = useState([]);
   const [mode, setMode] = useState("light");
   const [prewPopup, setPrewPopup] = useState(false);
@@ -46,7 +45,7 @@ const GlobalContextProvider = ({ children }) => {
   const [routes, setRoutes] = useState([]);
   const [userFavorites, setUserFavorites] = useState([]);
   const [mapStyle, setMapStyle] = useState(
-    "https://api.maptiler.com/maps/bright-v2/{z}/{x}/{y}@2x.png?key=CWyh1uHbXXLuNG4xZYXU"
+    "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
   );
 
   return (
@@ -76,8 +75,6 @@ const GlobalContextProvider = ({ children }) => {
         setRoute,
         routes,
         setRoutes,
-        circle,
-        setCircle,
         otherPos,
         setOtherPos,
         isdelLoading,

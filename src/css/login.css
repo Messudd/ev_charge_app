@@ -9,14 +9,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #180e4b;
+  background-color: #222222;
   border: 1px solid transparent;
   border-radius: 5px;
   padding: 3rem 5rem;
   gap: 3px;
 }
 .login-con:hover {
-  box-shadow: 2px 3px 8px rgb(33, 65, 104);
+  box-shadow: 2px 3px 8px #454545;
   transition: all 0.4s ease;
 }
 @media only screen and (max-width: 600px) {
@@ -81,9 +81,9 @@
   cursor: pointer;
   border-radius: 3px;
   letter-spacing: 0.1rem;
-  background-color: rgb(30, 66, 110);
+  background-color: #454545;
 }
 .log-form button:hover {
-  filter: brightness(120%);
-  transition: all 0.4s ease;
+  filter: brightness(150%);
+  transition: all 0.3s ease;
 }

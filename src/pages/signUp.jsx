@@ -90,6 +90,7 @@ const SignUp = () => {
 
   const handleSignSubmit = async(e) => {
     e.preventDefault();
+    //console.log('user : ',userSignData);
     const data = await userRegister(userSignData);
     setUserSignData(userSignInitial);
     if(!(data.message)){

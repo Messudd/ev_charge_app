@@ -2,17 +2,52 @@ import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Marker, Popup, useMap } from "react-leaflet";
 import { globalContext } from "../context/globalContextProvider";
-import markerUserIcon from "../utility/images/live.gif";
 import markerClickIcon from "../utility/images/charging.png";
 import L from "leaflet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRoute } from "@fortawesome/free-solid-svg-icons";
 
-const markerIcon = new L.Icon({
-  iconUrl: markerUserIcon,
-  iconSize: [36, 42],
-  iconAnchor: [11, 28],
-  popupAnchor: [0, -40],
+const userIcon = new L.Icon({
+  iconUrl:
+    "data:image/svg+xml;base64," +
+    btoa(`
+    <svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="14" fill="#1E8CBE" fill-opacity="0.2">
+        <animate 
+          attributeName="r" 
+          values="14;12;14" 
+          dur="1.5s" 
+          repeatCount="indefinite" 
+          calcMode="spline"
+          keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+        />
+      </circle>
+      <circle cx="16" cy="16" r="10" fill="#1E8CBE" fill-opacity="0.4">
+        <animate 
+          attributeName="r" 
+          values="10;8;10" 
+          dur="1.5s" 
+          repeatCount="indefinite" 
+          calcMode="spline"
+          keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+        />
+      </circle>
+      <circle cx="16" cy="16" r="6" fill="#1E8CBE">
+        <animate 
+          attributeName="r" 
+          values="6;5;6" 
+          dur="1.5s" 
+          repeatCount="indefinite" 
+          calcMode="spline"
+          keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+        />
+      </circle>
+    </svg>
+  `),
+  iconSize: [40, 40],
+  iconAnchor: [20, 20],
+  popupAnchor: [0, -20],
+  className: "user-marker-icon",
 });
 
 const markerEcharge = new L.Icon({
@@ -24,24 +59,18 @@ const markerEcharge = new L.Icon({
 
 export const UserMarker = ({ pos }) => {
   const map = useMap();
-  const { setCircle } = useContext(globalContext);
-
   return (
     <Marker
       position={[pos.lat, pos.lng]}
-      icon={markerIcon}
+      icon={userIcon}
       draggable={false}
       eventHandlers={{
         click: () => {
-          setCircle(false);
           setTimeout(() => {
             map?.flyTo([pos.lat, pos.lng], 15, {
               duration: 3,
             });
           }, 500);
-          setTimeout(() => {
-            setCircle(true);
-          }, 3500);
         },
       }}
     ></Marker>
@@ -75,6 +104,11 @@ export const CreateMarkers = ({ Data }) => {
             key={idx}
             position={[item.latitude, item.longitude]}
             icon={markerEcharge}
+            eventHandlers={{
+              mouseover: (e) => {
+                e.target.openPopup();
+              },
+            }}
           >
             <Popup autoClose={true} closeOnClick={true}>
               <div className="pops">
@@ -103,7 +137,11 @@ export const CreateMarkers = ({ Data }) => {
                     }
                   >
                     <span style={{ cursor: "pointer" }}>Route</span>
-                    <FontAwesomeIcon icon={faRoute} color="#fff" fontSize={15}/>
+                    <FontAwesomeIcon
+                      icon={faRoute}
+                      color="#fff"
+                      fontSize={15}
+                    />
                   </button>
                 )}
               </div>

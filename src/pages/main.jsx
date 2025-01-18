@@ -39,7 +39,7 @@ const Main = () => {
             </div>
             <div
               style={{
-                backgroundColor: " rgb(26, 26, 77) ",
+                backgroundColor: "#222222",
                 padding: "3rem 0",
                 width: "100%",
               }}

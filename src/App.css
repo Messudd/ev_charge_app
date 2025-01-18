@@ -2,13 +2,13 @@
   width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: rgb(26, 26, 77);
+  background:  rgba(0,0,0,0.7);;
 }
 ::-webkit-scrollbar-thumb {
-  background: #24185e;
+  background: #000;
 }
 .btn-try {
-  background-color: #22136d;
+  background-color:#454545;
   margin: 0 0.75rem;
   color: whitesmoke;
   padding: 0.75rem 3rem;
@@ -17,7 +17,7 @@
 }
 .btn-try:hover {
   border-color: whitesmoke;
-  background-color: #22136d;
+  background-color: #000;
   letter-spacing: 0.2rem;
   transition: all 0.5s ease;
 }
@@ -27,7 +27,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   padding: 20px 45px;
   justify-content: flex-end;
-  background-color: rgb(26, 26, 77);
+  background-color:  rgba(0,0,0,0.7);
   gap: 45px;
 }
 .top-link a {
@@ -40,7 +40,7 @@
   transition: all 0.5s ease;
 }
 .top-link #signUp {
-  background: #22136d;
+  background:  rgba(0,0,0,0.7);
   padding: 4px 10px;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -134,7 +134,7 @@ h3 {
   cursor: pointer;
 }
 .leaflet-popup-content-wrapper {
-  background: #130a3e;
+  background: rgba(0,0,0,0.7);
   color: white;
 }
 .leaflet-marker-pane img {
@@ -157,7 +157,7 @@ select:focus {
   font-size: 1.1rem;
 }
 .map-style select {
-  background: #130a3e;
+  background:  rgba(0,0,0,0.7);
   color: whitesmoke;
   border-bottom: 1px solid darkred;
   padding: 4px;
@@ -200,7 +200,7 @@ select:focus {
   justify-content: space-around;
   align-items: center;
   padding: 20px 0;
-  border-top: 1px solid rgb(26, 26, 77);
+  border-top: 1px solid  rgba(0,0,0,0.7);
 }
 .home-footer p {
   background: none;
@@ -215,7 +215,7 @@ select:focus {
 }
 .social-link a {
   border-radius: 5px;
-  padding: 3px 10px;
+  padding: 5px 10px;
 }
 .bg-section {
   display: flex;
@@ -249,7 +249,7 @@ select:focus {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background-color: rgb(26, 26, 77);
+  background-color: #222222;
   margin-top: 1rem;
   gap: 40px;
 }
@@ -261,7 +261,7 @@ select:focus {
   overflow: hidden;
   border-radius: 5px;
   gap: 8px;
-  background-color: #130a3e;
+  background-color: rgba(0,0,0,0.3);
 }
 .station-card .img-card {
   width: 100%;
@@ -302,7 +302,7 @@ select:focus {
   top: 40%;
   left: 0;
   width: 38px;
-  background-color: #22136d;
+  background-color:#454545;
 }
 .fix-social {
   display: flex;
@@ -319,7 +319,7 @@ select:focus {
     padding: 4rem;
   }
   .social-link a:hover {
-    background: #22136d;
+    background: #000;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -335,7 +335,7 @@ select:focus {
     gap: 20px;
   }
   .social-link a:active {
-    background: #22136d;
+    background: #000;
   }
   .stations .cards-block {
     padding: 4rem 3rem;

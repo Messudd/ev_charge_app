@@ -27,7 +27,7 @@ const LeafletRouting = ({pos}) => {
                 lineOptions: {
                   styles : [
                     {
-                      color: 'blue',
+                      color: 'red',
                       weight: 6,
                       opacity : 0.6
                     }

@@ -71,7 +71,7 @@ const MapPopup = ({ value, setPopMap }) => {
             style={{ width: "100%", height: "100%" }}
             center={[value[0], value[1]]}
             zoom={12}
-            scrollWheelZoom={false}
+            scrollWheelZoom={true}
             doubleClickZoom={false}
             zoomControl={true}
             dragging={true}

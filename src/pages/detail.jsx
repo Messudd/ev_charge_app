@@ -9,7 +9,7 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import "../css/detail.css";
 
 const Detail = () => {
-  const BASE_API_URL = "https://192.168.1.13:8040/geolocation/ev";
+  const BASE_API_URL = "http://192.168.1.37:4000/geolocation/ev";
   const [detailLocation, setDetailLocation] = useState(null);
   const { route, setRoute } = useContext(globalContext);
   let { id } = useParams();

@@ -20,12 +20,12 @@
 }
 .grb-btn {
   display: flex;
-  gap: 25px;
+  border: 1px solid #454545;
+  border-radius: 2px;
 }
 .links-fav button {
-  border-bottom: 1px solid #ccc;
-  background: rgb(33, 65, 104);
-  border-radius: 3px;
+  border-bottom: 1px solid #454545;
+  background: #454545;
   color: whitesmoke;
   padding: 5px 18px;
 }
@@ -56,7 +56,7 @@
   display: flex;
   align-items: stretch;
   height: 40px;
-  border: 1px solid rgb(33, 65, 104);
+  border: 1px solid transparent;
   border-radius: 15px;
   overflow: hidden;
 }
@@ -88,7 +88,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgb(33, 65, 104);
+  border: 1px solid #454545;
   padding: 30px;
   border-radius: 3px;
   gap: 40px;
@@ -100,13 +100,13 @@
   flex-direction: column;
   align-items: center;
   border: 1px solid transparent;
-  background: #180e4b;
+  background: #242424;
   gap: 15px;
   border-radius: 4px;
   padding: 15px;
 }
 .card-fav:hover {
-  box-shadow: 2px 3px 8px rgb(33, 65, 104);
+  box-shadow: 2px 3px 8px #454545;
 }
 .card-image {
   width: 100%;
@@ -156,7 +156,7 @@
     border: none;
   }
   .card-fav {
-    border: 1px solid rgb(33, 65, 104);
+    border: 1px solid #454545;
   }
 }
 @media only screen and (max-width: 1000px) {
@@ -227,13 +227,13 @@
   width: 100px;
   border: 1px solid transparent;
   border-radius: 4px;
-  background: rgb(33, 65, 104);
+  background: #454545;
   color: #fff;
   transition: all 0.5s ease;
 }
 .delpop div button:hover {
   background: none;
-  border-color: rgb(33, 65, 104);
+  border-color: #242424;
 }
 @media only screen and (max-width: 600px) {
   .del-big {

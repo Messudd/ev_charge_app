@@ -4,8 +4,8 @@
     align-items: center;
     gap: 20px;
     padding: 10px;
-    background: #130a3e;
-    border: 1px solid rgb(33, 65, 104);
+    background: #222222;
+    border: 1px solid #454545;
     align-items: center;
     border-radius: 3px;
 }
@@ -36,7 +36,7 @@
     width: 100%;
     padding: 5px;
     color: #fff;
-    border: 1px solid rgb(33, 65, 104);
+    border: 1px solid #454545;
 }
 #file-loc{
     display: none;
@@ -106,14 +106,14 @@
     width: 100%;
     padding: 8px;
     color: #fff;
-    border: 1px solid rgb(33, 65, 104);
+    border: 1px solid #454545;
 }
 .other-info select{
     width: 100%;
     padding: 8px;
     color: #fff;
-    border: 1px solid rgb(33, 65, 104);
-    background-color: #180E4B;
+    border: 1px solid #454545;
+    background-color: #222222;
     opacity: 0.6;
 }
 .other-info button{
@@ -123,11 +123,11 @@
     letter-spacing: 0.15rem;
     border-radius: 3px;
     color: #fff;
-    background-color: rgb(33, 65, 104);
+    background-color: #454545;
     transition: all 0.5s ease;
 }
 .other-info button:hover{
     background: none;
-    border-color: rgb(33, 65, 104);
+    border-color: #454545;
 }
 

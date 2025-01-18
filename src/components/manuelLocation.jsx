@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { toastData } from "../data/animationData";
 import axios from "axios";
 
-const BASE_API_URL = "https://192.168.1.13:8040/geolocation/ev";
+const BASE_API_URL = "http://192.168.1.37:4000/geolocation/ev";
 
 const ManuelLocation = () => {
   const { userChoise, setUserChoise, fetchList, setFetchList } =

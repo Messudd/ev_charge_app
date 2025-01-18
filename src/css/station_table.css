@@ -7,7 +7,7 @@
   gap: 20px;
   justify-content: center;
   align-items: center;
-  background: rgb(26, 26, 77);
+  background-color:#222222;
 }
 .filter-table {
   display: flex;
@@ -34,13 +34,14 @@
   padding: 5px 6px;
   border-radius: 3px;
   border-bottom: 1px solid darkred;
+  background-color : #323232;
   color: whitesmoke;
 }
 .filter-table .in input:focus{
   outline: none;
 }
 .filter-table .in select{
-  background: #130a3e;
+  background:  rgba(0,0,0,0.7);
   border-radius: 3px;
   color: whitesmoke;
   opacity: 0.7;
@@ -51,7 +52,8 @@
   th,
   tr,
   td {
-    border: 1px solid #3b3072;
+    background:  #323232;
+    border: 1px solid #222222 ;
     border-collapse: collapse;
     padding: 3px 5px;
     font-size: 0.33rem;
@@ -64,7 +66,7 @@
   table tbody,
   tr,
   td {
-    background: rgb(26, 26, 77);
+    background:  rgba(0,0,0,0.7);
   }
   table th,
   td {
@@ -84,11 +86,11 @@
     overflow: auto;
   }
   .td-btn {
-    background: #201558;
+    background:  #323232;
     cursor: pointer;
   }
   .td-btn:hover {
-    background: #281d5f;
+    background: #000;
     transition: all 0.4s ease;
   }
   .td-btn a {
@@ -96,7 +98,7 @@
   }
 }
  table {
-  box-shadow: 1px 2px 3px rgb(26, 26, 77);
+    box-shadow: 1px 2px 3px #323232;
 }
 @media only screen and (min-width: 600px){
 table,
@@ -104,7 +106,7 @@ th,
 tr,
 td {
   font-size: 0.8rem;
-  border: 1px solid #3b3072;
+  border: 1px solid #222222;
   border-collapse: collapse;
   padding: 10px 20px;
   color: whitesmoke;  
@@ -116,10 +118,10 @@ table td {
 table tbody,
 tr,
 td {
-  background: rgb(26, 26, 77);
+  background-color: #323232;
 }
 table tbody tr:hover{
-  background-color: #130a3e;
+  background-color: #000;
 }
 table th,
 td {
@@ -140,11 +142,11 @@ th {
   overflow: auto;
 }
 .td-btn {
-  background: #201558;
+  background: #323232;;
   cursor: pointer;
 }
 .td-btn:hover {
-  background: #281d5f;
+  background:  rgb(0,0,0);
   transition: all 0.4s ease;
 }
 .td-btn a {
@@ -164,7 +166,7 @@ th {
   font-size: 1.1rem;
   opacity: 0.7;
   border:1px solid transparent;
-  background:#281d5f;
+  background: #323232;
   border-radius: 4px;
   color: whitesmoke;
 }
@@ -179,7 +181,7 @@ th {
   font-size: 1rem;
   padding: 5px 10px;
   border-radius: 4px;
-  background:#130a3e;
+  background: #323232;
 }
 @media only screen and (min-width: 600px){
   .sort-btn:hover{

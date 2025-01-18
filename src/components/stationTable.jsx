@@ -22,7 +22,6 @@ const StationTable = () => {
     setFilterTableData,
     route,
     setRoute,
-    setCircle,
     colorStatus,
   } = useContext(globalContext);
 
@@ -121,11 +120,7 @@ const StationTable = () => {
 
   const showStationOnMap = (lat, lng) => {
     window.scrollTo(0, 0);
-    setCircle(false);
-    map?.flyTo([lat, lng], 17, { duration: 3 });
-    setTimeout(() => {
-      setCircle(true);
-    }, 3500);
+    map?.flyTo([lat, lng], 16, { duration: 3 });
   };
 
   useEffect(() => {
