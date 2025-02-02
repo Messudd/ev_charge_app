@@ -14,7 +14,7 @@ import API_BASE_URL from "../data/apiBaseUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer } from "react-toastify";
-import PreviewPopup from "../components/previewPopup";
+import FeedbackPopup from "../components/feedback";
 import Footer from "../components/footer";
 import ev from "../utility/images/ev.png";
 import FetchList from "../components/fetchList";
@@ -137,13 +137,13 @@ const Home = () => {
             </div>
           </div>
           <div className="sec-head">
-            <a
+            <span
               onClick={onOpenContactPopup}
               className="home-nav"
               style={{ cursor: "pointer" }}
             >
               Contact
-            </a>
+            </span>
             <span className="home-nav" onClick={userLogout}>
               <FontAwesomeIcon icon={faSignOutAlt} />
               <span
@@ -170,7 +170,7 @@ const Home = () => {
       {filterTableData.locDatas?.length > 0 && <DataGraf />}
       {formLocationData.locDatas && <StationTable />}
       {fetchList.length > 0 && <FetchList />}
-      {prewPopup && <PreviewPopup />}
+      {prewPopup && <FeedbackPopup />}
       <Footer />
     </>
   );

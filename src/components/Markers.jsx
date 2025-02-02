@@ -130,19 +130,29 @@ export const CreateMarkers = ({ Data }) => {
                 </div>
                 <span style={{ color: "red" }}>{item.status}</span>
                 {pos.loading && (
-                  <button
-                    className="route-btn"
-                    onClick={() =>
-                      setleafletRouting(item.latitude, item.longitude)
-                    }
-                  >
-                    <span style={{ cursor: "pointer" }}>Route</span>
-                    <FontAwesomeIcon
-                      icon={faRoute}
-                      color="#fff"
-                      fontSize={15}
-                    />
-                  </button>
+                  <>
+                    <a
+                      className="google-maps"
+                      href={`https://www.google.com/maps?q=${item.latitude},${item.longitude}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Open with google maps
+                    </a>
+                    <button
+                      className="route-btn"
+                      onClick={() =>
+                        setleafletRouting(item.latitude, item.longitude)
+                      }
+                    >
+                      <span style={{ cursor: "pointer" }}>Route</span>
+                      <FontAwesomeIcon
+                        icon={faRoute}
+                        color="#fff"
+                        fontSize={15}
+                      />
+                    </button>
+                  </>
                 )}
               </div>
             </Popup>

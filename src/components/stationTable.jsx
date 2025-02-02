@@ -278,7 +278,7 @@ const StationTable = () => {
       ) : (
         <div className="info-catch">
           <button className="table-info-btn" onClick={loadAllData}>
-            Load
+            Latest  
           </button>
           <p
             style={{

@@ -87,9 +87,9 @@ const Main = () => {
             </div>
             <div className="fixed-social">
               {social.map((item, idx) => (
-                <Link className="fix-social" key={idx} to={item.link}>
+                <a className="fix-social" key={idx} href={item.link} target="_blank">
                   <FontAwesomeIcon icon={item.img} color="white" />
-                </Link>
+                </a>
               ))}
             </div>
             <main>

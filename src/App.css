@@ -49,9 +49,13 @@
   width: 100%;
   height: 750px;
 }
+.leaflet-container a {
+  color: #fff;
+}
 .leaflet-control-zoom .leaflet-control-zoom-in span,
 .leaflet-control-zoom-out span {
   background: #fff;
+  color: #454545;
 }
 .leaflet-control-container .leaflet-top,
 .leaflet-left {

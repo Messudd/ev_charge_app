@@ -160,7 +160,7 @@ const ManuelLocation = () => {
               loading={formLocationData.loading}
               color="#fff"
               size={8}
-              style={{ background: "rgb(26, 26, 77)" ,margin:'8px' }}
+              style={{ background: "#454545" ,margin:'8px' }}
             ></BeatLoader>
           ) : (
             "Search"

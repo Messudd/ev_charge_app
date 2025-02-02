@@ -6,19 +6,19 @@ import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
 const social = [
    { 
     img  :  faGithub,
-    link : '/'
+    link : 'https://github.com/Messudd'
    },
    { 
     img  :  faLinkedin,
-    link : '/'
+    link : 'https://www.linkedin.com/in/messud/'
    },
    { 
     img  :  faYoutube,
-    link : '/'
+    link : 'https://www.youtube.com/@elektrolux2850'
    },
    { 
     img  : faBriefcase,
-    link : '/'
+    link : 'https://fs-web-frontend-challenge-mesud-f5fq30ocd-messudd.vercel.app/'
    },
 
 ]
