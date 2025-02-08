@@ -125,10 +125,12 @@ const StationTable = () => {
 
   useEffect(() => {
     setRoute({ ...route, route: false });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterTableData.locDatas?.length]);
 
   useEffect(() => {
     setFilterTableData({ ...formLocationData });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formLocationData.locDatas]);
 
   useEffect(() => {

@@ -44,10 +44,10 @@ const Home = () => {
   };
   function userLogout() {
     window.location.reload();
-    localStorage.removeItem('session');
-    localStorage.removeItem('id');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('info');
+    localStorage.removeItem("session");
+    localStorage.removeItem("id");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("info");
     setTimeout(() => {
       redicrect.push("/");
     }, 300);
@@ -60,8 +60,8 @@ const Home = () => {
     window.scrollTo(0, 0);
     let userValues = atob(localStorage.getItem("session")).split(":");
     console.log("val : ", userValues);
-    (userValues.length === 2 ) ? (
-       axios
+    userValues.length === 2
+      ? axios
           .get(`${API_BASE_URL}/user/byEmail/${userValues[0]}`, {
             auth: {
               username: userValues[0],
@@ -86,7 +86,9 @@ const Home = () => {
           })
           .catch((err) => {
             console.log("error : ", err.message);
-          })): redicrect.push('/');
+          })
+      : redicrect.push("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

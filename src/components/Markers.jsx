@@ -94,6 +94,7 @@ export const CreateMarkers = ({ Data }) => {
 
   useEffect(() => {
     setMap(myMap);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

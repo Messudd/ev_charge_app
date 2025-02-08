@@ -87,6 +87,7 @@ const Main = () => {
             </div>
             <div className="fixed-social">
               {social.map((item, idx) => (
+                // eslint-disable-next-line react/jsx-no-target-blank
                 <a className="fix-social" key={idx} href={item.link} target="_blank">
                   <FontAwesomeIcon icon={item.img} color="white" />
                 </a>
